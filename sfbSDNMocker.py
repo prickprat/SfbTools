@@ -2,17 +2,11 @@ import sys
 import logging
 import argparse
 
-logging.basicConfig()
+argParser = argparse.ArgumentParser()
+argParser.parse_args()
 
-def printHelpText:
-	helpText = """
-		Usage: 
-			-h Prints the help text
-			-s 
-
+def printHelpText():
+	helpText = """ Usage: 
+	-h Prints the help text
 	"""
-	print("""
-
-
-
-		""")
+	print(helpText)
