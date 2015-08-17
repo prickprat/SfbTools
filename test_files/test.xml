@@ -1,0 +1,17 @@
+<LyncDiagnostics Version="C"></LyncDiagnostics>
+
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>a8ebd9b2b1b1469daa9bb366e6165d3a</CallId>.
+    <CSEQ>1</CSEQ>.
+    <ConferenceId>JGL4BFL5</ConferenceId>.
+    <TimeStamp>2015-08-12T09:23:07.9926127-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">.<ConnectionInfo>. </ConnectionInfo>. </LyncDiagnostics>
+
+<LyncDiagnoscs Version="C">. </LyncDiagnostics>
+
+RNADOM TEST SHIT TO TEST
+<LyncDiagnostics Version="C">. TEST 2   </LyncDiagnostics>

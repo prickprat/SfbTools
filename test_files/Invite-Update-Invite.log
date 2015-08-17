@@ -1,0 +1,1020 @@
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>df93dcdd4a1d447a872a2bd7fc45499f</CallId>.
+    <CSEQ>1</CSEQ>.
+    <ConversationId>AdDU/tU2cBqcxGjzRmS8MGkL6M3ZYg==</ConversationId>.
+    <ConferenceId>JGL4BFL5</ConferenceId>.
+    <TimeStamp>2015-08-12T08:59:14.4566735-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <Invite>.
+    <Caller>.
+      <Id>af78a5a83f</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </Caller>.
+    <Callee>.
+      <URI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</URI>.
+    </Callee>.
+  </Invite>.
+  <RawSDP>v=0.
+o=- 0 0 IN IP4 216.230.111.136.
+s=session.
+c=IN IP4 216.230.111.136.
+b=CT:99980.
+t=0 0.
+a=x-devicecaps:audio:send,recv;video:send,recv.
+m=audio 52654 RTP/AVP 117 104 114 9 112 111 0 103 8 116 115 97 13 118 101.
+a=x-ssrc-range:638896853-638896853.
+a=rtcp-fb:* x-message app send:dsh recv:dsh.
+a=rtcp-rsize.
+a=label:main-audio.
+a=x-source:main-audio.
+a=ice-ufrag:6ueS.
+a=candidate:1 1 UDP 2130706431 192.168.23.1 18152 typ host .
+a=candidate:1 2 UDP 2130705918 192.168.23.1 18153 typ host .
+a=candidate:2 1 UDP 2130705919 192.168.19.1 26216 typ host .
+a=candidate:2 2 UDP 2130705406 192.168.19.1 26217 typ host .
+a=candidate:3 1 UDP 2130705407 192.168.1.8 18444 typ host .
+a=candidate:3 2 UDP 2130704894 192.168.1.8 18445 typ host .
+a=x-candidate-ipv6:4 1 UDP 33552895 2001:0:9d38:90d7:208b:efd:b590:4048 30088 typ host .
+a=x-candidate-ipv6:4 2 UDP 33552382 2001:0:9d38:90d7:208b:efd:b590:4048 30089 typ host .
+a=candidate:5 1 TCP-PASS 174454783 216.230.111.136 50403 typ relay raddr 74.111.191.183 rport 33557 .
+a=candidate:5 2 TCP-PASS 174454270 216.230.111.136 50403 typ relay raddr 74.111.191.183 rport 33557 .
+a=candidate:6 1 UDP 184546815 216.230.111.136 52654 typ relay raddr 74.111.191.183 rport 30914 .
+a=candidate:6 2 UDP 184546302 216.230.111.136 59180 typ relay raddr 74.111.191.183 rport 30915 .
+a=candidate:7 1 UDP 1694233599 74.111.191.183 30914 typ srflx raddr 192.168.1.8 rport 30914 .
+a=candidate:7 2 UDP 1694233086 74.111.191.183 30915 typ srflx raddr 192.168.1.8 rport 30915 .
+a=candidate:8 1 TCP-ACT 174846463 216.230.111.136 50403 typ relay raddr 74.111.191.183 rport 33557 .
+a=candidate:8 2 TCP-ACT 174845950 216.230.111.136 50403 typ relay raddr 74.111.191.183 rport 33557 .
+a=candidate:9 1 TCP-ACT 1684795391 74.111.191.183 33557 typ srflx raddr 192.168.1.8 rport 33557 .
+a=candidate:9 2 TCP-ACT 1684794878 74.111.191.183 33557 typ srflx raddr 192.168.1.8 rport 33557 .
+a=maxptime:200.
+a=rtcp:59180.
+a=rtpmap:117 G722/8000/2.
+a=rtpmap:104 SILK/16000.
+a=fmtp:104 useinbandfec=1; usedtx=0.
+a=rtpmap:114 x-msrta/16000.
+a=fmtp:114 bitrate=29000.
+a=rtpmap:9 G722/8000.
+a=rtpmap:112 G7221/16000.
+a=fmtp:112 bitrate=24000.
+a=rtpmap:111 SIREN/16000.
+a=fmtp:111 bitrate=16000.
+a=rtpmap:0 PCMU/8000.
+a=rtpmap:103 SILK/8000.
+a=fmtp:103 useinbandfec=1; usedtx=0.
+a=rtpmap:8 PCMA/8000.
+a=rtpmap:116 AAL2-G726-32/8000.
+a=rtpmap:115 x-msrta/8000.
+a=fmtp:115 bitrate=11800.
+a=rtpmap:97 RED/8000.
+a=rtpmap:13 CN/8000.
+a=rtpmap:118 CN/16000.
+a=rtpmap:101 telephone-event/8000.
+a=fmtp:101 0-16.
+a=rtcp-mux.
+a=ptime:20.
+</RawSDP>.
+</LyncDiagnostics>
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>df93dcdd4a1d447a872a2bd7fc45499f</CallId>.
+    <CSEQ>2</CSEQ>.
+    <ConversationId>AdDU/tU2cBqcxGjzRmS8MGkL6M3ZYg==</ConversationId>.
+    <ConferenceId>JGL4BFL5</ConferenceId>.
+    <TimeStamp>2015-08-12T08:59:20.3806735-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <Invite>.
+    <Caller>.
+      <Id>af78a5a83f</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </Caller>.
+    <Callee>.
+      <Id>a2bbc47d53</Id>.
+      <EPId>DB9112AC2F</EPId>.
+      <URI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</URI>.
+    </Callee>.
+  </Invite>.
+  <RawSDP>v=0.
+o=- 0 1 IN IP4 74.111.191.183.
+s=session.
+c=IN IP4 74.111.191.183.
+b=CT:99980.
+t=0 0.
+a=x-devicecaps:audio:send,recv;video:send,recv.
+m=audio 18444 RTP/SAVP 117 9 111 0 8 97 13 118 101.
+a=x-ssrc-range:638896853-638896853.
+a=rtcp-fb:* x-message app send:dsh recv:dsh.
+a=rtcp-rsize.
+a=label:main-audio.
+a=x-source:main-audio.
+a=ice-ufrag:6ueS.
+a=candidate:3 1 UDP 1862269695 74.111.191.183 18444 typ prflx raddr 192.168.1.8 rport 18444 .
+a=x-candidate-info:3 network-type=wlan.
+a=remote-candidates:1 216.230.111.136 54949 2 216.230.111.136 54949.
+a=maxptime:200.
+a=rtpmap:117 G722/8000/2.
+a=rtpmap:9 G722/8000.
+a=rtpmap:111 SIREN/16000.
+a=fmtp:111 bitrate=16000.
+a=rtpmap:0 PCMU/8000.
+a=rtpmap:8 PCMA/8000.
+a=rtpmap:97 RED/8000.
+a=rtpmap:13 CN/8000.
+a=rtpmap:118 CN/16000.
+a=rtpmap:101 telephone-event/8000.
+a=fmtp:101 0-16.
+a=rtcp-mux.
+a=ptime:20.
+</RawSDP>.
+</LyncDiagnostics>
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>df93dcdd4a1d447a872a2bd7fc45499f</CallId>.
+    <CSEQ>2</CSEQ>.
+    <ConversationId>AdDU/tU2cBqcxGjzRmS8MGkL6M3ZYg==</ConversationId>.
+    <ConferenceId>JGL4BFL5</ConferenceId>.
+    <TimeStamp>2015-08-12T08:59:20.3966735-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <Start Type="audio">.
+    <From>.
+      <Id>af78a5a83f</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <IP>74.111.191.183</IP>.
+      <Port>18444</Port>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </From>.
+    <To>.
+      <Id>a2bbc47d53</Id>.
+      <EPId>DB9112AC2F</EPId>.
+      <URI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</URI>.
+      <Contact>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</Contact>.
+      <IP>216.230.111.136</IP>.
+      <Port>54949</Port>.
+    </To>.
+    <Properties>.
+      <Protocol>UDP</Protocol>.
+      <Bandwidth>.
+        <Average>0</Average>.
+        <Maximum>0</Maximum>.
+      </Bandwidth>.
+      <Codec Name="G722/8000/2">.
+        <Bandwidth>108400</Bandwidth>.
+        <MaxBandwidth>228600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="G722/8000">.
+        <Bandwidth>70400</Bandwidth>.
+        <MaxBandwidth>164600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="SIREN/16000">.
+        <Bandwidth>35500</Bandwidth>.
+        <MaxBandwidth>68600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMU/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMA/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+    </Properties>.
+  </Start>.
+  <Start Type="audio">.
+    <From>.
+      <Id>a2bbc47d53</Id>.
+      <EPId>DB9112AC2F</EPId>.
+      <URI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</URI>.
+      <Contact>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</Contact>.
+      <IP>216.230.111.136</IP>.
+      <Port>54949</Port>.
+    </From>.
+    <To>.
+      <Id>af78a5a83f</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <IP>74.111.191.183</IP>.
+      <Port>18444</Port>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </To>.
+    <Properties>.
+      <Protocol>UDP</Protocol>.
+      <Bandwidth>.
+        <Average>84725</Average>.
+        <Maximum>228600</Maximum>.
+      </Bandwidth>.
+      <Codec Name="G722/8000/2">.
+        <Bandwidth>108400</Bandwidth>.
+        <MaxBandwidth>228600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="G722/8000">.
+        <Bandwidth>70400</Bandwidth>.
+        <MaxBandwidth>164600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="SIREN/16000">.
+        <Bandwidth>35500</Bandwidth>.
+        <MaxBandwidth>68600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMU/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMA/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+    </Properties>.
+  </Start>.
+  <RawSDP>v=0.
+o=- 800 1 IN IP4 10.5.0.131.
+s=session.
+c=IN IP4 216.230.111.136.
+b=CT:10000000.
+t=0 0.
+m=audio 54949 RTP/SAVP 117 9 111 0 8 97 13 118 101.
+c=IN IP4 216.230.111.136.
+a=rtcp-rsize.
+a=rtcp-fb:* x-message app send:dsh recv:dsh.
+a=x-ssrc-range:1000-1000.
+a=x-source-streamid:1.
+a=rtcp:54949.
+a=ice-ufrag:ZPP/.
+a=rtcp-mux.
+a=candidate:3 1 UDP 184548351 216.230.111.136 54949 typ relay raddr 10.5.0.131 rport 53030.
+a=remote-candidates:1 74.111.191.183 18444 2 74.111.191.183 18444.
+a=label:main-audio.
+a=x-audioflow:sendonly.
+a=x-dtmfflow:recvonly.
+a=rtpmap:117 g722/8000/2.
+a=fmtp:117 bitrate=128000.
+a=rtpmap:9 g722/8000.
+a=rtpmap:111 SIREN/16000.
+a=fmtp:111 bitrate=16000.
+a=rtpmap:0 PCMU/8000.
+a=rtpmap:8 PCMA/8000.
+a=rtpmap:97 RED/8000.
+a=rtpmap:13 CN/8000.
+a=rtpmap:118 CN/16000.
+a=rtpmap:101 telephone-event/8000.
+a=ptime:20.
+</RawSDP>.
+</LyncDiagnostics>
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>df93dcdd4a1d447a872a2bd7fc45499f</CallId>.
+    <CSEQ>3</CSEQ>.
+    <ConversationId>AdDU/tU2cBqcxGjzRmS8MGkL6M3ZYg==</ConversationId>.
+    <ConferenceId>JGL4BFL5</ConferenceId>.
+    <TimeStamp>2015-08-12T09:00:59.2136735-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <Invite>.
+    <Caller>.
+      <Id>af78a5a83f</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </Caller>.
+    <Callee>.
+      <Id>a2bbc47d53</Id>.
+      <EPId>DB9112AC2F</EPId>.
+      <URI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</URI>.
+      <Contact>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</Contact>.
+    </Callee>.
+  </Invite>.
+  <RawSDP>v=0.
+o=- 0 2 IN IP4 74.111.191.183.
+s=session.
+c=IN IP4 74.111.191.183.
+b=CT:99980.
+t=0 0.
+a=x-devicecaps:audio:send,recv;video:send,recv.
+m=audio 18444 RTP/SAVP 117 9 111 0 8 97 13 118 101.
+a=x-ssrc-range:638896853-638896853.
+a=rtcp-fb:* x-message app send:dsh recv:dsh.
+a=rtcp-rsize.
+a=label:main-audio.
+a=x-source:main-audio.
+a=ice-ufrag:6ueS.
+a=candidate:3 1 UDP 1862269695 74.111.191.183 18444 typ prflx raddr 192.168.1.8 rport 18444 .
+a=x-candidate-info:3 network-type=wlan.
+a=remote-candidates:1 216.230.111.136 54949 2 216.230.111.136 54949.
+a=maxptime:200.
+a=inactive.
+a=rtpmap:117 G722/8000/2.
+a=rtpmap:9 G722/8000.
+a=rtpmap:111 SIREN/16000.
+a=fmtp:111 bitrate=16000.
+a=rtpmap:0 PCMU/8000.
+a=rtpmap:8 PCMA/8000.
+a=rtpmap:97 RED/8000.
+a=rtpmap:13 CN/8000.
+a=rtpmap:118 CN/16000.
+a=rtpmap:101 telephone-event/8000.
+a=fmtp:101 0-16.
+a=rtcp-mux.
+a=ptime:20.
+</RawSDP>.
+</LyncDiagnostics>
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>df93dcdd4a1d447a872a2bd7fc45499f</CallId>.
+    <CSEQ>3</CSEQ>.
+    <ConversationId>AdDU/tU2cBqcxGjzRmS8MGkL6M3ZYg==</ConversationId>.
+    <ConferenceId>JGL4BFL5</ConferenceId>.
+    <TimeStamp>2015-08-12T09:00:59.2246735-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <Update Type="audio">.
+    <From>.
+      <Id>af78a5a83f</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <IP>74.111.191.183</IP>.
+      <Port>18444</Port>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </From>.
+    <To>.
+      <Id>a2bbc47d53</Id>.
+      <EPId>DB9112AC2F</EPId>.
+      <URI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</URI>.
+      <Contact>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</Contact>.
+      <IP>216.230.111.136</IP>.
+      <Port>54949</Port>.
+    </To>.
+    <Properties>.
+      <Protocol>UDP</Protocol>.
+      <Bandwidth>.
+        <Average>0</Average>.
+        <Maximum>0</Maximum>.
+      </Bandwidth>.
+      <Codec Name="G722/8000/2">.
+        <Bandwidth>108400</Bandwidth>.
+        <MaxBandwidth>228600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="G722/8000">.
+        <Bandwidth>70400</Bandwidth>.
+        <MaxBandwidth>164600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="SIREN/16000">.
+        <Bandwidth>35500</Bandwidth>.
+        <MaxBandwidth>68600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMU/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMA/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+    </Properties>.
+  </Update>.
+  <Update Type="audio">.
+    <From>.
+      <Id>a2bbc47d53</Id>.
+      <EPId>DB9112AC2F</EPId>.
+      <URI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</URI>.
+      <Contact>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</Contact>.
+      <IP>216.230.111.136</IP>.
+      <Port>54949</Port>.
+    </From>.
+    <To>.
+      <Id>af78a5a83f</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <IP>74.111.191.183</IP>.
+      <Port>18444</Port>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </To>.
+    <Properties>.
+      <Protocol>UDP</Protocol>.
+      <Bandwidth>.
+        <Average>0</Average>.
+        <Maximum>0</Maximum>.
+      </Bandwidth>.
+      <Codec Name="G722/8000/2">.
+        <Bandwidth>108400</Bandwidth>.
+        <MaxBandwidth>228600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="G722/8000">.
+        <Bandwidth>70400</Bandwidth>.
+        <MaxBandwidth>164600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="SIREN/16000">.
+        <Bandwidth>35500</Bandwidth>.
+        <MaxBandwidth>68600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMU/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMA/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+    </Properties>.
+  </Update>.
+  <RawSDP>v=0.
+o=- 800 2 IN IP4 10.5.0.131.
+s=session.
+c=IN IP4 216.230.111.136.
+b=CT:10000000.
+t=0 0.
+m=audio 54949 RTP/SAVP 117 9 111 0 8 97 13 118 101.
+c=IN IP4 216.230.111.136.
+a=rtcp-rsize.
+a=rtcp-fb:* x-message app send:dsh recv:dsh.
+a=x-ssrc-range:1000-1000.
+a=x-source-streamid:1.
+a=rtcp:54949.
+a=ice-ufrag:ZPP/.
+a=rtcp-mux.
+a=candidate:3 1 UDP 184548351 216.230.111.136 54949 typ relay raddr 10.5.0.131 rport 53030.
+a=remote-candidates:1 74.111.191.183 18444 2 74.111.191.183 18444.
+a=label:main-audio.
+a=inactive.
+a=rtpmap:117 g722/8000/2.
+a=fmtp:117 bitrate=128000.
+a=rtpmap:9 g722/8000.
+a=rtpmap:111 SIREN/16000.
+a=fmtp:111 bitrate=16000.
+a=rtpmap:0 PCMU/8000.
+a=rtpmap:8 PCMA/8000.
+a=rtpmap:97 RED/8000.
+a=rtpmap:13 CN/8000.
+a=rtpmap:118 CN/16000.
+a=rtpmap:101 telephone-event/8000.
+a=ptime:20.
+</RawSDP>.
+</LyncDiagnostics>
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>b28007501de9472999675bdc9b687e3a</CallId>.
+    <CSEQ>1</CSEQ>.
+    <ConversationId>AdDU/xOHZrWiJBadRvCgREjrHr5iJg==</ConversationId>.
+    <ConferenceId>K8VKWL8V</ConferenceId>.
+    <TimeStamp>2015-08-12T09:00:59.8276735-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <Invite>.
+    <Caller>.
+      <Id>0271957636</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </Caller>.
+    <Callee>.
+      <URI>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</URI>.
+    </Callee>.
+  </Invite>.
+  <RawSDP>v=0.
+o=- 0 0 IN IP4 216.230.111.136.
+s=session.
+c=IN IP4 216.230.111.136.
+b=CT:99980.
+t=0 0.
+a=x-devicecaps:audio:send,recv;video:send,recv.
+m=audio 52120 RTP/AVP 117 104 114 9 112 111 0 103 8 116 115 97 13 118 101.
+a=x-ssrc-range:638896854-638896854.
+a=rtcp-fb:* x-message app send:dsh recv:dsh.
+a=rtcp-rsize.
+a=label:main-audio.
+a=x-source:main-audio.
+a=ice-ufrag:lMRF.
+a=candidate:1 1 UDP 2130706431 192.168.23.1 11744 typ host .
+a=candidate:1 2 UDP 2130705918 192.168.23.1 11745 typ host .
+a=candidate:2 1 UDP 2130705919 192.168.19.1 6296 typ host .
+a=candidate:2 2 UDP 2130705406 192.168.19.1 6297 typ host .
+a=candidate:3 1 UDP 2130705407 192.168.1.8 24106 typ host .
+a=candidate:3 2 UDP 2130704894 192.168.1.8 24107 typ host .
+a=x-candidate-ipv6:4 1 UDP 33552895 2001:0:9d38:90d7:208b:efd:b590:4048 20870 typ host .
+a=x-candidate-ipv6:4 2 UDP 33552382 2001:0:9d38:90d7:208b:efd:b590:4048 20871 typ host .
+a=candidate:5 1 TCP-PASS 174454783 216.230.111.136 55112 typ relay raddr 74.111.191.183 rport 4198 .
+a=candidate:5 2 TCP-PASS 174454270 216.230.111.136 55112 typ relay raddr 74.111.191.183 rport 4198 .
+a=candidate:6 1 UDP 184546815 216.230.111.136 52120 typ relay raddr 74.111.191.183 rport 31038 .
+a=candidate:6 2 UDP 184546302 216.230.111.136 56209 typ relay raddr 74.111.191.183 rport 31039 .
+a=candidate:7 1 UDP 1694233599 74.111.191.183 31038 typ srflx raddr 192.168.1.8 rport 31038 .
+a=candidate:7 2 UDP 1694233086 74.111.191.183 31039 typ srflx raddr 192.168.1.8 rport 31039 .
+a=candidate:8 1 TCP-ACT 174846463 216.230.111.136 55112 typ relay raddr 74.111.191.183 rport 4198 .
+a=candidate:8 2 TCP-ACT 174845950 216.230.111.136 55112 typ relay raddr 74.111.191.183 rport 4198 .
+a=candidate:9 1 TCP-ACT 1684795391 74.111.191.183 4198 typ srflx raddr 192.168.1.8 rport 4198 .
+a=candidate:9 2 TCP-ACT 1684794878 74.111.191.183 4198 typ srflx raddr 192.168.1.8 rport 4198 .
+a=maxptime:200.
+a=rtcp:56209.
+a=rtpmap:117 G722/8000/2.
+a=rtpmap:104 SILK/16000.
+a=fmtp:104 useinbandfec=1; usedtx=0.
+a=rtpmap:114 x-msrta/16000.
+a=fmtp:114 bitrate=29000.
+a=rtpmap:9 G722/8000.
+a=rtpmap:112 G7221/16000.
+a=fmtp:112 bitrate=24000.
+a=rtpmap:111 SIREN/16000.
+a=fmtp:111 bitrate=16000.
+a=rtpmap:0 PCMU/8000.
+a=rtpmap:103 SILK/8000.
+a=fmtp:103 useinbandfec=1; usedtx=0.
+a=rtpmap:8 PCMA/8000.
+a=rtpmap:116 AAL2-G726-32/8000.
+a=rtpmap:115 x-msrta/8000.
+a=fmtp:115 bitrate=11800.
+a=rtpmap:97 RED/8000.
+a=rtpmap:13 CN/8000.
+a=rtpmap:118 CN/16000.
+a=rtpmap:101 telephone-event/8000.
+a=fmtp:101 0-16.
+a=rtcp-mux.
+a=ptime:20.
+</RawSDP>.
+</LyncDiagnostics>
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>b28007501de9472999675bdc9b687e3a</CallId>.
+    <CSEQ>2</CSEQ>.
+    <ConversationId>AdDU/xOHZrWiJBadRvCgREjrHr5iJg==</ConversationId>.
+    <ConferenceId>K8VKWL8V</ConferenceId>.
+    <TimeStamp>2015-08-12T09:01:06.2126735-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <Invite>.
+    <Caller>.
+      <Id>0271957636</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </Caller>.
+    <Callee>.
+      <Id>3ccd7b754b</Id>.
+      <EPId>14A0F0AD2A</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</URI>.
+    </Callee>.
+  </Invite>.
+  <RawSDP>v=0.
+o=- 0 1 IN IP4 74.111.191.183.
+s=session.
+c=IN IP4 74.111.191.183.
+b=CT:99980.
+t=0 0.
+a=x-devicecaps:audio:send,recv;video:send,recv.
+m=audio 24106 RTP/SAVP 117 9 111 0 8 97 13 118 101.
+a=x-ssrc-range:638896854-638896854.
+a=rtcp-fb:* x-message app send:dsh recv:dsh.
+a=rtcp-rsize.
+a=label:main-audio.
+a=x-source:main-audio.
+a=ice-ufrag:lMRF.
+a=candidate:3 1 UDP 1862269695 74.111.191.183 24106 typ prflx raddr 192.168.1.8 rport 24106 .
+a=x-candidate-info:3 network-type=wlan.
+a=remote-candidates:1 216.230.111.136 54836 2 216.230.111.136 54836.
+a=maxptime:200.
+a=rtpmap:117 G722/8000/2.
+a=rtpmap:9 G722/8000.
+a=rtpmap:111 SIREN/16000.
+a=fmtp:111 bitrate=16000.
+a=rtpmap:0 PCMU/8000.
+a=rtpmap:8 PCMA/8000.
+a=rtpmap:97 RED/8000.
+a=rtpmap:13 CN/8000.
+a=rtpmap:118 CN/16000.
+a=rtpmap:101 telephone-event/8000.
+a=fmtp:101 0-16.
+a=rtcp-mux.
+a=ptime:20.
+</RawSDP>.
+</LyncDiagnostics>
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>b28007501de9472999675bdc9b687e3a</CallId>.
+    <CSEQ>2</CSEQ>.
+    <ConversationId>AdDU/xOHZrWiJBadRvCgREjrHr5iJg==</ConversationId>.
+    <ConferenceId>K8VKWL8V</ConferenceId>.
+    <TimeStamp>2015-08-12T09:01:06.2326735-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <Start Type="audio">.
+    <From>.
+      <Id>0271957636</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <IP>74.111.191.183</IP>.
+      <Port>24106</Port>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </From>.
+    <To>.
+      <Id>3ccd7b754b</Id>.
+      <EPId>14A0F0AD2A</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</Contact>.
+      <IP>216.230.111.136</IP>.
+      <Port>54836</Port>.
+    </To>.
+    <Properties>.
+      <Protocol>UDP</Protocol>.
+      <Bandwidth>.
+        <Average>84725</Average>.
+        <Maximum>228600</Maximum>.
+      </Bandwidth>.
+      <Codec Name="G722/8000/2">.
+        <Bandwidth>108400</Bandwidth>.
+        <MaxBandwidth>228600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="G722/8000">.
+        <Bandwidth>70400</Bandwidth>.
+        <MaxBandwidth>164600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="SIREN/16000">.
+        <Bandwidth>35500</Bandwidth>.
+        <MaxBandwidth>68600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMU/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMA/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+    </Properties>.
+  </Start>.
+  <Start Type="audio">.
+    <From>.
+      <Id>3ccd7b754b</Id>.
+      <EPId>14A0F0AD2A</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</Contact>.
+      <IP>216.230.111.136</IP>.
+      <Port>54836</Port>.
+    </From>.
+    <To>.
+      <Id>0271957636</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <IP>74.111.191.183</IP>.
+      <Port>24106</Port>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </To>.
+    <Properties>.
+      <Protocol>UDP</Protocol>.
+      <Bandwidth>.
+        <Average>84725</Average>.
+        <Maximum>228600</Maximum>.
+      </Bandwidth>.
+      <Codec Name="G722/8000/2">.
+        <Bandwidth>108400</Bandwidth>.
+        <MaxBandwidth>228600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="G722/8000">.
+        <Bandwidth>70400</Bandwidth>.
+        <MaxBandwidth>164600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="SIREN/16000">.
+        <Bandwidth>35500</Bandwidth>.
+        <MaxBandwidth>68600</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMU/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+      <Codec Name="PCMA/8000">.
+        <Bandwidth>67900</Bandwidth>.
+        <MaxBandwidth>161000</MaxBandwidth>.
+      </Codec>.
+    </Properties>.
+  </Start>.
+  <RawSDP>v=0.
+o=- 807 1 IN IP4 10.5.0.131.
+s=session.
+c=IN IP4 216.230.111.136.
+b=CT:10000000.
+t=0 0.
+m=audio 54836 RTP/SAVP 117 9 111 0 8 97 13 118 101.
+c=IN IP4 216.230.111.136.
+a=rtcp-rsize.
+a=rtcp-fb:* x-message app send:dsh recv:dsh.
+a=x-ssrc-range:1000-1000.
+a=x-source-streamid:1.
+a=rtcp:54836.
+a=ice-ufrag:cfE7.
+a=rtcp-mux.
+a=candidate:3 1 UDP 184548351 216.230.111.136 54836 typ relay raddr 10.5.0.131 rport 52986.
+a=remote-candidates:1 74.111.191.183 24106 2 74.111.191.183 24106.
+a=label:main-audio.
+a=rtpmap:117 g722/8000/2.
+a=fmtp:117 bitrate=128000.
+a=rtpmap:9 g722/8000.
+a=rtpmap:111 SIREN/16000.
+a=fmtp:111 bitrate=16000.
+a=rtpmap:0 PCMU/8000.
+a=rtpmap:8 PCMA/8000.
+a=rtpmap:97 RED/8000.
+a=rtpmap:13 CN/8000.
+a=rtpmap:118 CN/16000.
+a=rtpmap:101 telephone-event/8000.
+a=ptime:20.
+</RawSDP>.
+</LyncDiagnostics>
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>b28007501de9472999675bdc9b687e3a</CallId>.
+    <CSEQ>3</CSEQ>.
+    <ConversationId>AdDU/xOHZrWiJBadRvCgREjrHr5iJg==</ConversationId>.
+    <ConferenceId>K8VKWL8V</ConferenceId>.
+    <TimeStamp>2015-08-12T09:01:06.9116735-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <Ended Type="audio">.
+    <From>.
+      <Id>0271957636</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <IP>74.111.191.183</IP>.
+      <Port>24106</Port>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </From>.
+    <To>.
+      <Id>3ccd7b754b</Id>.
+      <EPId>14A0F0AD2A</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</Contact>.
+      <IP>216.230.111.136</IP>.
+      <Port>54836</Port>.
+    </To>.
+    <Properties>.
+      <MSDiagnosticsClient>51004; reason="Action initiated by user";CalleeMediaDebug="audio:BaseAddress="192.168.1.8:31038";LocalAddress="74.111.191.183:24106";LocalSite="74.111.191.183:31038";NetworkName="DNTBF";RemoteAddress="216.230.111.136:54836";RemoteSite="10.5.0.131:54230";MediaEpBlob="ICEWarn=0x100020,ICEWarnEx=0x0,LocalMR=216.230.111.136:52120,RemoteMR=216.230.111.136:52275,PortRange=1025:65000,LocalMRTCPPort=55112,RemoteMRTCPPort=52275,LocalLocation=1,RemoteLocation=2,FederationType=0,StunVer=1,CsntRqOut=0,CsntRqIn=0,CsntRspOut=0,CsntRspIn=0,Interfaces=0x16,BaseInterface=0x4,Protocol=0,LocalInterface=0x4,LocalAddrType=5,RemoteAddrType=2,IceRole=1,RtpRtcpMux=1,MediaDllVersion=6.0.8941.604,BlobVer=1";MediaMgrBlob="MrDnsE=lyncav.enablingtechcorp.com,MrResE=1,MrErrE=0,MrBgnE=36483733187087520,MrEndE=36483733187096320,MrDnsI=PROD-EDGE13.etcuc.com,MrResI=1,MrErrI=0,MrBgnI=36483733187063584,MrEndI=36483733187070896,MrDnsCacheReadAttempt=0,BlobVer=1""</MSDiagnosticsClient>.
+    </Properties>.
+  </Ended>.
+  <Ended Type="audio">.
+    <From>.
+      <Id>3ccd7b754b</Id>.
+      <EPId>14A0F0AD2A</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</Contact>.
+      <IP>216.230.111.136</IP>.
+      <Port>54836</Port>.
+    </From>.
+    <To>.
+      <Id>0271957636</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <IP>74.111.191.183</IP>.
+      <Port>24106</Port>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </To>.
+    <Properties>.
+      <MSDiagnosticsClient>51004; reason="Action initiated by user";CalleeMediaDebug="audio:BaseAddress="192.168.1.8:31038";LocalAddress="74.111.191.183:24106";LocalSite="74.111.191.183:31038";NetworkName="DNTBF";RemoteAddress="216.230.111.136:54836";RemoteSite="10.5.0.131:54230";MediaEpBlob="ICEWarn=0x100020,ICEWarnEx=0x0,LocalMR=216.230.111.136:52120,RemoteMR=216.230.111.136:52275,PortRange=1025:65000,LocalMRTCPPort=55112,RemoteMRTCPPort=52275,LocalLocation=1,RemoteLocation=2,FederationType=0,StunVer=1,CsntRqOut=0,CsntRqIn=0,CsntRspOut=0,CsntRspIn=0,Interfaces=0x16,BaseInterface=0x4,Protocol=0,LocalInterface=0x4,LocalAddrType=5,RemoteAddrType=2,IceRole=1,RtpRtcpMux=1,MediaDllVersion=6.0.8941.604,BlobVer=1";MediaMgrBlob="MrDnsE=lyncav.enablingtechcorp.com,MrResE=1,MrErrE=0,MrBgnE=36483733187087520,MrEndE=36483733187096320,MrDnsI=PROD-EDGE13.etcuc.com,MrResI=1,MrErrI=0,MrBgnI=36483733187063584,MrEndI=36483733187070896,MrDnsCacheReadAttempt=0,BlobVer=1""</MSDiagnosticsClient>.
+    </Properties>.
+  </Ended>.
+  <Bye>.
+    <EndPoint>.
+      <Id>0271957636</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </EndPoint>.
+    <EndPoint>.
+      <Id>3ccd7b754b</Id>.
+      <EPId>14A0F0AD2A</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</Contact>.
+    </EndPoint>.
+  </Bye>.
+</LyncDiagnostics>
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>b28007501de9472999675bdc9b687e3a</CallId>.
+    <ConversationId>AdDU/xOHZrWiJBadRvCgREjrHr5iJg==</ConversationId>.
+    <ConferenceId>K8VKWL8V</ConferenceId>.
+    <TimeStamp>2015-08-12T13:01:06.8569632Z</TimeStamp>.
+    <Connectivity>DIRECT</Connectivity>.
+    <StartTime>2015-08-12T13:02:03.0063Z</StartTime>.
+    <EndTime>2015-08-12T13:02:09.0778Z</EndTime>.
+    <ConferenceURI>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</ConferenceURI>.
+    <MediaBypass>false</MediaBypass>.
+    <MediationServerLegPosition>BeforeMedServer</MediationServerLegPosition>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <QualityUpdate Type="audio">.
+    <From>.
+      <Id>0271957636</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <IP>192.168.1.8</IP>.
+      <Port>24106</Port>.
+      <Inside>false</Inside>.
+      <VPN>false</VPN>.
+      <Connection>Wifi</Connection>.
+      <BSSID>00-7F-28-79-FE-C9</BSSID>.
+      <ReflexiveIP>74.111.191.183</ReflexiveIP>.
+      <ReflexivePort>31038</ReflexivePort>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <WifiDriverDeviceDesc>Qualcomm Atheros AR9485WB-EG Wireless Network Adapter;Microsoft Wi-Fi Direct Virtual Adapter</WifiDriverDeviceDesc>.
+      <WifiDriverVersion>Qualcomm Atheros Communications Inc.:10.0.0.209;Microsoft:10.0.10240.16384</WifiDriverVersion>.
+      <OS>Windows 10.0.10240 SP: 0.0 Type: 1(Workstation) Suite: 768 Arch: x64 WOW64: True</OS>.
+      <CPUName>Intel(R) Core(TM) i7-3537U CPU @ 2.00GHz</CPUName>.
+      <CPUNumberOfCores>2</CPUNumberOfCores>.
+      <CPUProcessorSpeed>2494</CPUProcessorSpeed>.
+      <MACAddr>A4-17-31-E3-51-9B-00-00</MACAddr>.
+      <LinkSpeed>54000000</LinkSpeed>.
+    </From>.
+    <To>.
+      <Id>3ccd7b754b</Id>.
+      <EPId>14A0F0AD2A</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:K8VKWL8V</Contact>.
+      <IP>10.5.0.131</IP>.
+      <Port>52986</Port>.
+      <Relay>216.230.111.136</Relay>.
+      <RelayPort>54836</RelayPort>.
+      <VPN>false</VPN>.
+      <Connection>Ethernet</Connection>.
+      <ReflexiveIP>10.5.0.131</ReflexiveIP>.
+      <ReflexivePort>49434</ReflexivePort>.
+      <UserAgent>RTCC/6.0.0.0 AV-MCU/6.0.9319.0</UserAgent>.
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 3 (Server) Suite: 0000000000000112 Arch: x64 WOW64: False</OS>.
+      <CPUName>Intel(R) Xeon(R) CPU E5-2660 v2 @ 2.20GHz</CPUName>.
+      <CPUNumberOfCores>12</CPUNumberOfCores>.
+      <CPUProcessorSpeed>2600</CPUProcessorSpeed>.
+      <Virtualization>HyperV</Virtualization>.
+      <MACAddr>00-50-56-9F-61-60</MACAddr>.
+      <LinkSpeed>4.2949673E+09</LinkSpeed>.
+    </To>.
+    <Properties>.
+      <StreamQuality>Good</StreamQuality>.
+      <Protocol>UDP</Protocol>.
+      <Codec Name="G722/16000">.
+        <Bandwidth>70400</Bandwidth>.
+        <MaxBandwidth>164600</MaxBandwidth>.
+      </Codec>.
+      <PacketUtilization>3</PacketUtilization>.
+      <RoundTrip>37</RoundTrip>.
+      <RoundTripMax>37</RoundTripMax>.
+      <AppliedBandwidthLimit>150800</AppliedBandwidthLimit>.
+      <CaptureDevice>Microphone (Logitech Wireless Headset)</CaptureDevice>.
+      <CaptureDeviceDriver>Microsoft: 10.0.10240.16384</CaptureDeviceDriver>.
+    </Properties>.
+  </QualityUpdate>.
+</LyncDiagnostics>
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>57a58d00a0ef4cb882f3dc00fbc9be55</CallId>.
+    <CSEQ>1</CSEQ>.
+    <ConversationId>AdDU/x1Rs4lepJWWT629K0v3ZsLnTg==</ConversationId>.
+    <ConferenceId>G92D4J07</ConferenceId>.
+    <TimeStamp>2015-08-12T09:01:15.7326735-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <Invite>.
+    <Caller>.
+      <Id>0e3d48469d</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </Caller>.
+    <Callee>.
+      <URI>sip:JShoemaker@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:G92D4J07</URI>.
+    </Callee>.
+  </Invite>.
+  <RawSDP>v=0.
+o=- 0 0 IN IP4 216.230.111.136.
+s=session.
+c=IN IP4 216.230.111.136.
+b=CT:99980.
+t=0 0.
+a=x-devicecaps:audio:send,recv;video:send,recv.
+m=audio 51116 RTP/AVP 117 104 114 9 112 111 0 103 8 116 115 97 13 118 101.
+a=x-ssrc-range:638896855-638896855.
+a=rtcp-fb:* x-message app send:dsh recv:dsh.
+a=rtcp-rsize.
+a=label:main-audio.
+a=x-source:main-audio.
+a=ice-ufrag:qlZM.
+a=candidate:1 1 UDP 2130706431 192.168.23.1 9188 typ host .
+a=candidate:1 2 UDP 2130705918 192.168.23.1 9189 typ host .
+a=candidate:2 1 UDP 2130705919 192.168.19.1 32770 typ host .
+a=candidate:2 2 UDP 2130705406 192.168.19.1 32771 typ host .
+a=candidate:3 1 UDP 2130705407 192.168.1.8 24518 typ host .
+a=candidate:3 2 UDP 2130704894 192.168.1.8 24519 typ host .
+a=x-candidate-ipv6:4 1 UDP 33552895 2001:0:9d38:90d7:208b:efd:b590:4048 19490 typ host .
+a=x-candidate-ipv6:4 2 UDP 33552382 2001:0:9d38:90d7:208b:efd:b590:4048 19491 typ host .
+a=candidate:5 1 TCP-PASS 174454783 216.230.111.136 55139 typ relay raddr 74.111.191.183 rport 13011 .
+a=candidate:5 2 TCP-PASS 174454270 216.230.111.136 55139 typ relay raddr 74.111.191.183 rport 13011 .
+a=candidate:6 1 UDP 184546815 216.230.111.136 51116 typ relay raddr 74.111.191.183 rport 25566 .
+a=candidate:6 2 UDP 184546302 216.230.111.136 50556 typ relay raddr 74.111.191.183 rport 25567 .
+a=candidate:7 1 UDP 1694233599 74.111.191.183 25566 typ srflx raddr 192.168.1.8 rport 25566 .
+a=candidate:7 2 UDP 1694233086 74.111.191.183 25567 typ srflx raddr 192.168.1.8 rport 25567 .
+a=candidate:8 1 TCP-ACT 174846463 216.230.111.136 55139 typ relay raddr 74.111.191.183 rport 13011 .
+a=candidate:8 2 TCP-ACT 174845950 216.230.111.136 55139 typ relay raddr 74.111.191.183 rport 13011 .
+a=candidate:9 1 TCP-ACT 1684795391 74.111.191.183 13011 typ srflx raddr 192.168.1.8 rport 13011 .
+a=candidate:9 2 TCP-ACT 1684794878 74.111.191.183 13011 typ srflx raddr 192.168.1.8 rport 13011 .
+a=maxptime:200.
+a=rtcp:50556.
+a=rtpmap:117 G722/8000/2.
+a=rtpmap:104 SILK/16000.
+a=fmtp:104 useinbandfec=1; usedtx=0.
+a=rtpmap:114 x-msrta/16000.
+a=fmtp:114 bitrate=29000.
+a=rtpmap:9 G722/8000.
+a=rtpmap:112 G7221/16000.
+a=fmtp:112 bitrate=24000.
+a=rtpmap:111 SIREN/16000.
+a=fmtp:111 bitrate=16000.
+a=rtpmap:0 PCMU/8000.
+a=rtpmap:103 SILK/8000.
+a=fmtp:103 useinbandfec=1; usedtx=0.
+a=rtpmap:8 PCMA/8000.
+a=rtpmap:116 AAL2-G726-32/8000.
+a=rtpmap:115 x-msrta/8000.
+a=fmtp:115 bitrate=11800.
+a=rtpmap:97 RED/8000.
+a=rtpmap:13 CN/8000.
+a=rtpmap:118 CN/16000.
+a=rtpmap:101 telephone-event/8000.
+a=fmtp:101 0-16.
+a=rtcp-mux.
+a=ptime:20.
+</RawSDP>.
+</LyncDiagnostics>
+<LyncDiagnostics Version="C">.  <ConnectionInfo>.
+    <CallId>57a58d00a0ef4cb882f3dc00fbc9be55</CallId>.
+    <CSEQ>2</CSEQ>.
+    <ConversationId>AdDU/x1Rs4lepJWWT629K0v3ZsLnTg==</ConversationId>.
+    <ConferenceId>G92D4J07</ConferenceId>.
+    <TimeStamp>2015-08-12T09:01:21.9616735-04:00</TimeStamp>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <Invite>.
+    <Caller>.
+      <Id>0e3d48469d</Id>.
+      <EPId>ac5a3a1b93</EPId>.
+      <URI>sip:mbrezicky@enablingtechcorp.com</URI>.
+      <Contact>sip:mbrezicky@enablingtechcorp.com;opaque=user:epid:kaHKm7R6W1uSKzSzSXRkMwAA;gruu</Contact>.
+      <UserAgent>UCCAPI/16.0.4229.1009 OC/16.0.4229.1009 (Skype for Business)</UserAgent>.
+      <IncallEnabled>true</IncallEnabled>.
+    </Caller>.
+    <Callee>.
+      <Id>c64b668fae</Id>.
+      <EPId>484F0A5AB4</EPId>.
+      <URI>sip:JShoemaker@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:G92D4J07</URI>.
+    </Callee>.
+  </Invite>.
+  <RawSDP>v=0.
+o=- 0 1 IN IP4 74.111.191.183.
+s=session.
+c=IN IP4 74.111.191.183.
+b=CT:99980.
+t=0 0.
+a=x-devicecaps:audio:send,recv;video:send,recv.
+m=audio 24518 RTP/SAVP 117 9 111 0 8 97 13 118 101.
+a=x-ssrc-range:638896855-638896855.
+a=rtcp-fb:* x-message app send:dsh recv:dsh.
+a=rtcp-rsize.
+a=label:main-audio.
+a=x-source:main-audio.
+a=ice-ufrag:qlZM.
+a=candidate:3 1 UDP 1862269695 74.111.191.183 24518 typ prflx raddr 192.168.1.8 rport 24518 .
+a=x-candidate-info:3 network-type=wlan.
+a=remote-candidates:1 216.230.111.136 55539 2 216.230.111.136 55539.
+a=maxptime:200.
+a=rtpmap:117 G722/8000/2.
+a=rtpmap:9 G722/8000.
+a=rtpmap:111 SIREN/16000.
+a=fmtp:111 bitrate=16000.
+a=rtpmap:0 PCMU/8000.
+a=rtpmap:8 PCMA/8000.
+a=rtpmap:97 RED/8000.
+a=rtpmap:13 CN/8000.
+a=rtpmap:118 CN/16000.
+a=rtpmap:101 telephone-event/8000.
+a=fmtp:101 0-16.
+a=rtcp-mux.
+a=ptime:20.
+</RawSDP>.
+</LyncDiagnostics>
