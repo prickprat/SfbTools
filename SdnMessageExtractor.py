@@ -28,23 +28,24 @@ def extract_sdn_messages(infile_path, outfile_path, call_ids, conf_ids):
             all_matches = lyncDiagRegex.finditer(mm_infile)
             for m in all_matches:
                 logging.info(
-                    "Processing Start {0} : End {1}".format(*m.span()))
+                    "Parsing Sdn Message ({0}, {1})".format(*m.span()))
 
                 try:
                     sdn_block = SdnMessage.SdnMessage(m.group(0))
+                    logging.info("Parse Success.")
                     if call_ids is not None:
                         if not sdn_block.contains_call_id(*call_ids):
-                            logging.info("no call id : skipping.")
+                            logging.info("No matching call id : Skipping.")
                             continue
                     if conf_ids is not None:
                         if not sdn_block.contains_conf_id(*conf_ids):
-                            logging.info("no conf id : skipping.")
+                            logging.info("No matching conf id : Skipping.")
                             continue
 
                     outfile.write('\n\n')
                     outfile.write(str(sdn_block))
 
-                    logging.info("Writing to file.")
+                    logging.info("Sdn message written to outfile.")
                 except ParseError:
                     logging.warning("Parse Error - Invalid XML")
                     logging.debug(m.group(0).decode("utf-8", "strict"))
@@ -86,7 +87,7 @@ def clean_log_file(infile_path, outfile_path):
                     match = start_regex.search(line)
                     if match:
                         in_sdn_message = True
-                        logging.debug("Found Start of sdn message.")
+                        logging.debug("Found Start of message.")
                         outfile.write('\n' + match.group(1))
     return
 

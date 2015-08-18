@@ -36,3 +36,19 @@ class SdnMessage:
                 conference_id_element.text in conference_ids):
             return True
         return False
+
+    def get_timestamp(self):
+        """
+        Returns the TimeStamp string from ConnectionInfo
+        """
+
+        timestamp_element = self.root.find("./ConnectionInfo/TimeStamp")
+        if (timestamp_element is not None):
+            return timestamp_element.text
+        return None
+
+    # HOW DO YOU DO CLASS FUNCTIONS?
+    def calculate_time_difference(message1, message2):
+        timestamp_1 = message1.get_timestamp()
+        timestamp_2 = message2.get_timestamp()
+        
