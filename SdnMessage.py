@@ -51,4 +51,4 @@ class SdnMessage:
     def calculate_time_difference(message1, message2):
         timestamp_1 = message1.get_timestamp()
         timestamp_2 = message2.get_timestamp()
-        
+        # python
