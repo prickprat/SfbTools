@@ -50,6 +50,7 @@ def extract_sdn_messages(infile_path, outfile_path, call_ids, conf_ids):
                     logging.warning("Parse Error - Invalid XML")
                     logging.debug(m.group(0).decode("utf-8", "strict"))
 
+
 def start_logging():
     logging.basicConfig(format='%(levelname)s:%(message)s',
                         filename="last_run.log",
