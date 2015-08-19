@@ -18,7 +18,7 @@ class SdnMessage:
         return ET.XML(message)
 
     def contains_call_id(self, *call_ids):
-        """ Retruns true if the Message contains any of the given call Ids. """
+        """ Returns true if the Message contains any of the given call Ids. """
 
         call_id_element = self.root.find("./ConnectionInfo/CallId")
         if (call_id_element is not None and

@@ -1,5 +1,5 @@
-import logging
 import re
+import logging
 
 
 class LogCleaner:
@@ -26,13 +26,13 @@ class LogCleaner:
                     # Remove the newline, to be added by successive lines
                     line = line.rstrip('\n')
                     if in_sdn_message:
-                        match = end_regex.search(line)
+                        match = LogCleaner.end_regex.search(line)
                         if match:
                             logging.debug("Found End of sdn message.")
                             in_sdn_message = False
                             continue
                         # Check for split sdn message dumps
-                        match = log_split_regex.search(line)
+                        match = LogCleaner.log_split_regex.search(line)
                         if match:
                             # Join directly on to previous line
                             logging.debug("Found Split log line.")
@@ -41,11 +41,40 @@ class LogCleaner:
                         # Include all normal sdn lines with a newline prefix
                         outfile.write('\n' + line)
                     else:
-                        match = start_regex.search(line)
+                        match = LogCleaner.start_regex.search(line)
                         if match:
                             in_sdn_message = True
-                            logging.debug("Found Start of message.")
+                            logging.debug("Found Start of sdn message.")
                             outfile.write('\n' + match.group(1))
+        return
 
-    def clean_line(self, line):
-        pass
+    def clean_line(self, line, in_sdn_message):
+        """
+        Returns a (in_sdn_message, cleaned_line). The returned state and line depends
+        on the line that was passed in and the current state of the in_sdn_message boolean.
+        Assumes line has no trailing new-line.
+        """
+        cleaned_line = ''
+
+        if in_sdn_message:
+            match = LogCleaner.end_regex.search(line)
+            if match:
+                logging.debug("Found End of sdn message.")
+                in_sdn_message = False
+                return (in_sdn_message, cleaned_line)
+            # Check for split sdn message dumps
+            match = LogCleaner.log_split_regex.search(line)
+            if match:
+                # Join directly on to previous line
+                logging.debug("Found Split log line.")
+                cleaned_line = match.group(1)
+                return (in_sdn_message, cleaned_line)
+            # Include all normal sdn lines with a newline prefix
+            cleaned_line = '\n' + line
+        else:
+            match = LogCleaner.start_regex.search(line)
+            if match:
+                in_sdn_message = True
+                logging.debug("Found Start of sdn message.")
+                cleaned_line = '\n' + match.group(1)
+        return (in_sdn_message, cleaned_line)
