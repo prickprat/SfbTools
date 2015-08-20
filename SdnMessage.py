@@ -18,22 +18,26 @@ class SdnMessage:
         return ET.XML(message)
 
     def contains_call_id(self, *call_ids):
-        """ Returns true if the Message contains any of the given call Ids. """
-
+        """
+        Returns true if the Message contains any of the given call Ids.
+        Case-insensitive.
+        """
         call_id_element = self.root.find("./ConnectionInfo/CallId")
+        call_ids_lower = map(lambda x: x.lower(), call_ids)
         if (call_id_element is not None and
-                call_id_element.text in call_ids):
+                call_id_element.text.lower() in call_ids_lower):
             return True
         return False
 
-    def contains_conf_id(self, *conference_ids):
+    def contains_conf_id(self, *conf_ids):
         """
         Returns true if the Message contains any of the given conference Ids.
+        Case-insensitive.
         """
-
         conference_id_element = self.root.find("./ConnectionInfo/ConferenceId")
+        conf_ids_lower = map(lambda x: x.lower(), conf_ids)
         if (conference_id_element is not None and
-                conference_id_element.text in conference_ids):
+                conference_id_element.text.lower() in conf_ids_lower):
             return True
         return False
 
@@ -44,11 +48,17 @@ class SdnMessage:
 
         timestamp_element = self.root.find("./ConnectionInfo/TimeStamp")
         if (timestamp_element is not None):
-            return timestamp_element.text
-        return None
+            timestamp_str = timestamp_element.text
+            print(timestamp_str)
+        else:
+            return None
 
-    # HOW DO YOU DO CLASS FUNCTIONS?
-    def calculate_time_difference(message1, message2):
+    @staticmethod
+    def get_datetime_difference(cls, message1, message2):
+        """
+        Returns the timestamp difference in milliseconds of message1 and message2.
+        Positive if message1 timestamp is greater than message2 timestamp.
+        """
         timestamp_1 = message1.get_timestamp()
         timestamp_2 = message2.get_timestamp()
         # python
