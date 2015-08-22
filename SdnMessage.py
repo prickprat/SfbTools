@@ -54,11 +54,9 @@ class SdnMessage:
             return None
 
     @staticmethod
-    def get_datetime_difference(cls, message1, message2):
+    def get_timestamp_interval(cls, message1, message2):
         """
         Returns the timestamp difference in milliseconds of message1 and message2.
         Positive if message1 timestamp is greater than message2 timestamp.
         """
-        timestamp_1 = message1.get_timestamp()
-        timestamp_2 = message2.get_timestamp()
-        # python
+        pass
