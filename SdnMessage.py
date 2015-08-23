@@ -1,4 +1,6 @@
 import xml.etree.ElementTree as ET
+import datetime
+import re
 
 
 class SdnMessage:
@@ -43,18 +45,71 @@ class SdnMessage:
 
     def get_timestamp(self):
         """
-        Returns the TimeStamp string from ConnectionInfo
+        Returns a datetime object representing the TimeStamp information
+        from the SDN message. Returns None if no TimeStamp element exists or
+        Timestamp is incorrectly formatted.
         """
 
         timestamp_element = self.root.find("./ConnectionInfo/TimeStamp")
         if (timestamp_element is not None):
             timestamp_str = timestamp_element.text
-            print(timestamp_str)
+
+            try:
+                return SdnMessage.convert_timestamp(timestamp_str)
+            except (ValueError, TypeError):
+                return None
         else:
             return None
 
     @staticmethod
-    def get_timestamp_interval(cls, message1, message2):
+    def convert_timestamp(timestamp_str):
+        """
+        Converts a ISO 8601 timestamp to a datetime object
+        with a UTC timezone offset. Returns None if conversion
+        is not possible.
+
+        Arguments:
+        timestamp_str -- ISO 8601 formatted datetime string with time-zone information.
+        """
+        timestamp_regex = re.compile(
+            r'(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})'
+            r'T'
+            r'(?P<hour>\d{2}):(?P<minute>\d{2}):(?P<second>\d{2})'
+            r'(?P<fractional>\.\d+)?'
+            r'((?P<zulu>[zZ])|(?P<z_sign>[+-])(?P<z_hour>\d{2}):(?P<z_minute>\d{2}))')
+        m = re.search(timestamp_regex, timestamp_str)
+        if m is None:
+            return None
+
+        try:
+            # Trim fractional seconds to nearest microsecond
+            fractional_seconds = m.group('fractional')
+            if fractional_seconds is not None:
+                microseconds = int(float(fractional_seconds) * 1e6)
+            else:
+                microseconds = 0
+            # Calculate the timezone delta
+            if m.group('zulu') is not None:
+                tz_delta = datetime.timedelta(0)
+            else:
+                sign = -1 if (m.group('z_sign') == '-') else 1
+                tz_delta = sign * datetime.timedelta(hours=int(m.group('z_hour')),
+                                                     minutes=int(m.group('z_minute')))
+
+            converted_datetime = datetime.datetime(int(m.group('year')),
+                                                   int(m.group('month')),
+                                                   int(m.group('day')),
+                                                   int(m.group('hour')),
+                                                   int(m.group('minute')),
+                                                   int(m.group('second')),
+                                                   microseconds,
+                                                   datetime.timezone(tz_delta))
+            return converted_datetime
+        except (TypeError, ValueError):
+            return None
+
+    @staticmethod
+    def get_timestamp_interval(message1, message2):
         """
         Returns the timestamp difference in milliseconds of message1 and message2.
         Positive if message1 timestamp is greater than message2 timestamp.
