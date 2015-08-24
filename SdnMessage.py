@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import datetime
 import re
+import logging
 
 
 class SdnMessage:
@@ -13,11 +14,14 @@ class SdnMessage:
 
     def parse_message(self, message):
         """
-        Attempts to parse the message in its original form.
-        If this fails, it attempts to repair the message to a valid
-        XML format. If this fails, then it throws a parse error.
+        Parses the SDN message.
+        Raises ParseError if invalid XML.
         """
-        return ET.XML(message)
+        try:
+            return ET.XML(message)
+        except ET.ParseError as e:
+            logging.error("Parse Error: " + str(e))
+            raise
 
     def contains_call_id(self, *call_ids):
         """
@@ -45,9 +49,9 @@ class SdnMessage:
 
     def get_timestamp(self):
         """
-        Returns a datetime object representing the TimeStamp information
+        Returns a datetime instance representing the TimeStamp information
         from the SDN message. Returns None if no TimeStamp element exists or
-        Timestamp is incorrectly formatted.
+        Timestamp is incorrectly formatted.s
         """
 
         timestamp_element = self.root.find("./ConnectionInfo/TimeStamp")
@@ -65,8 +69,10 @@ class SdnMessage:
     def convert_timestamp(timestamp_str):
         """
         Converts a ISO 8601 timestamp to a datetime object
-        with a UTC timezone offset. Returns None if conversion
-        is not possible.
+        with a UTC timezone offset.
+
+        Raises TypeError or ValueError if conversion fails for
+        a particular reason.
 
         Arguments:
         timestamp_str -- ISO 8601 formatted datetime string with time-zone information.
@@ -77,21 +83,18 @@ class SdnMessage:
             r'(?P<hour>\d{2}):(?P<minute>\d{2}):(?P<second>\d{2})'
             r'(?P<fractional>\.\d+)?'
             r'((?P<zulu>[zZ])|(?P<z_sign>[+-])(?P<z_hour>\d{2}):(?P<z_minute>\d{2}))')
-        m = re.search(timestamp_regex, timestamp_str)
-        if m is None:
-            return None
-
         try:
+            m = re.search(timestamp_regex, timestamp_str)
+            if m is None:
+                raise ValueError("Timestamp string does not match the ISO-8601 format.")
             # Trim fractional seconds to nearest microsecond
             fractional_seconds = m.group('fractional')
+            microseconds = 0
             if fractional_seconds is not None:
                 microseconds = int(float(fractional_seconds) * 1e6)
-            else:
-                microseconds = 0
             # Calculate the timezone delta
-            if m.group('zulu') is not None:
-                tz_delta = datetime.timedelta(0)
-            else:
+            tz_delta = datetime.timedelta(0)  # Zulu Time offset
+            if m.group('zulu') is None:
                 sign = -1 if (m.group('z_sign') == '-') else 1
                 tz_delta = sign * datetime.timedelta(hours=int(m.group('z_hour')),
                                                      minutes=int(m.group('z_minute')))
@@ -105,13 +108,9 @@ class SdnMessage:
                                                    microseconds,
                                                    datetime.timezone(tz_delta))
             return converted_datetime
-        except (TypeError, ValueError):
-            return None
-
-    @staticmethod
-    def get_timestamp_interval(message1, message2):
-        """
-        Returns the timestamp difference in milliseconds of message1 and message2.
-        Positive if message1 timestamp is greater than message2 timestamp.
-        """
-        pass
+        except TypeError as e:
+            logging.error("TypeError raised : " + str(e))
+            raise
+        except ValueError as e:
+            logging.error("ValueError raised : " + str(e))
+            raise

@@ -1,7 +1,13 @@
+import logging
 import unittest
 import datetime as DT
 from SdnMessage import SdnMessage
+from xml.etree.ElementTree import ParseError
 
+# Disable non-critical logging for Testing
+logging.disable(logging.CRITICAL)
+
+# Reusable XML input strings
 XML_1 = """
 <LyncDiagnostics>
     <ConnectionInfo>
@@ -24,6 +30,34 @@ XML_3 = """
     <TimeStamp>2015-08-04T09:11:10.8226250-04:00</TimeStamp>
 </LyncDiagnostics>
 """
+
+
+class TestSdnMessageInit(unittest.TestCase):
+
+    def test_valid_xml(self):
+        msg = SdnMessage(XML_1)
+        self.assertTrue(isinstance(msg, SdnMessage),
+                        msg="valid xml Should be an instance of SdnMessage.")
+        msg = SdnMessage(XML_2)
+        self.assertTrue(isinstance(msg, SdnMessage),
+                        msg="valid xml Should be an instance of SdnMessage.")
+        msg = SdnMessage(XML_3)
+        self.assertTrue(isinstance(msg, SdnMessage),
+                        msg="valid xml Should be an instance of SdnMessage.")
+
+    def test_invalid_mxl(self):
+        # Malformed Tag
+        test_input = "<test</test>"
+        with self.assertRaises(ParseError, msg="Should raise ParseError for malformed tag."):
+            SdnMessage(test_input)
+        # Empty string
+        test_input = ""
+        with self.assertRaises(ParseError, msg="Should raise ParseError for empty input."):
+            SdnMessage(test_input)
+        # non-xml content
+        test_input = "sdad<test></test>sdaf"
+        with self.assertRaises(ParseError, msg="Should raise ParseError for non-xml content."):
+            SdnMessage(test_input)
 
 
 class TestContainsCallId(unittest.TestCase):
@@ -131,18 +165,30 @@ class TestGetTimestamp(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-
         cls.msg_1 = SdnMessage(XML_1)
         cls.msg_2 = SdnMessage(XML_2)
         cls.msg_3 = SdnMessage(XML_3)
 
     def setUp(self):
-        self.msg_funcs = {'normal': TestContainsConfId.msg_1.contains_conf_id,
-                          'no_conf_elm': TestContainsConfId.msg_2.contains_conf_id,
-                          'incorrect_tree': TestContainsConfId.msg_3.contains_conf_id}
+        self.msg_funcs = {'normal': TestGetTimestamp.msg_1.get_timestamp,
+                          'no_timestamp_elem': TestGetTimestamp.msg_2.get_timestamp,
+                          'incorrect_tree': TestGetTimestamp.msg_3.get_timestamp}
 
-    def test(self):
-        pass
+    def test_normal_tree(self):
+        expected_offset = DT.timezone(-DT.timedelta(hours=4, minutes=00))
+        expected = DT.datetime(2015, 8, 4, 9, 11, 10, 822625, expected_offset)
+        output = self.msg_funcs['normal']()
+        self.assertEqual(expected, output, "Should return the correct converted datetime element.")
+
+    def test_no_element(self):
+        expected = None
+        output = self.msg_funcs['no_timestamp_elem']()
+        self.assertEqual(expected, output, "Should return None if there is no TimeStamp Element.")
+
+    def test_incorrect_tree(self):
+        expected = None
+        output = self.msg_funcs['incorrect_tree']()
+        self.assertEqual(expected, output, "Should return None if the xml tree is incorrect.")
 
 
 class TestConvertTimestamp(unittest.TestCase):
@@ -174,7 +220,7 @@ class TestConvertTimestamp(unittest.TestCase):
         output = SdnMessage.convert_timestamp(zulu)
         self.assertEqual(expected, output, "Should parse the minimum datetime allowed.")
 
-    def test_offset(self):
+    def test_timezone_offset(self):
         # Positive UTC offset
         test_input = "2000-01-01T01:01:01.999+11:40"
         expected_offset = DT.timezone(DT.timedelta(hours=11, minutes=40))
@@ -187,9 +233,44 @@ class TestConvertTimestamp(unittest.TestCase):
         expected = DT.datetime(2000, 1, 1, 1, 1, 1, 999000, expected_offset)
         output = SdnMessage.convert_timestamp(test_input)
         self.assertEqual(expected, output, "Should preserve negative UTC offset.")
+        # Zero UTC offset
+        test_input = "2000-01-01T01:01:01.999+00:00"
+        expected_offset = DT.timezone(-DT.timedelta(hours=0, minutes=0))
+        expected = DT.datetime(2000, 1, 1, 1, 1, 1, 999000, expected_offset)
+        output = SdnMessage.convert_timestamp(test_input)
+        self.assertEqual(expected, output, "Should preserve negative UTC offset.")
 
-    def test_invalid(self):
-        pass
+    def test_invalid_timezone(self):
+        # Invalid timezone negative
+        test_input = "2000-01-01T01:01:01.999-24:01"
+        with self.assertRaises(ValueError, msg="Should return None for invalid negative timezone."):
+            SdnMessage.convert_timestamp(test_input)
+        # Invalid timezone positive
+        test_input = "2000-01-01T01:01:01.999+24:01"
+        with self.assertRaises(ValueError, msg="Should return None for invalid positive timezone."):
+            SdnMessage.convert_timestamp(test_input)
+        # Invalid timezone Zulu
+        test_input = "2000-01-01T01:01:01.999P"
+        with self.assertRaises(ValueError, msg="Should return None for invalid positive timezone."):
+            SdnMessage.convert_timestamp(test_input)
+        # No Z or timezone
+        test_input = "2000-01-01T01:01:01.999"
+        with self.assertRaises(ValueError, msg="Should return None for no timezone."):
+            SdnMessage.convert_timestamp(test_input)
+
+    def test_invalid_timestamp(self):
+        # Invalid datetime stamp
+        test_input = "Monday"
+        with self.assertRaises(ValueError, msg="Should raise ValueError for invalid timestamp."):
+            SdnMessage.convert_timestamp(test_input)
+        # Invalid hour stamp
+        test_input = "2000-01-01T25:01:01.999Z"
+        with self.assertRaises(ValueError, msg="Should raise ValueError for invalid hour."):
+            SdnMessage.convert_timestamp(test_input)
+        # Invalid date stamp
+        test_input = "2000-01-32T12:01:01.999Z"
+        with self.assertRaises(ValueError, msg="Should raise ValueError for invalid date."):
+            SdnMessage.convert_timestamp(test_input)
 
 
 if __name__ == '__main__':
