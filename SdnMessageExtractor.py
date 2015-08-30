@@ -1,10 +1,8 @@
 import logging
 import argparse
-import mmap
-import re
-import SdnMessage
+from xmlmessage import SdnMessage
+from SdnMocker import XMLMessageFactory
 import LogCleaner
-from xml.etree.ElementTree import ParseError as ParseError
 
 
 def main():
@@ -19,37 +17,25 @@ def main():
 
 
 def extract_sdn_messages(infile_path, outfile_path, call_ids, conf_ids):
-    lyncDiagRegex = re.compile(br"<LyncDiagnostics.*?>.*?</LyncDiagnostics>",
-                               re.DOTALL | re.MULTILINE | re.IGNORECASE)
 
     with open(infile_path, mode="rt", errors="strict") as infile:
-        mm_infile = mmap.mmap(infile.fileno(), 0, access=mmap.ACCESS_READ)
-
         with open(outfile_path, mode="wt", errors="strict") as outfile:
-            all_matches = lyncDiagRegex.finditer(mm_infile)
-            for m in all_matches:
-                logging.info(
-                    "Parsing Sdn Message ({0}, {1})".format(*m.span()))
-
-                try:
-                    sdn_block = SdnMessage.SdnMessage(m.group(0))
+            with XMLMessageFactory(infile, SdnMessage) as xml_gen:
+                logging.info("Parsing Sdn Messages.")
+                for sdn_msg in xml_gen:
                     logging.info("Parse Success.")
                     if call_ids is not None:
-                        if not sdn_block.contains_call_id(*call_ids):
+                        if not sdn_msg.contains_call_id(*call_ids):
                             logging.info("No matching call id : Skipping.")
                             continue
                     if conf_ids is not None:
-                        if not sdn_block.contains_conf_id(*conf_ids):
+                        if not sdn_msg.contains_conf_id(*conf_ids):
                             logging.info("No matching conf id : Skipping.")
                             continue
 
                     outfile.write('\n\n')
-                    outfile.write(str(sdn_block))
-
+                    outfile.write(str(sdn_msg))
                     logging.info("Sdn message written to outfile.")
-                except ParseError:
-                    logging.warning("Parse Error - Invalid XML")
-                    logging.debug(m.group(0).decode("utf-8", "strict"))
 
 
 def start_logging():

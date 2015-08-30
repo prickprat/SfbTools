@@ -1,7 +1,7 @@
 import logging
 import unittest
 import datetime as DT
-from SdnMessage import SdnMessage
+from xmlmessage import SdnMessage
 from xml.etree.ElementTree import ParseError
 
 # Disable non-critical logging for Testing

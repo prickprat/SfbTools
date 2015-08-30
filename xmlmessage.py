@@ -12,6 +12,10 @@ class SdnMessage:
     def __str__(self):
         return ET.tostring(self.root, encoding="unicode")
 
+    def get_root_regex():
+        return re.compile(br"<LyncDiagnostics.*?>.*?</LyncDiagnostics>",
+                          re.DOTALL | re.MULTILINE | re.IGNORECASE)
+
     def parse_message(self, message):
         """
         Parses the SDN message.
@@ -114,3 +118,67 @@ class SdnMessage:
         except ValueError as e:
             logging.error("ValueError raised : " + str(e))
             raise
+
+
+class SdnReplayMessage:
+
+    def __init__(self, message):
+        self.root = self.parse_message(message)
+
+    def __str__(self):
+        return ET.tostring(self.root, encoding="unicode")
+
+    def get_root_regex():
+        return re.compile(br"<SdnReplay.*?>.*?</SdnReplay>",
+                          re.DOTALL | re.MULTILINE | re.IGNORECASE)
+
+    def parse_message(self, message):
+        """
+        Parses the SDN Replay message.
+        Raises ParseError if invalid XML.
+        """
+        try:
+            return ET.XML(message)
+        except ET.ParseError as e:
+            logging.error("Parse Error: " + str(e))
+            raise
+
+    def get_target_url(self):
+        target_url_elem = self.root.find('./Configuration/TargetUrl')
+        if target_url_elem is not None:
+            return target_url_elem.text
+        else:
+            return None
+
+    def get_target_ip(self):
+        target_url = self.get_target_url()
+        m = re.search(r'(?:http|https)://(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', target_url)
+        if m is not None:
+            return m.group(1)
+        else:
+            return None
+
+    def get_target_port(self):
+        target_url = self.get_target_url()
+        m = re.search(r':(\d{1,5})/?', target_url)
+        if m is not None:
+            return m.group(1)
+        else:
+            return None
+
+    def get_max_delay(self):
+        max_delay_elem = self.root.find('./Configuration/MaxDelay')
+        if max_delay_elem is not None:
+            return int(max_delay_elem.text)
+        else:
+            return None
+
+    def is_realtime(self):
+        realtime_elem = self.root.find('./Configuration/RealTime')
+        realtime_config = realtime_elem.text.lower()
+        if realtime_elem is not None:
+            if realtime_config == "true":
+                return True
+            elif realtime_config == "false":
+                return False
+        return None
