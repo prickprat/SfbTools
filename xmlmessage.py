@@ -2,19 +2,17 @@ import xml.etree.ElementTree as ET
 import datetime
 import re
 import logging
+import mmap
 
 
-class SdnMessage:
+class XmlMessage:
+
+    """
+    Abstract XML message class
+    """
 
     def __init__(self, message):
         self.root = self.parse_message(message)
-
-    def __str__(self):
-        return ET.tostring(self.root, encoding="unicode")
-
-    def get_root_regex():
-        return re.compile(br"<LyncDiagnostics.*?>.*?</LyncDiagnostics>",
-                          re.DOTALL | re.MULTILINE | re.IGNORECASE)
 
     def parse_message(self, message):
         """
@@ -26,6 +24,22 @@ class SdnMessage:
         except ET.ParseError as e:
             logging.error("Parse Error: " + str(e))
             raise
+
+    def get_root_regex():
+        raise NotImplementedError
+
+    def __str__(self):
+        return ET.tostring(self.root, encoding="unicode")
+
+
+class SdnMessage(XmlMessage):
+
+    def __init__(self, message):
+        super().__init__(message)
+
+    def get_root_regex():
+        return re.compile(br"<LyncDiagnostics.*?>.*?</LyncDiagnostics>",
+                          re.DOTALL | re.MULTILINE | re.IGNORECASE)
 
     def contains_call_id(self, *call_ids):
         """
@@ -120,28 +134,14 @@ class SdnMessage:
             raise
 
 
-class SdnReplayMessage:
+class SdnReplayMessage(XmlMessage):
 
     def __init__(self, message):
-        self.root = self.parse_message(message)
-
-    def __str__(self):
-        return ET.tostring(self.root, encoding="unicode")
+        super().__init__(message)
 
     def get_root_regex():
         return re.compile(br"<SdnReplay.*?>.*?</SdnReplay>",
                           re.DOTALL | re.MULTILINE | re.IGNORECASE)
-
-    def parse_message(self, message):
-        """
-        Parses the SDN Replay message.
-        Raises ParseError if invalid XML.
-        """
-        try:
-            return ET.XML(message)
-        except ET.ParseError as e:
-            logging.error("Parse Error: " + str(e))
-            raise
 
     def get_target_url(self):
         target_url_elem = self.root.find('./Configuration/TargetUrl')
@@ -182,3 +182,58 @@ class SdnReplayMessage:
             elif realtime_config == "false":
                 return False
         return None
+
+
+class XMLMessageFactory:
+
+    def __init__(self, file_obj, xml_wrapper):
+        """
+        root_regex  - re.compiled regex to find the root elements in the xml document.
+        file_obj - input file object.
+        xml_wrapper   - the xml class that will parse the xml block. Must be a subclass of
+                        XmlMessage.
+        """
+        self._root_rx = xml_wrapper.get_root_regex()
+        self._file_obj = file_obj
+        # Assert thtat xml_wrapper a subclass of xmlmessage
+        self._xml_wrapper = xml_wrapper
+
+    def _open(self):
+        self._mmap = mmap.mmap(self._file_obj.fileno(), 0, access=mmap.ACCESS_READ)
+
+    def _close(self):
+        self._mmap.close()
+
+    def __del__(self):
+        self._close()
+
+    def __iter__(self):
+        if self._mmap.closed:
+            self._open()
+        self._current_pos = 0
+        self._mmap.seek(0)
+        return self
+
+    def __next__(self):
+        if self._mmap.closed:
+            raise StopIteration
+
+        match = self._root_rx.search(self._mmap, self._current_pos)
+        if match:
+            try:
+                self._current_pos = match.end()
+                return self._xml_wrapper(match.group(0))
+            except ET.ParseError:
+                print("Got a parse error. Stopping Iteration and closing file.")
+                self._close()
+                raise StopIteration
+        else:
+            raise StopIteration
+
+    def __enter__(self):
+        self._open()
+        return self
+
+    def __exit__(self, exec_type, exec_value, exec_tb):
+        self.__del__()
+        return False

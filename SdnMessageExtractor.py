@@ -1,7 +1,7 @@
 import logging
 import argparse
 from xmlmessage import SdnMessage
-from SdnMocker import XMLMessageFactory
+from xmlmessage import XMLMessageFactory
 import LogCleaner
 
 
@@ -47,17 +47,17 @@ def start_logging():
 
 def parse_sys_args():
     arg_parser = argparse.ArgumentParser(description="""
-        Skype for Business Replay Tool.
+        Skype for Business SDN Extractor Tool.
         Functionality includes: Extracting SDN messages from log files
         with specific call or conference ids, and cleaning the logs files of
         formatting errors.
         """)
     arg_parser.add_argument("infile",
                             type=str,
-                            help="Path to the input file.")
+                            help="Path to the input file. This must be the first argument.")
     arg_parser.add_argument("outfile",
                             type=str,
-                            help="Path to the output file.")
+                            help="Path to the output file. This must be the second argument.")
     arg_parser.add_argument("--conf-ids",
                             metavar="CONF_ID",
                             type=str,
