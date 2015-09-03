@@ -1,4 +1,4 @@
-import urllib.request as UR
+from urllib.request import urlopen
 from urllib.request import Request
 from xmlmessage import SdnMessage
 from xmlmessage import XMLMessageFactory
@@ -27,31 +27,37 @@ def extract_replay_config(infile_path):
     with open(infile_path, mode="rt", errors="strict") as infile:
         with XMLMessageFactory(infile, SdnReplayMessage) as replay_gen:
             replay_msg = next(iter(replay_gen))
-            return {'TargetUrl': replay_msg.get_target_url(),
-                    'TargetIp': replay_msg.get_target_ip(),
-                    'TargetPort': replay_msg.get_target_port(),
-                    'MaxDelay': replay_msg.get_max_delay(),
-                    'RealTime': replay_msg.is_realtime()}
+            return replay_msg.todict()
 
 
 def replay_sdn_messages(infile_path):
-    replay_config = extract_replay_config(infile_path)
+    config = extract_replay_config(infile_path)
+    wait_time = 0 if (config['RealTime']) else config['MaxDelay']
+
     with open(infile_path, mode="rt", errors="strict") as infile:
         with XMLMessageFactory(infile, SdnMessage) as sdn_gen:
+            prev_sdn_msg = None
             for sdn_msg in sdn_gen:
-                post_request = Request(replay_config['TargetUrl'],
-                                       data=str(sdn_msg).encode('ascii'),
+                post_request = Request(config['TargetUrl'],
+                                       data=sdn_msg.totext(),
                                        headers={'Content-Type': 'application/xml'})
-                response = UR.urlopen(post_request)
-                if replay_config['RealTime'] == True:
-                    # Sleep for the time interval
-                    print('RealTime : sleep 5.')
-                    time.sleep(5)
-                else:
-                    # Sleep for the max time delay
-                    print('RealTime off : sleep max.')
-                    time.sleep(replay_config['MaxDelay'])
-                print(response.read())
+                if config['RealTime']:
+                    # Calculate the time to wait from the time interval
+                    if prev_sdn_msg is not None:
+                        time_diff = (sdn_msg.get_timestamp() -
+                                     prev_sdn_msg.get_timestamp()).total_seconds()
+                        time_diff = int(time_diff)
+                        if (time_diff >= 0 and time_diff <= config['MaxDelay']):
+                            wait_time = time_diff
+                        else:
+                            wait_time = config['MaxDelay']
+                    prev_sdn_msg = sdn_msg
+
+                print('RealTime {0} : Sleeping for {1}s.'.format(config['RealTime'], wait_time))
+                time.sleep(wait_time)
+                print("Sending Sdn Message : " + str(sdn_msg))
+                response = urlopen(post_request)
+                print("Server Response : " + str(response.read()))
 
 
 def start_logging():
@@ -62,26 +68,38 @@ def start_logging():
 
 
 def parse_sys_args():
-    arg_parser = argparse.ArgumentParser(description="""
-        Skype for Business SDN Replay Tool.
+    arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description="""
+    Skype for Business SDN Replay Tool.
 
-        Functionality includes:
-            Mocking the Skype SDN API using preconfigured SDN messages.
+    Functionality includes:
+        Mocking the Skype SDN API using preconfigured SDN messages.
 
-            Mock File Format:
-                <SdnReplay>
-                    <Description>...</Description>
-                    <Configuration>
+    Mock File Format:
 
-                    </Configuration>
-                </SdnReplay>
-                <LyncDiagnostic>
-                    ...
-                </LyncDiagnostic>
-                ...
+        <SdnReplay>
+            <Description>...</Description>
+            <Configuration>
+                <TargetUrl>...</TargetUrl>
+                <MaxDelay>...</MaxDelay>
+                <RealTime>...</RealTime>
+            </Configuration>
+        </SdnReplay>
+        <LyncDiagnostic>
+            ...
+        </LyncDiagnostic>
+        ...
 
-            Restrictions:
+    Configuration Options:
 
+        TargetUrl   -   The full url of the receiving server.
+                        (e.g. https://127.0.0.1:3000/SdnReceiver/)
+        MaxDelay    -   The maximum delay time for each consecutive message.
+                        Number of seconds.
+                        (e.g. 120)
+        RealTime    -   Realtime uses the actual time interval between
+                        consecutive messages in the file. The Max Delay time is respected.
+                        If disabled then the time delay is always Max Delay. True or False.
+                        (e.g. True)
         """)
     arg_parser.add_argument("infile",
                             type=str,

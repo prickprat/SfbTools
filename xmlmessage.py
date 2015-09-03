@@ -29,7 +29,10 @@ class XmlMessage:
         raise NotImplementedError
 
     def __str__(self):
-        return ET.tostring(self.root, encoding="unicode")
+        return "<XmlMessage object : Abstract>"
+
+    def totext(self):
+        return ET.tostring(self.root, encoding="us-ascii")
 
 
 class SdnMessage(XmlMessage):
@@ -133,6 +136,11 @@ class SdnMessage(XmlMessage):
             logging.error("ValueError raised : " + str(e))
             raise
 
+    def __str__(self):
+        desc_template = "<SdnMessage object : Timestamp - {0} : Contains {1}>"
+        return desc_template.format(str(self.get_timestamp()),
+                                    tuple(x.tag for x in list(self.root)))
+
 
 class SdnReplayMessage(XmlMessage):
 
@@ -183,6 +191,19 @@ class SdnReplayMessage(XmlMessage):
                 return False
         return None
 
+    def todict(self):
+        """
+        Return a dictionary with keys as configuration options defined in the xml block.
+        """
+        return {'TargetUrl': self.get_target_url(),
+                'TargetIp': self.get_target_ip(),
+                'TargetPort': self.get_target_port(),
+                'MaxDelay': self.get_max_delay(),
+                'RealTime': self.is_realtime()}
+
+    def __str__(self):
+        return str(self.todict())
+
 
 class XMLMessageFactory:
 
@@ -193,23 +214,24 @@ class XMLMessageFactory:
         xml_wrapper   - the xml class that will parse the xml block. Must be a subclass of
                         XmlMessage.
         """
+        assert issubclass(xml_wrapper, XmlMessage), "xml_wrapper must be a subclass of XmlMessage."
+
         self._root_rx = xml_wrapper.get_root_regex()
         self._file_obj = file_obj
-        # Assert thtat xml_wrapper a subclass of xmlmessage
         self._xml_wrapper = xml_wrapper
 
-    def _open(self):
+    def open(self):
         self._mmap = mmap.mmap(self._file_obj.fileno(), 0, access=mmap.ACCESS_READ)
 
-    def _close(self):
+    def close(self):
         self._mmap.close()
 
     def __del__(self):
-        self._close()
+        self.close()
 
     def __iter__(self):
         if self._mmap.closed:
-            self._open()
+            self.open()
         self._current_pos = 0
         self._mmap.seek(0)
         return self
@@ -224,16 +246,16 @@ class XMLMessageFactory:
                 self._current_pos = match.end()
                 return self._xml_wrapper(match.group(0))
             except ET.ParseError:
-                print("Got a parse error. Stopping Iteration and closing file.")
-                self._close()
+                print("Parse Error raised. Stopping Iteration and closing Memory map.")
+                self.close()
                 raise StopIteration
         else:
             raise StopIteration
 
     def __enter__(self):
-        self._open()
+        self.open()
         return self
 
     def __exit__(self, exec_type, exec_value, exec_tb):
-        self.__del__()
+        self.close()
         return False
