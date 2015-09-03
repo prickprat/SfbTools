@@ -8,15 +8,9 @@ import logging
 import time
 
 
-# Read in the file
-# Look for configuration seconds or die
-# Loop through each sdn message and replay accordingly
-
 def main():
     start_logging()
     args = parse_sys_args()
-    #r = extract_replay_config(args.infile)
-    # print(r)
     replay_sdn_messages(args.infile)
 
 
