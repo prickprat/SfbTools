@@ -3,9 +3,10 @@ import datetime
 import re
 import logging
 import mmap
+import abc
 
 
-class XmlMessage:
+class XmlMessage(metaclass=abc.ABCMeta):
 
     """
     Abstract XML message class
@@ -16,8 +17,8 @@ class XmlMessage:
 
     def parse_message(self, message):
         """
-        Parses the SDN message.
-        Raises ParseError if invalid XML.
+        Parses the xml message.
+        Raises ParseError if invalid XML is encountered.
         """
         try:
             return ET.XML(message)
@@ -25,13 +26,17 @@ class XmlMessage:
             logging.error("Parse Error: " + str(e))
             raise
 
+    @abc.abstractmethod
     def get_root_regex():
-        raise NotImplementedError
+        """Returns a re.compile object which can be used to
+        extract this xml element from text."""
 
+    @abc.abstractmethod
     def __str__(self):
-        return "<XmlMessage object : Abstract>"
+        """Returns a human readable string representation."""
 
     def totext(self):
+        """Returns a binary text representation of the xml element."""
         return ET.tostring(self.root, encoding="us-ascii")
 
 

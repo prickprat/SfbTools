@@ -65,8 +65,9 @@ def parse_sys_args():
     arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description="""
     Skype for Business SDN Replay Tool.
 
-    Functionality includes:
-        Mocking the Skype SDN API using preconfigured SDN messages.
+    Mocks the Skype SDN API using preconfigured SDN messages. Each Replay test is configured as a
+    single xml file containing a SdnReplay Element and consecutive The Replay Tool will
+    fire consecutive 
 
     Mock File Format:
 
@@ -74,8 +75,8 @@ def parse_sys_args():
             <Description>...</Description>
             <Configuration>
                 <TargetUrl>...</TargetUrl>
-                <MaxDelay>...</MaxDelay>
-                <RealTime>...</RealTime>
+                <MaxDelay>....</MaxDelay>
+                <RealTime>....</RealTime>
             </Configuration>
         </SdnReplay>
         <LyncDiagnostic>
@@ -84,7 +85,7 @@ def parse_sys_args():
         ...
 
     Configuration Options:
-
+        Description -   Short description of the replay scenario. Optional
         TargetUrl   -   The full url of the receiving server.
                         (e.g. https://127.0.0.1:3000/SdnReceiver/)
         MaxDelay    -   The maximum delay time for each consecutive message.
