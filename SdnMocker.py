@@ -5,11 +5,11 @@ from xmlmessage import XMLMessageFactory
 from xmlmessage import SdnReplayMessage
 import argparse
 import logging
+import logging_conf
 import time
 
 
 def main():
-    start_logging()
     args = parse_sys_args()
     replay_sdn_messages(args.infile)
 
@@ -54,20 +54,13 @@ def replay_sdn_messages(infile_path):
                 print("Server Response : " + str(response.read()))
 
 
-def start_logging():
-    logging.basicConfig(format='%(levelname)s:%(message)s',
-                        filename="last_run.log",
-                        filemode="w",
-                        level=logging.DEBUG)
-
-
 def parse_sys_args():
     arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description="""
     Skype for Business SDN Replay Tool.
 
     Mocks the Skype SDN API using preconfigured SDN messages. Each Replay test is configured as a
-    single xml file containing a SdnReplay Element and consecutive The Replay Tool will
-    fire consecutive 
+    single xml file. The file must contain a SdnReplay Element which configures the replay tool and
+    consecutive LyncDiagnostic Messages which will be sent in order to the target server.
 
     Mock File Format:
 
@@ -87,7 +80,7 @@ def parse_sys_args():
     Configuration Options:
         Description -   Short description of the replay scenario. Optional
         TargetUrl   -   The full url of the receiving server.
-                        (e.g. https://127.0.0.1:3000/SdnReceiver/)
+                        (e.g. https://127.0.0.1:3000/SdnApiReceiver/site)
         MaxDelay    -   The maximum delay time for each consecutive message.
                         Number of seconds.
                         (e.g. 120)
@@ -106,4 +99,6 @@ def parse_sys_args():
 
 
 if __name__ == "__main__":
+    # Load logging configurations
+    logging.config.dictConfig(logging_conf.LOGGING_CONFIG)
     main()

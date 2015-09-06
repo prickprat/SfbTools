@@ -215,18 +215,18 @@ class XMLMessageFactory:
     def __init__(self, file_obj, xml_wrapper):
         """
         root_regex  - re.compiled regex to find the root elements in the xml document.
-        file_obj - input file object.
-        xml_wrapper   - the xml class that will parse the xml block. Must be a subclass of
+        file_obj    - input file object.
+        xml_wrapper - the xml class that will parse the xml block. Must be a subclass of
                         XmlMessage.
         """
         assert issubclass(xml_wrapper, XmlMessage), "xml_wrapper must be a subclass of XmlMessage."
 
         self._root_rx = xml_wrapper.get_root_regex()
-        self._file_obj = file_obj
+        self._fileno = file_obj.fileno()
         self._xml_wrapper = xml_wrapper
 
     def open(self):
-        self._mmap = mmap.mmap(self._file_obj.fileno(), 0, access=mmap.ACCESS_READ)
+        self._mmap = mmap.mmap(self._fileno, 0, access=mmap.ACCESS_READ)
 
     def close(self):
         self._mmap.close()
@@ -251,7 +251,7 @@ class XMLMessageFactory:
                 self._current_pos = match.end()
                 return self._xml_wrapper(match.group(0))
             except ET.ParseError:
-                print("Parse Error raised. Stopping Iteration and closing Memory map.")
+                logging.error("ParseError : Stopping iterator and closing Memory Map.")
                 self.close()
                 raise StopIteration
         else:

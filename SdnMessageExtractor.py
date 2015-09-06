@@ -1,4 +1,6 @@
 import logging
+import logging.config
+import logging_conf
 import argparse
 from xmlmessage import SdnMessage
 from xmlmessage import XMLMessageFactory
@@ -6,7 +8,6 @@ import LogCleaner
 
 
 def main():
-    start_logging()
     args = parse_sys_args()
     if args.clean_log:
         logCleaner = LogCleaner.LogCleaner(args.infile, args.outfile)
@@ -36,13 +37,6 @@ def extract_sdn_messages(infile_path, outfile_path, call_ids, conf_ids):
                     outfile.write('\n\n')
                     outfile.write(str(sdn_msg))
                     logging.info("Sdn message written to outfile.")
-
-
-def start_logging():
-    logging.basicConfig(format='%(levelname)s:%(message)s',
-                        filename="last_run.log",
-                        filemode="w",
-                        level=logging.DEBUG)
 
 
 def parse_sys_args():
@@ -79,5 +73,8 @@ def parse_sys_args():
 
     return arg_parser.parse_args()
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
+    # Load logging configurations
+    logging.config.dictConfig(logging_conf.LOGGING_CONFIG)
     main()
