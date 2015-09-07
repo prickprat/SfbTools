@@ -1,49 +1,49 @@
 import logging
 import unittest
-from xmlmessage import SdnReplayMessage
+from xmlmessage import SdnMockerMessage
 from xml.etree.ElementTree import ParseError
 
 # Disable non-critical logging for Testing
 logging.disable(logging.CRITICAL)
 
 XML_1 = """
-<SdnReplay>
+<SdnMocker>
     <Configuration>
         <TargetUrl>https://127.0.0.1:3000/SdnApiReceiver/site</TargetUrl>
         <MaxDelay>100</MaxDelay>
         <RealTime>True</RealTime>
     </Configuration>
-</SdnReplay>
+</SdnMocker>
 """
 
 
-class TestSdnreplayMessage(unittest.TestCase):
+class TestSdnMockerMessage(unittest.TestCase):
 
     def test_valid_xml(self):
-        msg = SdnReplayMessage(XML_1)
-        self.assertTrue(isinstance(msg, SdnReplayMessage),
-                        msg="valid xml Should be an instance of SdnReplayMessage.")
+        msg = SdnMockerMessage(XML_1)
+        self.assertTrue(isinstance(msg, SdnMockerMessage),
+                        msg="valid xml Should be an instance of SdnMockerMessage.")
 
     def test_invalid_mxl(self):
         # Malformed Tag
         test_input = "<test</test>"
         with self.assertRaises(ParseError, msg="Should raise ParseError for malformed tag."):
-            SdnReplayMessage(test_input)
+            SdnMockerMessage(test_input)
         # Empty string
         test_input = ""
         with self.assertRaises(ParseError, msg="Should raise ParseError for empty input."):
-            SdnReplayMessage(test_input)
+            SdnMockerMessage(test_input)
         # non-xml content
         test_input = "sdad<test></test>sdaf"
         with self.assertRaises(ParseError, msg="Should raise ParseError for non-xml content."):
-            SdnReplayMessage(test_input)
+            SdnMockerMessage(test_input)
 
 
 class TestGetters(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.msg_1 = SdnReplayMessage(XML_1)
+        cls.msg_1 = SdnMockerMessage(XML_1)
 
     def test_get_target_url(self):
         self.assertEqual(self.msg_1.get_target_url(), "https://127.0.0.1:3000/SdnApiReceiver/site",

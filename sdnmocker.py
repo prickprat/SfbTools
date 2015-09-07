@@ -2,7 +2,7 @@ from urllib.request import urlopen
 from urllib.request import Request
 from xmlmessage import SdnMessage
 from xmlmessage import XMLMessageFactory
-from xmlmessage import SdnReplayMessage
+from xmlmessage import SdnMockerMessage
 import argparse
 import logging
 import logging.config
@@ -20,7 +20,7 @@ def extract_replay_config(infile_path):
     Returns a dictionary of configuration settings.
     """
     with open(infile_path, mode="rt", errors="strict") as infile:
-        with XMLMessageFactory(infile, SdnReplayMessage) as replay_gen:
+        with XMLMessageFactory(infile, SdnMockerMessage) as replay_gen:
             replay_msg = next(iter(replay_gen))
             return replay_msg.todict()
 
@@ -59,22 +59,22 @@ def replay_sdn_messages(infile_path):
 def parse_sys_args():
     arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
                                          description="""
-    Skype for Business SDN Replay Tool.
+    Skype for Business SDN Mocker Tool.
 
-    Mocks the Skype SDN API using preconfigured SDN messages. Each Replay test is configured as a
-    single xml file. The file must contain a SdnReplay Element which configures the replay tool and
-    consecutive LyncDiagnostic Messages which will be sent in order to the target server.
+    Mocks the Skype SDN API using preconfigured SDN messages. Each Sdn Mocker test is configured as a
+    single xml file. The file must contain a SdnMocker Element which configures the tool and
+    consecutive LyncDiagnostic Messages which will be sent in order or appearance to the target server.
 
     Mock File Format:
 
-        <SdnReplay>
+        <SdnMocker>
             <Description>...</Description>
             <Configuration>
                 <TargetUrl>...</TargetUrl>
                 <MaxDelay>....</MaxDelay>
                 <RealTime>....</RealTime>
             </Configuration>
-        </SdnReplay>
+        </SdnMocker>
         <LyncDiagnostic>
             ...
         </LyncDiagnostic>

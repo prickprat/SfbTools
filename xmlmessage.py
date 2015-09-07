@@ -157,13 +157,13 @@ class SdnMessage(XmlMessage):
                                     tuple(x.tag for x in list(self.root)))
 
 
-class SdnReplayMessage(XmlMessage):
+class SdnMockerMessage(XmlMessage):
 
     def __init__(self, message):
         super().__init__(message)
 
     def get_root_regex():
-        return re.compile(br"<SdnReplay.*?>.*?</SdnReplay>",
+        return re.compile(br"<SdnMocker.*?>.*?</SdnMocker>",
                           re.DOTALL | re.MULTILINE | re.IGNORECASE)
 
     def get_target_url(self):
