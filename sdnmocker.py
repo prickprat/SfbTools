@@ -34,7 +34,7 @@ def replay_sdn_messages(infile_path):
             prev_sdn_msg = None
             for sdn_msg in sdn_gen:
                 post_request = Request(config['TargetUrl'],
-                                       data=sdn_msg.totext(),
+                                       data=sdn_msg.tostring(encoding="us-ascii"),
                                        headers={'Content-Type': 'application/xml'})
                 if config['RealTime']:
                     # Calculate the time to wait from the time interval
@@ -48,7 +48,7 @@ def replay_sdn_messages(infile_path):
                             wait_time = config['MaxDelay']
                     prev_sdn_msg = sdn_msg
 
-                print('RealTime {0} : Slee  ping for {1}s.'.format(config['RealTime'], wait_time))
+                print('RealTime {0} : Sleeping for {1}s.'.format(config['RealTime'], wait_time))
                 time.sleep(wait_time)
                 print("Sending Sdn Message : " + str(sdn_msg))
                 response = urlopen(post_request)

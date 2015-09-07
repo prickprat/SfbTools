@@ -33,11 +33,21 @@ class XmlMessage(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def __str__(self):
-        """Returns a human readable string representation."""
+        """Returns a human readable string representation of the XMLMessage."""
 
-    def totext(self):
-        """Returns a binary text representation of the xml element."""
-        return ET.tostring(self.root, encoding="us-ascii")
+    def tostring(self, encoding="us-ascii"):
+        """
+        Returns a string representation of the xml element.
+
+        Parameters:
+        encoding    -   'us-ascii' returns a byte string. [default]
+                        'unicode' returns a unicode string.
+        """
+        try:
+            return ET.tostring(self.root, encoding)
+        except LookupError as e:
+            logging.error("LookupError: " + str(e))
+            raise ValueError("Encoding parameter must be either 'us-ascii' or 'unicode'.")
 
 
 class SdnMessage(XmlMessage):
