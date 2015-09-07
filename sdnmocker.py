@@ -1,5 +1,6 @@
 from urllib.request import urlopen
 from urllib.request import Request
+from urllib.error import URLError
 from xmlmessage import SdnMessage
 from xmlmessage import XMLMessageFactory
 from xmlmessage import SdnMockerMessage
@@ -12,21 +13,27 @@ import time
 
 def main():
     args = parse_sys_args()
-    replay_sdn_messages(args.infile)
+    mock_sdn_messages(args.infile)
 
 
-def extract_replay_config(infile_path):
+def extract_mock_config(infile_path):
     """
     Returns a dictionary of configuration settings.
     """
     with open(infile_path, mode="rt", errors="strict") as infile:
-        with XMLMessageFactory(infile, SdnMockerMessage) as replay_gen:
-            replay_msg = next(iter(replay_gen))
-            return replay_msg.todict()
+        with XMLMessageFactory(infile, SdnMockerMessage) as mock_gen:
+            try:
+                mock_msg = next(iter(mock_gen))
+                return mock_msg.todict()
+            except StopIteration as e:
+                logging.error("StopIteration Error: Possibly an invalid " +
+                              "or non-existant SdnMocker message.")
+                raise ValueError("Invalid SdnMocker Message. Check the input file.")
 
 
-def replay_sdn_messages(infile_path):
-    config = extract_replay_config(infile_path)
+
+def mock_sdn_messages(infile_path):
+    config = extract_mock_config(infile_path)
     wait_time = 0 if (config['RealTime']) else config['MaxDelay']
 
     with open(infile_path, mode="rt", errors="strict") as infile:
@@ -48,12 +55,17 @@ def replay_sdn_messages(infile_path):
                             wait_time = config['MaxDelay']
                     prev_sdn_msg = sdn_msg
 
-                print('RealTime {0} : Sleeping for {1}s.'.format(config['RealTime'], wait_time))
-                time.sleep(wait_time)
-                print("Sending Sdn Message : " + str(sdn_msg))
-                response = urlopen(post_request)
-                if response is not None:
-                    print("Server Response Recevied.")
+                try:
+                    print('RealTime {0} : Sleeping for {1}s.'.format(config['RealTime'], wait_time))
+                    time.sleep(wait_time)
+                    print("Sending Sdn Message : " + str(sdn_msg))
+                    response = urlopen(post_request)
+                    if response is not None:
+                        print("Server Response Recevied.")
+                except URLError as e:
+                    logging.error("URLError : " + str(e))
+                    print("Connection Error! Check the Target Url in the SdnMocker element.")
+                    return
 
 
 def parse_sys_args():
@@ -81,7 +93,7 @@ def parse_sys_args():
         ...
 
     Configuration Options:
-        Description -   Short description of the replay scenario. Optional
+        Description -   Short description of the mock scenario. Optional
         TargetUrl   -   The full url of the receiving server.
                         (e.g. https://127.0.0.1:3000/SdnApiReceiver/site)
         MaxDelay    -   The maximum delay time for each consecutive message.

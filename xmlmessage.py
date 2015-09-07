@@ -261,10 +261,10 @@ class XMLMessageFactory:
                 self._current_pos = match.end()
                 return self._xml_wrapper(match.group(0))
             except ET.ParseError:
-                logging.error("ParseError : Stopping iterator and closing Memory Map.")
-                self.close()
+                logging.error("ParseError : Stopping iterator.")
                 raise StopIteration
         else:
+            logging.debug("No more matches found. Stopping iterator.")
             raise StopIteration
 
     def __enter__(self):

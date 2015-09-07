@@ -5,17 +5,6 @@ import sdnlogcleaner as LC
 # Disable non-critical logging for Testing
 logging.disable(logging.CRITICAL)
 
-XML_1 = """
-<SdnReplay>
-    <Configuration>
-        <TargetUrl>https://127.0.0.1:3000/SdnApiReceiver/site</TargetUrl>
-        <MaxDelay>100</MaxDelay>
-        <RealTime>True</RealTime>
-    </Configuration>
-</SdnReplay>
-"""
-
-
 class TestLogCleaner(unittest.TestCase):
 
     def test_clean_line_inside(self):
