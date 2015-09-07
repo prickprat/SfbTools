@@ -4,13 +4,13 @@ import logging_conf
 import argparse
 from xmlmessage import SdnMessage
 from xmlmessage import XMLMessageFactory
-import LogCleaner
+import logcleaner
 
 
 def main():
     args = parse_sys_args()
     if args.clean_log:
-        logCleaner = LogCleaner.LogCleaner(args.infile, args.outfile)
+        logCleaner = logcleaner.LogCleaner(args.infile, args.outfile)
         logCleaner.clean()
     else:
         extract_sdn_messages(args.infile, args.outfile,
