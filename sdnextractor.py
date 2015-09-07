@@ -40,12 +40,14 @@ def extract_sdn_messages(infile_path, outfile_path, call_ids, conf_ids):
 
 
 def parse_sys_args():
-    arg_parser = argparse.ArgumentParser(description="""
-        Skype for Business SDN Extractor Tool.
-        Functionality includes: Extracting SDN messages from log files
-        with specific call or conference ids, and cleaning the logs files of
-        formatting errors.
-        """)
+    arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
+                                         description="""
+    Skype for Business SDN Extractor Tool.
+
+    Functionality includes: Extracting SDN messages from log files
+    with specific call or conference ids, and cleaning the logs files of
+    formatting errors.
+    """)
     arg_parser.add_argument("infile",
                             type=str,
                             help="Path to the input file. This must be the first argument.")

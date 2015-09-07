@@ -55,7 +55,8 @@ def replay_sdn_messages(infile_path):
 
 
 def parse_sys_args():
-    arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description="""
+    arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
+                                         description="""
     Skype for Business SDN Replay Tool.
 
     Mocks the Skype SDN API using preconfigured SDN messages. Each Replay test is configured as a

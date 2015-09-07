@@ -1,5 +1,14 @@
 import re
 import logging
+import logging.config
+import logging_conf
+import argparse
+
+
+def main():
+    args = parse_sys_args()
+    logCleaner = LogCleaner(args.infile, args.outfile)
+    logCleaner.clean()
 
 
 class LogCleaner:
@@ -59,3 +68,27 @@ class LogCleaner:
                 return (True, '\n' + match.group(1))
             # Ignore non-starting line outside of message
             return (False, '')
+
+
+def parse_sys_args():
+    arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
+                                         description="""
+    Skype for Business SDN Log Cleaner Tool.
+
+    Designed to clean up IRLYNC logs, fix split-log issues and output
+    only the SDN Message blocks from the log file.
+
+    """)
+    arg_parser.add_argument("infile",
+                            type=str,
+                            help="Path to the input IRLYNC log file.")
+    arg_parser.add_argument("outfile",
+                            type=str,
+                            help="""Path to the output file.
+                            This will contain all SDN messages from the input log.""")
+    return arg_parser.parse_args()
+
+if __name__ == '__main__':
+    # Load logging configurations
+    logging.config.dictConfig(logging_conf.LOGGING_CONFIG)
+    main()
