@@ -52,7 +52,8 @@ def replay_sdn_messages(infile_path):
                 time.sleep(wait_time)
                 print("Sending Sdn Message : " + str(sdn_msg))
                 response = urlopen(post_request)
-                print("Server Response : " + str(response.read()))
+                if response is not None:
+                    print("Server Response Recevied.")
 
 
 def parse_sys_args():

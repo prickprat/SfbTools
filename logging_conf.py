@@ -1,7 +1,7 @@
 # Configuration File for logging in Skype for Business Tools
 
-# Specify the logging level here
-LOGGING_LEVEL = 'DEBUG'
+# Specify the logging level here {CRITICAL, ERROR, WARN, INFO, DEBUG} }
+LOGGING_LEVEL = 'INFO'
 
 LOGGING_CONFIG = {
     'version': 1,

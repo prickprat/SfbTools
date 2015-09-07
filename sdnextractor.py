@@ -17,21 +17,21 @@ def extract_sdn_messages(infile_path, outfile_path, call_ids, conf_ids):
     with open(infile_path, mode="rt", errors="strict") as infile:
         with open(outfile_path, mode="wt", errors="strict") as outfile:
             with XMLMessageFactory(infile, SdnMessage) as xml_gen:
-                logging.info("Parsing Sdn Messages.")
+                logging.info("Attempting to parse Sdn Messages.")
                 for sdn_msg in xml_gen:
-                    logging.info("Parse Success.")
+                    logging.debug("Parse Success.")
                     if call_ids is not None:
                         if not sdn_msg.contains_call_id(*call_ids):
-                            logging.info("No matching call id : Skipping.")
+                            logging.debug("Skipping : Not in given call-ids list.")
                             continue
                     if conf_ids is not None:
                         if not sdn_msg.contains_conf_id(*conf_ids):
-                            logging.info("No matching conf id : Skipping.")
+                            logging.debug("Skipping : Not in given conf-ids list.")
                             continue
 
                     outfile.write('\n\n')
                     outfile.write(sdn_msg.tostring(encoding="unicode"))
-                    logging.info("Sdn message written to outfile.")
+                logging.info("Sdn messages successfully extracted.")
 
 
 def parse_sys_args():

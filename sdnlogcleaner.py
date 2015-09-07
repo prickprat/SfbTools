@@ -22,9 +22,11 @@ def clean(in_path, out_path):
     with open(in_path, mode="rt", errors="strict") as infile:
         with open(out_path, mode="wt", errors="strict") as outfile:
             in_sdn_msg = False
+            logging.info("Attempting to clean log file.")
             for line_no, line in enumerate(infile, start=1):
                 in_sdn_msg, cleaned_line = clean_line(line, in_sdn_msg, line_no)
                 outfile.write(cleaned_line)
+            logging.info("Log file successfully cleaned.")
 
 
 def clean_line(line, inside_message, line_no=None):
