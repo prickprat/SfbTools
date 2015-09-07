@@ -4,17 +4,12 @@ import logging_conf
 import argparse
 from xmlmessage import SdnMessage
 from xmlmessage import XMLMessageFactory
-import logcleaner
 
 
 def main():
     args = parse_sys_args()
-    if args.clean_log:
-        logCleaner = logcleaner.LogCleaner(args.infile, args.outfile)
-        logCleaner.clean()
-    else:
-        extract_sdn_messages(args.infile, args.outfile,
-                             args.call_ids, args.conf_ids)
+    extract_sdn_messages(args.infile, args.outfile,
+                         args.call_ids, args.conf_ids)
 
 
 def extract_sdn_messages(infile_path, outfile_path, call_ids, conf_ids):
@@ -66,12 +61,6 @@ def parse_sys_args():
                             nargs="+",
                             help="""The sdn message will only be included if it contains
                             a call id from the given space separated list.""")
-    arg_parser.add_argument("--clean-log",
-                            action="store_true",
-                            help="""Cleans the log file of all non-xml data
-                            and reformats split-logs (i.e. caused by SDN
-                            messages being too large for a single log message.
-                            This is usually the cause of Parse Errors).""")
 
     return arg_parser.parse_args()
 
