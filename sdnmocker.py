@@ -74,8 +74,11 @@ def parse_sys_args():
     Skype for Business SDN Mocker Tool.
 
     Mocks the Skype SDN API using preconfigured SDN messages. Each Sdn Mocker test is configured as a
-    single xml file. The file must contain a SdnMocker Element which configures the tool and
-    consecutive LyncDiagnostic Messages which will be sent in order or appearance to the target server.
+    single xml file. The file must contain a SdnMocker element which configures the tool and
+    successive LyncDiagnostic Messages which will be sent in order of appearance to the target server.
+
+    Technically the mock xml file is malformed, since it doesn't have a root element.
+    This may change in the future.
 
     Mock File Format:
 
@@ -93,14 +96,14 @@ def parse_sys_args():
         ...
 
     Configuration Options:
-        Description -   Short description of the mock scenario. Optional
-        TargetUrl   -   The full url of the receiving server.
+        Description -   Short description of the mock scenario. [Optional]
+        TargetUrl   -   The full url of the SDN receiver.
                         (e.g. https://127.0.0.1:3000/SdnApiReceiver/site)
         MaxDelay    -   The maximum delay time for each consecutive message.
                         Number of seconds.
                         (e.g. 120)
-        RealTime    -   Realtime uses the actual time interval between
-                        consecutive messages in the file. The Max Delay time is respected.
+        RealTime    -   Realtime uses the actual time interval between consecutive
+                        messages in the file. The Max Delay time is still respected.
                         If disabled then the time delay is always Max Delay. True or False.
                         (e.g. True)
         """)

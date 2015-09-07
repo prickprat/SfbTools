@@ -39,9 +39,11 @@ def parse_sys_args():
                                          description="""
     Skype for Business SDN Extractor Tool.
 
-    Functionality includes: Extracting SDN messages from log files
-    with specific call or conference ids, and cleaning the logs files of
-    formatting errors.
+    Extracts SDN messages from clean log files to a single output file.
+    Users can filter SDN messages based on specific Call Ids or Conference Ids, or both.
+
+    **NB: Raw IRLYNC log files should be cleaned with the SDN Log Cleaner Tool first.**
+
     """)
     arg_parser.add_argument("infile",
                             type=str,
