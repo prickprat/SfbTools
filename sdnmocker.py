@@ -5,6 +5,7 @@ from xmlmessage import XMLMessageFactory
 from xmlmessage import SdnReplayMessage
 import argparse
 import logging
+import logging.config
 import logging_conf
 import time
 
@@ -47,7 +48,7 @@ def replay_sdn_messages(infile_path):
                             wait_time = config['MaxDelay']
                     prev_sdn_msg = sdn_msg
 
-                print('RealTime {0} : Sleeping for {1}s.'.format(config['RealTime'], wait_time))
+                print('RealTime {0} : Slee  ping for {1}s.'.format(config['RealTime'], wait_time))
                 time.sleep(wait_time)
                 print("Sending Sdn Message : " + str(sdn_msg))
                 response = urlopen(post_request)
