@@ -33,7 +33,7 @@ class LogCleaner:
         line_no         - optional argument for debugging.
 
         Returns: tuple (inside_message, cleaned_line)
-        inside_message  - state of parser (either inside sdn message or not).
+        inside_message  - New state of parser (either inside sdn message or not).
         cleaned_line    - resulting line from the clean.
 
         """
