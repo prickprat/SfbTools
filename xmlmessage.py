@@ -166,55 +166,41 @@ class SdnMockerMessage(XmlMessage):
         return re.compile(br"<SdnMocker.*?>.*?</SdnMocker>",
                           re.DOTALL | re.MULTILINE | re.IGNORECASE)
 
-    def get_target_url(self):
-        target_url_elem = self.root.find('./Configuration/TargetUrl')
-        if target_url_elem is not None:
-            return target_url_elem.text
-        else:
-            return None
-
     def get_target_ip(self):
-        target_url = self.get_target_url()
-        m = re.search(r'(?:http|https)://(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', target_url)
-        if m is not None:
-            return m.group(1)
-        else:
+        target_url = self.root.findtext('./Configuration/TargetUrl')
+        if target_url is None:
             return None
+        m = re.search(r'(?:http|https)://(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', target_url)
+        if m is None:
+            return None
+        return m.group(1)
 
     def get_target_port(self):
-        target_url = self.get_target_url()
+        target_url = self.root.findtext('./Configuration/TargetUrl')
+        if target_url is None:
+            return None
         m = re.search(r':(\d{1,5})/?', target_url)
-        if m is not None:
-            return m.group(1)
-        else:
+        if m is None:
             return None
-
-    def get_max_delay(self):
-        max_delay_elem = self.root.find('./Configuration/MaxDelay')
-        if max_delay_elem is not None:
-            return int(max_delay_elem.text)
-        else:
-            return None
-
-    def is_realtime(self):
-        realtime_elem = self.root.find('./Configuration/RealTime')
-        realtime_config = realtime_elem.text.lower()
-        if realtime_elem is not None:
-            if realtime_config == "true":
-                return True
-            elif realtime_config == "false":
-                return False
-        return None
+        return m.group(1)
 
     def todict(self):
         """
-        Return a dictionary with keys as configuration options defined in the xml block.
+        Return a dictionary with keys as configuration options and values
+        as the string present in the respective Element. If the element was not present,
+        then the value will be None.
+
+        The configuration keys can be:
+            TargetUrl
+            MaxDelay
+            RealTime
         """
-        return {'TargetUrl': self.get_target_url(),
-                'TargetIp': self.get_target_ip(),
-                'TargetPort': self.get_target_port(),
-                'MaxDelay': self.get_max_delay(),
-                'RealTime': self.is_realtime()}
+        str_to_bool = lambda x: (x.lower() == "true") if x is not None else None
+        str_to_int = lambda x: int(x) if x is not None else None
+
+        return {'TargetUrl': self.root.findtext('./Configuration/TargetUrl'),
+                'MaxDelay': str_to_int(self.root.findtext('./Configuration/MaxDelay')),
+                'RealTime': str_to_bool(self.root.findtext('./Configuration/RealTime'))}
 
     def __str__(self):
         return "<SdnMockerMessage object : " + str(self.todict()) + ">"
@@ -229,49 +215,27 @@ class SqlMockerMessage(XmlMessage):
         return re.compile(br"<SqlMocker.*?>.*?</SqlMocker>",
                           re.DOTALL | re.MULTILINE | re.IGNORECASE)
 
-    def get_driver(self):
-        driver_elem = self.root.find('./Configuration/Driver')
-        if driver_elem is not None:
-            return driver_elem.text
-        else:
-            return None
-
-    def get_server(self):
-        server_elem = self.root.find('./Configuration/Server')
-        if server_elem is not None:
-            return server_elem.text
-        else:
-            return None
-
-    def get_database(self):
-        database_elem = self.root.find('./Configuration/Database')
-        if database_elem is not None:
-            return database_elem.text
-        else:
-            return None
-
-    def get_uid(self):
-        uid_elem = self.root.find('./Configuration/UID')
-        if uid_elem is not None:
-            return uid_elem.text
-        else:
-            return None
-
-    def get_pwd(self):
-        pwd_elem = self.root.find('./Configuration/PWD')
-        if pwd_elem is not None:
-            return pwd_elem.text
-        else:
-            return None
-
     def __str__(self):
         return "<SqlMockerMessage object : " + str(self.todict()) + ">"
 
     def todict(self):
         """
-        Return a dictionary with keys as configuration options defined in the xml block.
+        Return a dictionary with keys as configuration options and values
+        as the string present in the respective Element. If the element was not present,
+        then the value will be None.
+
+        The configuration keys can be:
+            Driver
+            Server
+            Database
+            UID
+            PWD
         """
-        return {}
+        return {'Driver': self.root.findtext('./Configuration/Driver'),
+                'Server': self.root.findtext('./Configuration/Server'),
+                'Database': self.root.findtext('./Configuration/Database'),
+                'UID': self.root.findtext('./Configuration/UID'),
+                'PWD': self.root.findtext('./Configuration/PWD')}
 
 
 class XMLMessageFactory:

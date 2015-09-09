@@ -25,7 +25,7 @@ def extract_mock_config(infile_path):
             try:
                 mock_msg = next(iter(mock_gen))
                 return mock_msg.todict()
-            except StopIteration as e:
+            except StopIteration:
                 logging.error("StopIteration Error: Possibly an invalid " +
                               "or non-existent SdnMocker message.")
                 raise ValueError("Invalid SdnMocker Message. Check the input file.")

@@ -5,6 +5,7 @@ import sdnlogcleaner as LC
 # Disable non-critical logging for Testing
 logging.disable(logging.CRITICAL)
 
+
 class TestLogCleaner(unittest.TestCase):
 
     def test_clean_line_inside(self):

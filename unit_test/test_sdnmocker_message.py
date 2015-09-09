@@ -15,6 +15,13 @@ XML_1 = """
     </Configuration>
 </SdnMocker>
 """
+XML_2 = """
+<SdnMocker>
+    <Configuration>
+    </Configuration>
+</SdnMocker>
+"""
+
 
 
 class TestSdnMockerMessage(unittest.TestCase):
@@ -44,32 +51,30 @@ class TestGetters(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.msg_1 = SdnMockerMessage(XML_1)
-
-    def test_get_target_url(self):
-        self.assertEqual(self.msg_1.get_target_url(), "https://127.0.0.1:3000/SdnApiReceiver/site",
-                         "Should match full target url.")
+        cls.msg_2 = SdnMockerMessage(XML_2)
 
     def test_get_target_ip(self):
         self.assertEqual(self.msg_1.get_target_ip(), "127.0.0.1",
                          "Should match target ip address.")
+        self.assertEqual(self.msg_2.get_target_ip(), None,
+                         "Should return None for no target ip address.")
 
     def test_get_target_port(self):
         self.assertEqual(self.msg_1.get_target_port(), "3000",
                          "Should match target port.")
-
-    def test_is_realtime(self):
-        self.assertTrue(self.msg_1.is_realtime(),
-                        "Should be configured as real time.")
-
-    def test_get_max_delay(self):
-        self.assertEqual(self.msg_1.get_max_delay(), 100,
-                         "Should match correct max delay.")
+        self.assertEqual(self.msg_2.get_target_port(), None,
+                         "Should return None for no target port.")
 
     def test_todist(self):
         self.assertEqual(self.msg_1.todict(),
                          {'TargetUrl': "https://127.0.0.1:3000/SdnApiReceiver/site",
-                          'TargetIp': "127.0.0.1",
-                          'TargetPort': "3000",
                           'MaxDelay': 100,
                           'RealTime': True},
                          "Should return a dictionary of configurations.")
+
+    def test_todist_empty(self):
+        self.assertEqual(self.msg_2.todict(),
+                         {'TargetUrl': None,
+                          'MaxDelay': None,
+                          'RealTime': None},
+                         "Should return a dictionary of configurations with None values.")
