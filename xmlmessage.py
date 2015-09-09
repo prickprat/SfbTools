@@ -217,7 +217,61 @@ class SdnMockerMessage(XmlMessage):
                 'RealTime': self.is_realtime()}
 
     def __str__(self):
-        return str(self.todict())
+        return "<SdnMockerMessage object : " + str(self.todict()) + ">"
+
+
+class SqlMockerMessage(XmlMessage):
+
+    def __init__(self, message):
+        super().__init__(message)
+
+    def get_root_regex():
+        return re.compile(br"<SqlMocker.*?>.*?</SqlMocker>",
+                          re.DOTALL | re.MULTILINE | re.IGNORECASE)
+
+    def get_driver(self):
+        driver_elem = self.root.find('./Configuration/Driver')
+        if driver_elem is not None:
+            return driver_elem.text
+        else:
+            return None
+
+    def get_server(self):
+        server_elem = self.root.find('./Configuration/Server')
+        if server_elem is not None:
+            return server_elem.text
+        else:
+            return None
+
+    def get_database(self):
+        database_elem = self.root.find('./Configuration/Database')
+        if database_elem is not None:
+            return database_elem.text
+        else:
+            return None
+
+    def get_uid(self):
+        uid_elem = self.root.find('./Configuration/UID')
+        if uid_elem is not None:
+            return uid_elem.text
+        else:
+            return None
+
+    def get_pwd(self):
+        pwd_elem = self.root.find('./Configuration/PWD')
+        if pwd_elem is not None:
+            return pwd_elem.text
+        else:
+            return None
+
+    def __str__(self):
+        return "<SqlMockerMessage object : " + str(self.todict()) + ">"
+
+    def todict(self):
+        """
+        Return a dictionary with keys as configuration options defined in the xml block.
+        """
+        return {}
 
 
 class XMLMessageFactory:

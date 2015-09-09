@@ -27,9 +27,8 @@ def extract_mock_config(infile_path):
                 return mock_msg.todict()
             except StopIteration as e:
                 logging.error("StopIteration Error: Possibly an invalid " +
-                              "or non-existant SdnMocker message.")
+                              "or non-existent SdnMocker message.")
                 raise ValueError("Invalid SdnMocker Message. Check the input file.")
-
 
 
 def mock_sdn_messages(infile_path):
@@ -73,9 +72,11 @@ def parse_sys_args():
                                          description="""
     Skype for Business SDN Mocker Tool.
 
-    Mocks the Skype SDN API using preconfigured SDN messages. Each Sdn Mocker test is configured as a
-    single xml file. The file must contain a SdnMocker element which configures the tool and
-    successive LyncDiagnostic Messages which will be sent in order of appearance to the target server.
+    Mocks the Skype SDN API using pre-configured SDN messages.
+    Each Sdn Mocker test is configured as a single xml file.
+    The file must contain a SdnMocker element which configures the tool and
+    successive LyncDiagnostic Messages which will be sent in order of
+    appearance to the target server.
 
     Technically the mock xml file is malformed, since it doesn't have a root element.
     This may change in the future.
