@@ -7,13 +7,13 @@ from xml.etree.ElementTree import ParseError
 logging.disable(logging.CRITICAL)
 
 XML_1 = """
-<SdnMocker>
+  <SdnMocker>
     <Configuration>
-        <TargetUrl>https://127.0.0.1:3000/SdnApiReceiver/site</TargetUrl>
-        <MaxDelay>100</MaxDelay>
-        <RealTime>True</RealTime>
+      <TargetUrl>https://127.0.0.1:3000/SdnApiReceiver/site</TargetUrl>
+      <MaxDelay>100</MaxDelay>
+      <RealTime>True</RealTime>
     </Configuration>
-</SdnMocker>
+  </SdnMocker>
 """
 XML_2 = """
 <SdnMocker>
@@ -21,7 +21,15 @@ XML_2 = """
     </Configuration>
 </SdnMocker>
 """
-
+XML_3 = """
+<SdnMocker>
+    <Configuration>
+      <TargetUrl>random!@888**</TargetUrl>
+      <MaxDelay>random##$</MaxDelay>
+      <RealTime>random!@888**</RealTime>
+    </Configuration>
+</SdnMocker>
+"""
 
 
 class TestSdnMockerMessage(unittest.TestCase):
@@ -52,22 +60,13 @@ class TestGetters(unittest.TestCase):
     def setUpClass(cls):
         cls.msg_1 = SdnMockerMessage(XML_1)
         cls.msg_2 = SdnMockerMessage(XML_2)
-
-    def test_get_target_ip(self):
-        self.assertEqual(self.msg_1.get_target_ip(), "127.0.0.1",
-                         "Should match target ip address.")
-        self.assertEqual(self.msg_2.get_target_ip(), None,
-                         "Should return None for no target ip address.")
-
-    def test_get_target_port(self):
-        self.assertEqual(self.msg_1.get_target_port(), "3000",
-                         "Should match target port.")
-        self.assertEqual(self.msg_2.get_target_port(), None,
-                         "Should return None for no target port.")
+        cls.msg_3 = SdnMockerMessage(XML_3)
 
     def test_todist(self):
         self.assertEqual(self.msg_1.todict(),
                          {'TargetUrl': "https://127.0.0.1:3000/SdnApiReceiver/site",
+                          'TargetIp': "127.0.0.1",
+                          'TargetPort': "3000",
                           'MaxDelay': 100,
                           'RealTime': True},
                          "Should return a dictionary of configurations.")
@@ -75,6 +74,13 @@ class TestGetters(unittest.TestCase):
     def test_todist_empty(self):
         self.assertEqual(self.msg_2.todict(),
                          {'TargetUrl': None,
+                          'TargetIp': None,
+                          'TargetPort': None,
                           'MaxDelay': None,
                           'RealTime': None},
                          "Should return a dictionary of configurations with None values.")
+
+    def test_todist_invalid(self):
+        with self.assertRaises(ValueError,
+                               msg="Should raise ValueError for incorrect element content."):
+            self.msg_3.todict()

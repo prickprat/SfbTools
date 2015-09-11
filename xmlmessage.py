@@ -166,41 +166,57 @@ class SdnMockerMessage(XmlMessage):
         return re.compile(br"<SdnMocker.*?>.*?</SdnMocker>",
                           re.DOTALL | re.MULTILINE | re.IGNORECASE)
 
-    def get_target_ip(self):
-        target_url = self.root.findtext('./Configuration/TargetUrl')
-        if target_url is None:
-            return None
-        m = re.search(r'(?:http|https)://(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', target_url)
-        if m is None:
-            return None
-        return m.group(1)
-
-    def get_target_port(self):
-        target_url = self.root.findtext('./Configuration/TargetUrl')
-        if target_url is None:
-            return None
-        m = re.search(r':(\d{1,5})/?', target_url)
-        if m is None:
-            return None
-        return m.group(1)
-
     def todict(self):
         """
         Return a dictionary with keys as configuration options and values
         as the string present in the respective Element. If the element was not present,
         then the value will be None.
 
+        Raises ValueError if element text is invalid / cannot be cast properly.
+
         The configuration keys can be:
             TargetUrl
             MaxDelay
             RealTime
         """
-        str_to_bool = lambda x: (x.lower() == "true") if x is not None else None
-        str_to_int = lambda x: int(x) if x is not None else None
+        def str_to_bool(s):
+            try:
+                return (s.lower() == "true") if s is not None else None
+            except ValueError:
+                logging.error(
+                    "ValueError: String to boolean conversion failed.")
+                raise
 
-        return {'TargetUrl': self.root.findtext('./Configuration/TargetUrl'),
-                'MaxDelay': str_to_int(self.root.findtext('./Configuration/MaxDelay')),
-                'RealTime': str_to_bool(self.root.findtext('./Configuration/RealTime'))}
+        def str_to_int(s):
+            try:
+                return int(s) if s is not None else None
+            except ValueError:
+                logging.error(
+                    "ValueError: String to int conversion failed.")
+                raise
+
+        def strip_ip_port(url):
+            res = {'ip': None, 'port': None}
+
+            if url is None:
+                return res
+            m_ip = re.search(r'(?:http|https)://(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', url)
+            m_port = re.search(r':(\d{1,5})', url)
+            if m_ip is not None:
+                res['ip'] = m_ip.group(1)
+            if m_port is not None:
+                res['port'] = m_port.group(1)
+            return res
+
+        target_url = self.root.findtext('./Configuration/TargetUrl')
+        max_delay = self.root.findtext('./Configuration/MaxDelay')
+        real_time = self.root.findtext('./Configuration/RealTime')
+
+        return {'TargetUrl': target_url,
+                'TargetIp': strip_ip_port(target_url)['ip'],
+                'TargetPort': strip_ip_port(target_url)['port'],
+                'MaxDelay': str_to_int(max_delay),
+                'RealTime': str_to_bool(real_time)}
 
     def __str__(self):
         return "<SdnMockerMessage object : " + str(self.todict()) + ">"
