@@ -175,9 +175,11 @@ class SdnMockerMessage(XmlMessage):
         Raises ValueError if element text is invalid / cannot be cast properly.
 
         The configuration keys can be:
-            TargetUrl
-            MaxDelay
-            RealTime
+            target_url
+            target_ip
+            target_port
+            max_delay
+            realtime
         """
         def str_to_bool(s):
             try:
@@ -222,11 +224,11 @@ class SdnMockerMessage(XmlMessage):
         max_delay = self.root.findtext('./Configuration/MaxDelay')
         real_time = self.root.findtext('./Configuration/RealTime')
 
-        return {'TargetUrl': target_url,
-                'TargetIp': strip_ip_port(target_url)['ip'],
-                'TargetPort': strip_ip_port(target_url)['port'],
-                'MaxDelay': str_to_int(max_delay),
-                'RealTime': str_to_bool(real_time)}
+        return {'target_url': target_url,
+                'target_ip': strip_ip_port(target_url)['ip'],
+                'target_port': strip_ip_port(target_url)['port'],
+                'max_delay': str_to_int(max_delay),
+                'realtime': str_to_bool(real_time)}
 
     def __str__(self):
         return "<SdnMockerMessage object : " + str(self.todict()) + ">"
@@ -251,17 +253,17 @@ class SqlMockerMessage(XmlMessage):
         then the value will be None.
 
         The configuration keys can be:
-            Driver
-            Server
-            Database
-            UID
-            PWD
+            driver
+            server
+            database
+            uid
+            pwd
         """
-        return {'Driver': self.root.findtext('./Configuration/Driver'),
-                'Server': self.root.findtext('./Configuration/Server'),
-                'Database': self.root.findtext('./Configuration/Database'),
-                'UID': self.root.findtext('./Configuration/UID'),
-                'PWD': self.root.findtext('./Configuration/PWD')}
+        return {'driver': self.root.findtext('./Configuration/Driver'),
+                'server': self.root.findtext('./Configuration/Server'),
+                'database': self.root.findtext('./Configuration/Database'),
+                'uid': self.root.findtext('./Configuration/UID'),
+                'pwd': self.root.findtext('./Configuration/PWD')}
 
 
 class XMLMessageFactory:

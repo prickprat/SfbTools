@@ -64,20 +64,20 @@ class TestGetters(unittest.TestCase):
 
     def test_todist(self):
         self.assertEqual(self.msg_1.todict(),
-                         {'TargetUrl': "http://127.0.0.1:3000/SdnApiReceiver/site",
-                          'TargetIp': "127.0.0.1",
-                          'TargetPort': "3000",
-                          'MaxDelay': 100,
-                          'RealTime': True},
+                         {'target_url': "http://127.0.0.1:3000/SdnApiReceiver/site",
+                          'target_ip': "127.0.0.1",
+                          'target_port': "3000",
+                          'max_delay': 100,
+                          'realtime': True},
                          "Should return a dictionary of configurations.")
 
     def test_todist_empty(self):
         self.assertEqual(self.msg_2.todict(),
-                         {'TargetUrl': None,
-                          'TargetIp': None,
-                          'TargetPort': None,
-                          'MaxDelay': None,
-                          'RealTime': None},
+                         {'target_url': None,
+                          'target_ip': None,
+                          'target_port': None,
+                          'max_delay': None,
+                          'realtime': None},
                          "Should return a dictionary of configurations with None values.")
 
     def test_todist_invalid(self):

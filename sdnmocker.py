@@ -33,29 +33,29 @@ def extract_mock_config(infile_path):
 
 def mock_sdn_messages(infile_path):
     config = extract_mock_config(infile_path)
-    wait_time = 0 if (config['RealTime']) else config['MaxDelay']
+    wait_time = 0 if (config['realtime']) else config['max_delay']
 
     with open(infile_path, mode="rt", errors="strict") as infile:
         with XMLMessageFactory(infile, SdnMessage) as sdn_gen:
             prev_sdn_msg = None
             for sdn_msg in sdn_gen:
-                post_request = Request(config['TargetUrl'],
+                post_request = Request(config['target_url'],
                                        data=sdn_msg.tostring(encoding="us-ascii"),
                                        headers={'Content-Type': 'application/xml'})
-                if config['RealTime']:
+                if config['realtime']:
                     # Calculate the time to wait from the time interval
                     if prev_sdn_msg is not None:
                         time_diff = (sdn_msg.get_timestamp() -
                                      prev_sdn_msg.get_timestamp()).total_seconds()
                         time_diff = int(time_diff)
-                        if (time_diff >= 0 and time_diff <= config['MaxDelay']):
+                        if (time_diff >= 0 and time_diff <= config['max_delay']):
                             wait_time = time_diff
                         else:
-                            wait_time = config['MaxDelay']
+                            wait_time = config['max_delay']
                     prev_sdn_msg = sdn_msg
 
                 try:
-                    print('RealTime {0} : Sleeping for {1}s.'.format(config['RealTime'], wait_time))
+                    print('RealTime {0} : Sleeping for {1}s.'.format(config['realtime'], wait_time))
                     time.sleep(wait_time)
                     print("Sending Sdn Message : " + str(sdn_msg))
                     response = urlopen(post_request)
@@ -121,3 +121,51 @@ if __name__ == "__main__":
     # Load logging configurations
     logging.config.dictConfig(logging_conf.LOGGING_CONFIG)
     main()
+
+
+class SdnMocker():
+
+    """
+    Generates a configurable instance of a SDN mocker.
+    Uses the Mocker interface.
+    """
+
+    def __init__(self, **kwargs):
+        try:
+            self.targel_url = kwargs['target_url']
+            self.realtime = kwargs.get('realtime', False)
+            self.max_delay = kwargs['max_delay']
+        except KeyError as e:
+            logging.error("KeyError : " + str(e))
+            raise ValueError("target_url and max_delay must be given as parameters.")
+
+    @classmethod
+    def fromfile(cls, file_path):
+        """
+        Initialise SdnMocker from file.
+        File should contain a SdnMockerConfiguration xml element.
+        """
+        with open(file_path, mode="rt", errors="strict") as infile:
+            with XMLMessageFactory(infile, SdnMockerMessage) as mock_gen:
+                try:
+                    mock_msg = next(iter(mock_gen))
+                    return cls.fromdict(mock_msg.todict())
+                except StopIteration as e:
+                    logging.error("StopIteration Error: " + str(e))
+                    raise ValueError("Invalid SdnMocker Message. Check the input file.")
+
+    @classmethod
+    def fromdict(cls, config_dict):
+        """
+        Initialise SdnMocker from dictionary.
+        """
+        cls(**config_dict)
+
+    def open(self):
+        pass
+
+    def close(self):
+        pass
+
+    def send(self):
+        pass

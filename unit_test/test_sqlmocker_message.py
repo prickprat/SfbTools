@@ -57,20 +57,20 @@ class TestToDict(unittest.TestCase):
 
     def test_existing_values(self):
         self.assertEqual(self.msg_1.todict(),
-                         {'Driver': "SqlServer",
-                          'Server': "10.2.3.4/SqlServerExpress",
-                          'Database': "LyncCDR",
-                          'UID': "hello",
-                          'PWD': "!@#!#!<#!@$!QS"
+                         {'driver': "SqlServer",
+                          'server': "10.2.3.4/SqlServerExpress",
+                          'database': "LyncCDR",
+                          'uid': "hello",
+                          'pwd': "!@#!#!<#!@$!QS"
                           },
                          "Should return matching values for all configurations.")
 
     def test_non_existing_values(self):
         self.assertEqual(self.msg_2.todict(),
-                         {'Driver': None,
-                          'Server': None,
-                          'Database': None,
-                          'UID': None,
-                          'PWD': None
+                         {'driver': None,
+                          'server': None,
+                          'database': None,
+                          'uid': None,
+                          'pwd': None
                           },
                          "Should return None for all configurations.")
