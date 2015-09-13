@@ -26,6 +26,11 @@ def extract_mock_config(infile_path):
 
 
 def mock_sql_queries(infile_path):
+    #Get configuration
+
+    #Start a connection if not already connected
+
+    #Send the query
 
 
 

@@ -208,7 +208,17 @@ class SdnMockerMessage(XmlMessage):
                 res['port'] = m_port.group(1)
             return res
 
-        target_url = self.root.findtext('./Configuration/TargetUrl')
+        def convert_url(url):
+            """
+            Converts to http if https is not supported.
+            """
+            if url is not None and re.search("^https://", url):
+                logging.warning(
+                    "'{0}' : HTTPS is not currently supported. Switching to HTTP.".format(url))
+                return re.sub("^https://", "http://", url, count=1)
+            return url
+
+        target_url = convert_url(self.root.findtext('./Configuration/TargetUrl'))
         max_delay = self.root.findtext('./Configuration/MaxDelay')
         real_time = self.root.findtext('./Configuration/RealTime')
 

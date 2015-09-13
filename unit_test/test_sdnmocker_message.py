@@ -64,7 +64,7 @@ class TestGetters(unittest.TestCase):
 
     def test_todist(self):
         self.assertEqual(self.msg_1.todict(),
-                         {'TargetUrl': "https://127.0.0.1:3000/SdnApiReceiver/site",
+                         {'TargetUrl': "http://127.0.0.1:3000/SdnApiReceiver/site",
                           'TargetIp': "127.0.0.1",
                           'TargetPort': "3000",
                           'MaxDelay': 100,
