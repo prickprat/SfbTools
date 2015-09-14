@@ -1,3 +1,4 @@
+import http.client
 from urllib.request import urlopen
 from urllib.request import Request
 from urllib.error import URLError
@@ -135,6 +136,7 @@ class SdnMocker():
             self.targel_url = kwargs['target_url']
             self.realtime = kwargs.get('realtime', False)
             self.max_delay = kwargs['max_delay']
+            self._prev_sdn_msg = None
         except KeyError as e:
             logging.error("KeyError : " + str(e))
             raise ValueError("target_url and max_delay must be given as parameters.")
@@ -162,10 +164,60 @@ class SdnMocker():
         cls(**config_dict)
 
     def open(self):
-        pass
+        """
+        Returns true if the target url is responsive.
+        """
+        return (urlopen(self.target_url).status == http.client.OK)
 
     def close(self):
+        """
+        Does nothing.
+        """
         pass
 
-    def send(self):
-        pass
+    def send(self, data):
+        """
+        Sends a http POST request to the configured Target Url.
+
+        data    -   String in byte code format (e.g. us-ascii)
+        """
+        post_request = Request(self.target_url,
+                               data=data,
+                               headers={'Content-Type': 'application/xml'})
+        try:
+            response = urlopen(post_request)
+            if response is not None:
+                logging.debug("Server Response Received.")
+        except URLError as e:
+            logging.error("URLError : " + str(e))
+            raise
+
+    def send_sdnmessage(self, sdn_msg):
+        """
+        Sends the given SdnMessage using http POST to the Target Url.
+        The delay applied is either:
+            If RealTime was configured False    =>  The configured Max Delay
+            If RealTime was configured True     =>  The smaller of the time interval
+                                                    from the previous message
+                                                    or the max_delay.
+        """
+        if self.realtime:
+            if self.prev_sdn_msg is not None:
+                delay = int((sdn_msg.get_timestamp() -
+                             self.prev_sdn_msg.get_timestamp()).total_seconds())
+            else:
+                delay = 0
+        else:
+            delay = self.max_delay
+        # Correct for negative offsets
+        delay = max(delay, 0)
+
+        try:
+            print('Sdn Mocker Sleeping for {0}s.'.format(delay))
+            time.sleep(delay)
+            print("Sending Sdn Message : " + str(sdn_msg))
+            self.send(sdn_msg.tostring(encoding="us-ascii"))
+        except URLError:
+            print("Connection Error! Check the Target Url in the SdnMocker element.")
+        finally:
+            self._prev_sdn_msg = sdn_msg
