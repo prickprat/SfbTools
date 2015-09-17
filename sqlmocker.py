@@ -10,27 +10,7 @@ def main():
     args = parse_sys_args()
     mock_sql_queries(args.infile)
 
-def extract_mock_config(infile_path):
-    """
-    Returns a dictionary of configuration settings.
-    """
-    with open(infile_path, mode="rt", errors="strict") as infile:
-        with XMLMessageFactory(infile, SqlMockerMessage) as mock_gen:
-            try:
-                mock_msg = next(iter(mock_gen))
-                return mock_msg.todict()
-            except StopIteration as e:
-                logging.error("StopIteration Error: Possibly an invalid " +
-                              "or non-existent SqlMocker message.")
-                raise ValueError("Invalid SqlMocker Message. Check the input file.")
 
-
-def mock_sql_queries(infile_path):
-    #Get configuration
-
-    #Start a connection if not already connected
-
-    #Send the query
 
 
 
