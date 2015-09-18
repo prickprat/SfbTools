@@ -11,6 +11,7 @@ import logging
 import logging.config
 import logging_conf
 import time
+import pyodbc
 
 
 class SdnMocker():
@@ -120,6 +121,8 @@ class SqlMocker():
     """
     Generates a configurable instance of a SDN mocker.
     Uses the Mocker interface.
+
+    NB: PASSWORDS ARE CURRENTLY EXPOSED.
     """
 
     def __init__(self, **kwargs):
@@ -129,6 +132,8 @@ class SqlMocker():
             self.database = kwargs['database']
             self.uid = kwargs['uid']
             self.pwd = kwargs['pwd']
+            self._connection = None
+            self._closed = True
         except KeyError as e:
             logging.error("KeyError : " + str(e))
             raise ValueError(
@@ -137,7 +142,7 @@ class SqlMocker():
     @classmethod
     def fromfilename(cls, file_path):
         """
-        Initialise SqlMocker from file.
+        Initialize SqlMocker from file.
         File should contain a SqlMockerConfiguration xml element.
         """
         with open(file_path, mode="rt", errors="strict") as infile:
@@ -161,20 +166,28 @@ class SqlMocker():
         """
         Opens the odbc connection.
         """
-        pass
+        if self._closed:
+            self._connection = pyodbc.connect(driver=self.driver,
+                                              server=self.server,
+                                              database=self.database,
+                                              uid=self.uid,
+                                              pwd=self.pwd)
+        self._closed = False
 
     def close(self):
         """
         Closes the odbc connection.
         """
-        pass
+        if not self._closed and self._connection is not None:
+            self._connection.close()
+        self._closed = True
 
     def send(self, data):
         """
         """
         pass
 
-    def send_sqlmessage(self, sdn_msg):
+    def send_sqlmessage(self, sql_msg):
         """
         """
         pass
@@ -187,7 +200,6 @@ def main():
 
 def mock_sdn_messages(infile_path):
     sdn_mocker = SdnMocker.fromfilename(infile_path)
-    print(type(sdn_mocker))
 
     with open(infile_path, mode="rt", errors="strict") as infile:
         with XMLMessageFactory(infile, SdnMessage) as sdn_gen:
