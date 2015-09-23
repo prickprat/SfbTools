@@ -3,9 +3,11 @@ from urllib.request import urlopen
 from urllib.request import Request
 from urllib.error import URLError
 from xmlmessage import SdnMessage
+from xmlmessage import SqlMessage
 from xmlmessage import XMLMessageFactory
 from xmlmessage import SdnMockerMessage
 from xmlmessage import SqlMockerMessage
+import xml.etree.ElementTree as ET
 import argparse
 import logging
 import logging.config
@@ -80,40 +82,6 @@ class SdnMocker():
                                headers={'Content-Type': 'application/xml'})
         response = urlopen(post_request)
         return True if response is not None else False
-
-    def send_sdnmessage(self, sdn_msg):
-        """
-        Sends the given SdnMessage using http POST to the Target Url.
-        The delay applied is either:
-            If RealTime was configured False    =>  The configured Max Delay
-            If RealTime was configured True     =>  The smaller of the time interval
-                                                    from the previous message
-                                                    or the max_delay.
-        """
-        if self.realtime:
-            if self._prev_sdn_msg is not None:
-                delay = int((sdn_msg.get_timestamp() -
-                             self._prev_sdn_msg.get_timestamp()).total_seconds())
-            else:
-                # This is the first SDN Message
-                delay = 0
-        else:
-            delay = self.max_delay
-        # Delay must be non-negative and less than max_delay.
-        delay = min(self.max_delay, delay)
-        delay = max(delay, 0)
-
-        try:
-            print('Sdn Mocker Sleeping for {0}s.'.format(delay))
-            time.sleep(delay)
-            print("Sending Sdn Message : " + str(sdn_msg))
-            if self.send(sdn_msg.tostring(encoding="us-ascii")):
-                print("Response Received from Server.")
-        except URLError as e:
-            logging.error("URLError : " + str(e))
-            print("Connection Error! Check the Target Url in the SqlMocker element.")
-        finally:
-            self._prev_sdn_msg = sdn_msg
 
 
 class SqlMocker():
@@ -198,6 +166,41 @@ def main():
     mock_sdn_messages(args.infile)
 
 
+def mock_sdnmessage(sdn_mocker, sdn_msg, prev_timestamp):
+    """
+    Sends the given SdnMessage using http POST to the Target Url.
+    The delay applied is either:
+        If RealTime was configured False    =>  The configured Max Delay
+        If RealTime was configured True     =>  The smaller of the time interval
+                                                from the previous message
+                                                or the max_delay.
+    """
+    if sdn_mocker.realtime:
+        if prev_timestamp is not None:
+            delay = int((sdn_msg.get_timestamp() -
+                         prev_timestamp).total_seconds())
+        else:
+            # This is the first Message
+            delay = 0
+    else:
+        delay = self.max_delay
+    # Delay must be non-negative and less than max_delay.
+    delay = min(self.max_delay, delay)
+    delay = max(delay, 0)
+
+    try:
+        print('Sdn Mocker Sleeping for {0}s.'.format(delay))
+        time.sleep(delay)
+        print("Sending Sdn Message : " + str(sdn_msg))
+        if self.send(sdn_msg.tostring(encoding="us-ascii")):
+            print("Response Received from Server.")
+    except URLError as e:
+        logging.error("URLError : " + str(e))
+        print("Connection Error! Check the Target Url in the SqlMocker element.")
+    finally:
+        self._prev_sdn_msg = sdn_msg
+
+
 def mock_sdn_messages(infile_path):
     sdn_mocker = SdnMocker.fromfilename(infile_path)
 
@@ -216,6 +219,38 @@ def mock_sql_queries(infile_path):
     pass
 
 
+def run_mocker(mock_file_path):
+    # Parse the mocker file
+    try:
+        mock_test = ET.parse(mock_file_path)
+    except ET.ParseError as e:
+        logging.error("ParseError whilst parsing mock file : " + str(e))
+        raise ValueError("Invalid Mocker Test Format. Read the help text for formatting.")
+
+    sdn_mocker = None
+    sql_mocker = None
+
+    # Initialise the mockers
+    try:
+        sdn_config_elem = mock_test.find('./' + SdnMockerMessage.get_root_tag())
+        sql_config_elem = mock_test.find('./' + SqlMockerMessage.get_root_tag())
+        if sdn_config_elem is not None:
+            sdn_mocker_config = SdnMockerMessage(sdn_config_elem).todict()
+            sdn_mocker = SdnMocker.fromdict(sdn_mocker_config)
+        if sql_config_elem is not None:
+            sql_mocker_config = SqlMockerMessage(sql_config_elem).todict()
+            sql_mocker = SqlMocker.fromdict(sql_mocker_config)
+    except ValueError as e:
+        raise
+
+    # Parse the messages and send them
+    for msg in list(mock_test.find("./MockMessages")):
+        if msg.tag == SdnMessage.get_root_tag():
+            sdn_mocker.send_sdnmessage(SdnMessage(msg))
+        elif msg.tag == SqlMessage.get_root_tag():
+            sql_mocker.send_sqlmessage(SqlMessage(msg))
+
+
 def parse_sys_args():
     arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
                                          description="""
@@ -227,23 +262,36 @@ def parse_sys_args():
     successive LyncDiagnostic Messages which will be sent in order of
     appearance to the target server.
 
-    Technically the mock xml file is malformed, since it doesn't have a root element.
-    This may change in the future.
-
-    Mock File Format:
-
-        <SdnMocker>
-            <Description>...</Description>
-            <Configuration>
+    -------------------Mock File Format : Example -----------------
+    <Mocker>
+        <Description>...</Description>
+        <Configuration>
+            <MaxDelay>....</MaxDelay>
+            <RealTime>....</RealTime>
+            <SdnMocker>
                 <TargetUrl>...</TargetUrl>
-                <MaxDelay>....</MaxDelay>
-                <RealTime>....</RealTime>
-            </Configuration>
-        </SdnMocker>
-        <LyncDiagnostic>
+            </SdnMocker>
+            <SqlMocker>
+                <Driver>...</Driver>
+                <Server>...</Server>
+                <Database>...</Database>
+                <UID>...</UID>
+                <PWD>...</PWD>
+            </SqlMocker>
+        </Configuration>
+        <MockMessages>
+            <LyncDiagnostic>
+                ...
+            </LyncDiagnostic>
             ...
-        </LyncDiagnostic>
-        ...
+            <SqlMessage>
+                <TimeStamp>...</TimeStamp>
+                <Query>...</Query>
+            </SqlMessage>
+            ...
+        </MockMessages>
+    </Mocker>
+    ----------------------------------------------------------------
 
     Configuration Options:
         Description -   Short description of the mock scenario. [Optional]

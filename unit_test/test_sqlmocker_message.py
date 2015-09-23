@@ -7,29 +7,25 @@ from xml.etree.ElementTree import ParseError
 logging.disable(logging.CRITICAL)
 
 XML_1 = """
-<SqlMocker>
-    <Configuration>
-        <Driver>SqlServer</Driver>
-        <Server>10.2.3.4/SqlServerExpress</Server>
-        <Database>LyncCDR</Database>
-        <UID>hello</UID>
-        <PWD>!@#!#!&lt;#!@$!QS</PWD>
-    </Configuration>
-</SqlMocker>
+<SqlMockerConfiguration>
+  <Driver>SqlServer</Driver>
+  <Server>10.2.3.4/SqlServerExpress</Server>
+  <Database>LyncCDR</Database>
+  <UID>hello</UID>
+  <PWD>!@#!#!&lt;#!@$!QS</PWD>
+</SqlMockerConfiguration>
 """
 
 XML_2 = """
-<SqlMocker>
-    <Configuration>
-    </Configuration>
-</SqlMocker>
+<SqlMockerConfiguration>
+</SqlMockerConfiguration>
 """
 
 
 class TestSdnMockerMessage(unittest.TestCase):
 
     def test_valid_xml(self):
-        msg = SqlMockerMessage(XML_1)
+        msg = SqlMockerMessage.fromstring(XML_1)
         self.assertTrue(isinstance(msg, SqlMockerMessage),
                         msg="valid xml Should be an instance of SqlMockerMessage.")
 
@@ -37,23 +33,23 @@ class TestSdnMockerMessage(unittest.TestCase):
         # Malformed Tag
         test_input = "<test</test>"
         with self.assertRaises(ParseError, msg="Should raise ParseError for malformed tag."):
-            SqlMockerMessage(test_input)
+            SqlMockerMessage.fromstring(test_input)
         # Empty string
         test_input = ""
         with self.assertRaises(ParseError, msg="Should raise ParseError for empty input."):
-            SqlMockerMessage(test_input)
+            SqlMockerMessage.fromstring(test_input)
         # non-xml content
         test_input = "sdad<test></test>sdaf"
         with self.assertRaises(ParseError, msg="Should raise ParseError for non-xml content."):
-            SqlMockerMessage(test_input)
+            SqlMockerMessage.fromstring(test_input)
 
 
 class TestToDict(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.msg_1 = SqlMockerMessage(XML_1)
-        cls.msg_2 = SqlMockerMessage(XML_2)
+        cls.msg_1 = SqlMockerMessage.fromstring(XML_1)
+        cls.msg_2 = SqlMockerMessage.fromstring(XML_2)
 
     def test_existing_values(self):
         self.assertEqual(self.msg_1.todict(),

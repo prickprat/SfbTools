@@ -6,30 +6,98 @@ import mmap
 import abc
 
 
+def convert_timestamp(timestamp_str):
+    """
+    Converts a ISO 8601 timestamp to a datetime object
+    with a UTC timezone offset.
+
+    Raises TypeError or ValueError if conversion fails for
+    a particular reason.
+
+    Arguments:
+    timestamp_str -- ISO 8601 formatted datetime string with time-zone information.
+    """
+    timestamp_regex = re.compile(
+        r'(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})'
+        r'T'
+        r'(?P<hour>\d{2}):(?P<minute>\d{2}):(?P<second>\d{2})'
+        r'(?P<fractional>\.\d+)?'
+        r'((?P<zulu>[zZ])|(?P<z_sign>[+-])(?P<z_hour>\d{2}):(?P<z_minute>\d{2}))')
+    try:
+        m = re.search(timestamp_regex, timestamp_str)
+        if m is None:
+            raise ValueError("Timestamp string does not match the ISO-8601 format.")
+        # Trim fractional seconds to nearest microsecond
+        fractional_seconds = m.group('fractional')
+        microseconds = 0
+        if fractional_seconds is not None:
+            microseconds = int(float(fractional_seconds) * 1e6)
+        # Calculate the timezone delta
+        tz_delta = datetime.timedelta(0)  # Zulu Time offset
+        if m.group('zulu') is None:
+            sign = -1 if (m.group('z_sign') == '-') else 1
+            tz_delta = sign * datetime.timedelta(hours=int(m.group('z_hour')),
+                                                 minutes=int(m.group('z_minute')))
+
+        converted_datetime = datetime.datetime(int(m.group('year')),
+                                               int(m.group('month')),
+                                               int(m.group('day')),
+                                               int(m.group('hour')),
+                                               int(m.group('minute')),
+                                               int(m.group('second')),
+                                               microseconds,
+                                               datetime.timezone(tz_delta))
+        return converted_datetime
+    except TypeError as e:
+        logging.error("TypeError raised : " + str(e))
+        raise
+    except ValueError as e:
+        logging.error("ValueError raised : " + str(e))
+        raise
+
+
 class XmlMessage(metaclass=abc.ABCMeta):
 
     """
     Abstract XML message class
     """
 
-    def __init__(self, message):
-        self.root = self.parse_message(message)
-
-    def parse_message(self, message):
+    def __init__(self, root_element):
         """
-        Parses the xml message.
+        Returns and instance of an XML message.
+
+        root    -   root XML element for the XML Message.
+        """
+        self._etree = ET.ElementTree(element=root_element)
+        self.root = self._etree.getroot()
+
+    @classmethod
+    def fromstring(cls, msg_str):
+        """
+        Parses the xml message as a string.
         Raises ParseError if invalid XML is encountered.
         """
         try:
-            return ET.XML(message)
+            return cls(ET.XML(msg_str))
         except ET.ParseError as e:
             logging.error("Parse Error: " + str(e))
             raise
 
+    @classmethod
     @abc.abstractmethod
-    def get_root_regex():
-        """Returns a re.compile object which can be used to
-        extract this xml element from text."""
+    def get_root_tag(cls):
+        """
+        Returns the tag of the root xml element for this xml wrapper.
+        """
+
+    def get_root_regex(self):
+        """
+        Returns a re.compile object which can be used to
+        extract this xml element from text.
+        """
+        root_tag = self.get_root_tag()
+        rx_str = "<{0}.*?>.*?</{0}>".format(root_tag).encode('utf-8')
+        return re.compile(rx_str, re.DOTALL | re.MULTILINE | re.IGNORECASE)
 
     @abc.abstractmethod
     def __str__(self):
@@ -52,12 +120,9 @@ class XmlMessage(metaclass=abc.ABCMeta):
 
 class SdnMessage(XmlMessage):
 
-    def __init__(self, message):
-        super().__init__(message)
-
-    def get_root_regex():
-        return re.compile(br"<LyncDiagnostics.*?>.*?</LyncDiagnostics>",
-                          re.DOTALL | re.MULTILINE | re.IGNORECASE)
+    @classmethod
+    def get_root_tag(cls):
+        return "LyncDiagnostics"
 
     def contains_call_id(self, *call_ids):
         """
@@ -95,61 +160,11 @@ class SdnMessage(XmlMessage):
             timestamp_str = timestamp_element.text
 
             try:
-                return SdnMessage.convert_timestamp(timestamp_str)
+                return convert_timestamp(timestamp_str)
             except (ValueError, TypeError):
                 return None
         else:
             return None
-
-    @staticmethod
-    def convert_timestamp(timestamp_str):
-        """
-        Converts a ISO 8601 timestamp to a datetime object
-        with a UTC timezone offset.
-
-        Raises TypeError or ValueError if conversion fails for
-        a particular reason.
-
-        Arguments:
-        timestamp_str -- ISO 8601 formatted datetime string with time-zone information.
-        """
-        timestamp_regex = re.compile(
-            r'(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})'
-            r'T'
-            r'(?P<hour>\d{2}):(?P<minute>\d{2}):(?P<second>\d{2})'
-            r'(?P<fractional>\.\d+)?'
-            r'((?P<zulu>[zZ])|(?P<z_sign>[+-])(?P<z_hour>\d{2}):(?P<z_minute>\d{2}))')
-        try:
-            m = re.search(timestamp_regex, timestamp_str)
-            if m is None:
-                raise ValueError("Timestamp string does not match the ISO-8601 format.")
-            # Trim fractional seconds to nearest microsecond
-            fractional_seconds = m.group('fractional')
-            microseconds = 0
-            if fractional_seconds is not None:
-                microseconds = int(float(fractional_seconds) * 1e6)
-            # Calculate the timezone delta
-            tz_delta = datetime.timedelta(0)  # Zulu Time offset
-            if m.group('zulu') is None:
-                sign = -1 if (m.group('z_sign') == '-') else 1
-                tz_delta = sign * datetime.timedelta(hours=int(m.group('z_hour')),
-                                                     minutes=int(m.group('z_minute')))
-
-            converted_datetime = datetime.datetime(int(m.group('year')),
-                                                   int(m.group('month')),
-                                                   int(m.group('day')),
-                                                   int(m.group('hour')),
-                                                   int(m.group('minute')),
-                                                   int(m.group('second')),
-                                                   microseconds,
-                                                   datetime.timezone(tz_delta))
-            return converted_datetime
-        except TypeError as e:
-            logging.error("TypeError raised : " + str(e))
-            raise
-        except ValueError as e:
-            logging.error("ValueError raised : " + str(e))
-            raise
 
     def __str__(self):
         desc_template = "<SdnMessage object : Timestamp - {0} : Contains {1}>"
@@ -159,12 +174,9 @@ class SdnMessage(XmlMessage):
 
 class SdnMockerMessage(XmlMessage):
 
-    def __init__(self, message):
-        super().__init__(message)
-
-    def get_root_regex():
-        return re.compile(br"<SdnMocker.*?>.*?</SdnMocker>",
-                          re.DOTALL | re.MULTILINE | re.IGNORECASE)
+    @classmethod
+    def get_root_tag(cls):
+        return "SdnMockerConfiguration"
 
     def todict(self):
         """
@@ -220,9 +232,9 @@ class SdnMockerMessage(XmlMessage):
                 return re.sub("^https://", "http://", url, count=1)
             return url
 
-        target_url = convert_url(self.root.findtext('./Configuration/TargetUrl'))
-        max_delay = self.root.findtext('./Configuration/MaxDelay')
-        real_time = self.root.findtext('./Configuration/RealTime')
+        target_url = convert_url(self.root.findtext('./TargetUrl'))
+        max_delay = self.root.findtext('./MaxDelay')
+        real_time = self.root.findtext('./RealTime')
 
         return {'target_url': target_url,
                 'target_ip': strip_ip_port(target_url)['ip'],
@@ -236,12 +248,9 @@ class SdnMockerMessage(XmlMessage):
 
 class SqlMockerMessage(XmlMessage):
 
-    def __init__(self, message):
-        super().__init__(message)
-
-    def get_root_regex():
-        return re.compile(br"<SqlMocker.*?>.*?</SqlMocker>",
-                          re.DOTALL | re.MULTILINE | re.IGNORECASE)
+    @classmethod
+    def get_root_tag(cls):
+        return "SqlMockerConfiguration"
 
     def __str__(self):
         return "<SqlMockerMessage object : " + str(self.todict()) + ">"
@@ -253,17 +262,52 @@ class SqlMockerMessage(XmlMessage):
         then the value will be None.
 
         The configuration keys can be:
-            driver
-            server
-            database
-            uid
-            pwd
+
+
+
         """
-        return {'driver': self.root.findtext('./Configuration/Driver'),
-                'server': self.root.findtext('./Configuration/Server'),
-                'database': self.root.findtext('./Configuration/Database'),
-                'uid': self.root.findtext('./Configuration/UID'),
-                'pwd': self.root.findtext('./Configuration/PWD')}
+        return {'driver': self.root.findtext('./Driver'),
+                'server': self.root.findtext('./Server'),
+                'database': self.root.findtext('./Database'),
+                'uid': self.root.findtext('./UID'),
+                'pwd': self.root.findtext('./PWD')}
+
+
+class SqlQueryMessage(XmlMessage):
+
+    @classmethod
+    def get_root_tag(cls):
+        return "SqlQuery"
+
+    def get_timestamp(self):
+        """
+        Returns a datetime instance representing the TimeStamp information
+        from the SDN message. Returns None if no TimeStamp element exists or
+        Timestamp is incorrectly formatted.
+        """
+
+        timestamp_element = self.root.find("./TimeStamp")
+        if timestamp_element is not None:
+            timestamp_str = timestamp_element.text
+
+            try:
+                return convert_timestamp(timestamp_str)
+            except (ValueError, TypeError):
+                return None
+        else:
+            return None
+
+    def get_query(self):
+        """
+        Returns the SQL query as a string.
+        """
+        query_element = self.root.find("./Query")
+        if query_element is not None:
+            return query_element.text
+        return None
+
+    def __str__(self):
+        pass
 
 
 class XMLMessageFactory:
@@ -320,3 +364,18 @@ class XMLMessageFactory:
     def __exit__(self, exec_type, exec_value, exec_tb):
         self.close()
         return False
+
+
+class MessageFactory:
+
+    @staticmethod
+    def createMessage(root_element):
+        for cls in MessageFactory.find_all_subclasses(XmlMessage):
+            if cls.get_root_tag() == root_element.tag:
+                return cls(root_element)
+        return None
+
+    @staticmethod
+    def find_all_subclasses(arg_cls):
+        return arg_cls.__subclasses__() + [x for y in arg_cls.__subclasses__()
+                                           for x in MessageFactory.find_all_subclasses(y)]

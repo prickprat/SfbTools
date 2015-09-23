@@ -7,35 +7,29 @@ from xml.etree.ElementTree import ParseError
 logging.disable(logging.CRITICAL)
 
 XML_1 = """
-  <SdnMocker>
-    <Configuration>
-      <TargetUrl>https://127.0.0.1:3000/SdnApiReceiver/site</TargetUrl>
-      <MaxDelay>100</MaxDelay>
-      <RealTime>True</RealTime>
-    </Configuration>
-  </SdnMocker>
+  <SdnMockerConfiguration>
+    <TargetUrl>https://127.0.0.1:3000/SdnApiReceiver/site</TargetUrl>
+    <MaxDelay>100</MaxDelay>
+    <RealTime>True</RealTime>
+  </SdnMockerConfiguration>
 """
 XML_2 = """
-<SdnMocker>
-    <Configuration>
-    </Configuration>
-</SdnMocker>
+<SdnMockerConfiguration>
+</SdnMockerConfiguration>
 """
 XML_3 = """
-<SdnMocker>
-    <Configuration>
-      <TargetUrl>random!@888**</TargetUrl>
-      <MaxDelay>random##$</MaxDelay>
-      <RealTime>random!@888**</RealTime>
-    </Configuration>
-</SdnMocker>
+<SdnMockerConfiguration>
+    <TargetUrl>random!@888**</TargetUrl>
+    <MaxDelay>random##$</MaxDelay>
+    <RealTime>random!@888**</RealTime>
+</SdnMockerConfiguration>
 """
 
 
 class TestSdnMockerMessage(unittest.TestCase):
 
     def test_valid_xml(self):
-        msg = SdnMockerMessage(XML_1)
+        msg = SdnMockerMessage.fromstring(XML_1)
         self.assertTrue(isinstance(msg, SdnMockerMessage),
                         msg="valid xml Should be an instance of SdnMockerMessage.")
 
@@ -43,24 +37,24 @@ class TestSdnMockerMessage(unittest.TestCase):
         # Malformed Tag
         test_input = "<test</test>"
         with self.assertRaises(ParseError, msg="Should raise ParseError for malformed tag."):
-            SdnMockerMessage(test_input)
+            SdnMockerMessage.fromstring(test_input)
         # Empty string
         test_input = ""
         with self.assertRaises(ParseError, msg="Should raise ParseError for empty input."):
-            SdnMockerMessage(test_input)
+            SdnMockerMessage.fromstring(test_input)
         # non-xml content
         test_input = "sdad<test></test>sdaf"
         with self.assertRaises(ParseError, msg="Should raise ParseError for non-xml content."):
-            SdnMockerMessage(test_input)
+            SdnMockerMessage.fromstring(test_input)
 
 
 class TestGetters(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.msg_1 = SdnMockerMessage(XML_1)
-        cls.msg_2 = SdnMockerMessage(XML_2)
-        cls.msg_3 = SdnMockerMessage(XML_3)
+        cls.msg_1 = SdnMockerMessage.fromstring(XML_1)
+        cls.msg_2 = SdnMockerMessage.fromstring(XML_2)
+        cls.msg_3 = SdnMockerMessage.fromstring(XML_3)
 
     def test_todist(self):
         self.assertEqual(self.msg_1.todict(),
