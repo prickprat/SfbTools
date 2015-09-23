@@ -246,14 +246,14 @@ class SdnMockerMessage(XmlMessage):
         return "<SdnMockerMessage object : " + str(self.todict()) + ">"
 
 
-class SqlMockerMessage(XmlMessage):
+class MockerConfiguration(XmlMessage):
 
     @classmethod
     def get_root_tag(cls):
-        return "SqlMockerConfiguration"
+        return "MockerConfiguration"
 
     def __str__(self):
-        return "<SqlMockerMessage object : " + str(self.todict()) + ">"
+        return "<MockerConfiguration object : " + str(self.todict()) + ">"
 
     def todict(self):
         """
@@ -261,16 +261,28 @@ class SqlMockerMessage(XmlMessage):
         as the string present in the respective Element. If the element was not present,
         then the value will be None.
 
-        The configuration keys can be:
-
-
-
         """
-        return {'driver': self.root.findtext('./Driver'),
-                'server': self.root.findtext('./Server'),
-                'database': self.root.findtext('./Database'),
-                'uid': self.root.findtext('./UID'),
-                'pwd': self.root.findtext('./PWD')}
+        def str_to_bool(s):
+            try:
+                return (s.lower() == "true") if s is not None else None
+            except ValueError:
+                logging.error(
+                    "ValueError: String to boolean conversion failed.")
+                raise
+
+        def str_to_int(s):
+            try:
+                return int(s) if s is not None else None
+            except ValueError:
+                logging.error(
+                    "ValueError: String to int conversion failed.")
+                raise
+
+        max_delay = self.root.findtext('./MaxDelay')
+        real_time = self.root.findtext('./RealTime')
+
+        return {'max_delay': str_to_int(max_delay),
+                'realtime': str_to_bool(real_time)}
 
 
 class SqlQueryMessage(XmlMessage):
