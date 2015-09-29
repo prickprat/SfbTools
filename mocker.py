@@ -3,7 +3,7 @@ from urllib.request import urlopen
 from urllib.request import Request
 from urllib.error import URLError
 from xmlmessage import SdnMessage
-from xmlmessage import SqlMessage
+from xmlmessage import SqlQueryMessage
 from xmlmessage import XMLMessageFactory
 from xmlmessage import SdnMockerMessage
 from xmlmessage import MockerConfiguration
@@ -13,7 +13,7 @@ import logging
 import logging.config
 import logging_conf
 import time
-import pyodbc
+# import pyodbc
 import json
 
 
@@ -26,28 +26,11 @@ class SdnMocker():
 
     def __init__(self, **kwargs):
         try:
-            self.target_url = kwargs['target_url']
-            self.realtime = kwargs.get('realtime', False)
-            self.max_delay = kwargs['max_delay']
-            self._prev_sdn_msg = None
+            self.receiver = kwargs['receiver']
         except KeyError as e:
             logging.error("KeyError : " + str(e))
-            raise ValueError("target_url and max_delay must be given as parameters.")
+            raise ValueError("receiver must be given as parameters.")
 
-    @classmethod
-    def fromfilename(cls, file_path):
-        """
-        Initialise SdnMocker from file.
-        File should contain a SdnMockerConfiguration xml element.
-        """
-        with open(file_path, mode="rt", errors="strict") as infile:
-            with XMLMessageFactory(infile, SdnMockerMessage) as mock_gen:
-                try:
-                    mock_msg = next(iter(mock_gen))
-                    return cls.fromdict(mock_msg.todict())
-                except StopIteration as e:
-                    logging.error("StopIteration Error: " + str(e))
-                    raise ValueError("Invalid SdnMocker Message. Check the input file.")
 
     @classmethod
     def fromdict(cls, config_dict):
@@ -58,9 +41,13 @@ class SdnMocker():
 
     def open(self):
         """
-        Returns true if the target url is responsive.
+        Returns true if the receiver is responsive to POST requests.
         """
-        return (urlopen(self.target_url).status == http.client.OK)
+        try:
+            response = urlopen(self.receiver, data="".encode("us-ascii"), timeout=1)
+            return (response.status == http.client.OK)
+        except URLError:
+            return False
 
     def close(self):
         """
@@ -78,34 +65,34 @@ class SdnMocker():
 
         data    -   String in byte code format (e.g. us-ascii)
         """
-        post_request = Request(self.target_url,
+        post_request = Request(self.receiver,
                                data=data,
                                headers={'Content-Type': 'application/xml'})
         response = urlopen(post_request)
         return True if response is not None else False
 
-    def send_sdnmessage(sdn_mocker, sdn_msg, delay):
-    """
-    Sends the given SdnMessage using http POST to the Target Url.
-    The delay applied is either:
-        If RealTime was configured False    =>  The configured Max Delay
-        If RealTime was configured True     =>  The smaller of the time interval
-                                                from the previous message
-                                                or the max_delay.
-    """
+    def send_message(self, sdn_msg, delay):
+        """
+        Sends the given SdnMessage using http POST to the Target Url.
+        The delay applied is either:
+            If RealTime was configured False    =>  The configured Max Delay
+            If RealTime was configured True     =>  The smaller of the time interval
+                                                    from the previous message
+                                                    or the max_delay.
+        """
 
-    try:
-        print('Sdn Mocker Sleeping for {0}s.'.format(delay))
-        time.sleep(delay)
-        print("Sending Sdn Message : " + str(sdn_msg))
-        if self.send(sdn_msg.tostring(encoding="us-ascii")):
-            print("Response Received from Server.")
-    except URLError as e:
-        logging.error("URLError : " + str(e))
-        print("Connection Error! Check the Target Url in the SqlMocker element.")
+        try:
+            print('Sdn Mocker Sleeping for {0}s.'.format(delay))
+            time.sleep(delay)
+            print("Sending Sdn Message : " + str(sdn_msg))
+            if self.send(sdn_msg.tostring(encoding="us-ascii")):
+                print("Response Received from Server.")
+        except URLError as e:
+            logging.error("URLError : " + str(e))
+            print("Connection Error! Check the Target Url in the OdbcMocker element.")
 
 
-class SqlMocker():
+class OdbcMocker():
 
     """
     Generates a configurable instance of a SDN mocker.
@@ -129,25 +116,9 @@ class SqlMocker():
                 "driver, server, database, uid, pwd must be given as keyword parameters.")
 
     @classmethod
-    def fromfilename(cls, file_path):
-        """
-        Initialize SqlMocker from file.
-        File should contain a SqlMockerConfiguration xml element.
-        """
-        with open(file_path, mode="rt", errors="strict") as infile:
-            with XMLMessageFactory(infile, SqlMockerMessage) as mock_gen:
-                try:
-                    mock_msg = next(iter(mock_gen))
-                    return cls.fromdict(mock_msg.todict())
-                except StopIteration:
-                    logging.error("StopIteration Error: Possibly an invalid " +
-                                  "or non-existent SqlMocker message.")
-                    raise ValueError("Invalid SqlMocker Message. Check the input file.")
-
-    @classmethod
     def fromdict(cls, config_dict):
         """
-        Initialise SqlMocker from dictionary.
+        Initialise OdbcMocker from dictionary.
         """
         return cls(**config_dict)
 
@@ -174,11 +145,15 @@ class SqlMocker():
     def send(self, data):
         """
         """
+        print("Sending ... ")
         pass
 
-    def send_sqlmessage(self, sql_msg):
+    def send_message(self, sql_msg, delay):
         """
         """
+        print('Odbc Mocker Sleeping for {0}s.'.format(delay))
+        time.sleep(delay)
+        print("Sending Sql Query Message : " + str(sql_msg))
         pass
 
 
@@ -191,6 +166,8 @@ def main():
         sdn_config = json.loads(args.sdn_config)
     if args.odbc_config is not None:
         odbc_config = json.loads(args.odbc_config)
+    print(sdn_config)
+    print(odbc_config)
 
     run_mocker(args.infile, sdn_config, odbc_config)
 
@@ -216,10 +193,11 @@ def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
         mock_test = ET.parse(mock_file_path)
     except ET.ParseError as e:
         logging.error("ParseError whilst parsing mock file : " + str(e))
-        raise ValueError("Invalid Mocker Test Format. Read the help text for formatting.")
+        raise ValueError("Invalid Mocker Test Format.")
 
-    mocker_config = MockerConfiguration(mock_test.find(MockerConfiguration.get_root_tag())).todict()
-
+    test_config_elem = mock_test.find(MockerConfiguration.get_root_tag())
+    test_config = MockerConfiguration(test_config_elem).todict()
+    print(test_config)
     # Initialise the mockers
     sdn_mocker = None
     odbc_mocker = None
@@ -228,28 +206,34 @@ def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
             sdn_mocker = SdnMocker.fromdict(sdn_config)
             sdn_mocker.open()
         if odbc_config is not None:
-            odbc_mocker = SqlMocker.fromdict(odbc_config)
-            odbc_mocker.open()
+            odbc_mocker = OdbcMocker.fromdict(odbc_config)
+            # odbc_mocker.open()
 
         # Parse the messages and send them
         prev_timestamp = None
         for msg in list(mock_test.find("./MockMessages")):
-            delay = calculate_delay(mocker_config.realtime,
-                                    mocker_config.max_delay,
+            mocker = None
+            if (msg.tag == SdnMessage.get_root_tag()):
+                msg = SdnMessage(msg)
+                mocker = sdn_mocker
+            elif (msg.tag == SqlQueryMessage.get_root_tag()):
+                msg = SqlQueryMessage(msg)
+                mocker = odbc_mocker
+
+            delay = calculate_delay(test_config['realtime'],
+                                    test_config['max_delay'],
                                     msg.get_timestamp(),
                                     prev_timestamp)
-
-            if msg.tag == SdnMessage.get_root_tag():
-                sdn_mocker.send_sdnmessage(SdnMessage(msg), delay)
-            elif msg.tag == SqlMessage.get_root_tag():
-                odbc_mocker.send_sqlmessage(SqlMessage(msg), delay)
-
+            if mocker is not None:
+                mocker.send_message(msg, delay)
             prev_timestamp = msg.get_timestamp()
+
     finally:
         if sdn_mocker is not None:
             sdn_mocker.close()
         if odbc_mocker is not None:
-            odbc_mocker.close()
+            pass
+            # odbc_mocker.close()
 
 
 def parse_sys_args():
