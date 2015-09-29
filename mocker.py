@@ -13,7 +13,7 @@ import logging
 import logging.config
 import logging_conf
 import time
-# import pyodbc
+import pyodbc
 import json
 
 
@@ -126,6 +126,8 @@ class OdbcMocker():
         """
         Opens the odbc connection.
         """
+        print("Trying to connect")
+        # TRY CATCH in case connection failed
         if self._closed:
             self._connection = pyodbc.connect(driver=self.driver,
                                               server=self.server,
@@ -144,9 +146,15 @@ class OdbcMocker():
 
     def send(self, data):
         """
+        Executes and Commits the given query using an existing connection.
         """
-        print("Sending ... ")
-        pass
+        if self._closed:
+            logging.debug("Connection is Closed. Ignoring Send Command.")
+            return
+
+        cursor = self._connection.cursor()
+        cursor.execute(data)
+        self._connection.commit()
 
     def send_message(self, sql_msg, delay):
         """
@@ -154,7 +162,7 @@ class OdbcMocker():
         print('Odbc Mocker Sleeping for {0}s.'.format(delay))
         time.sleep(delay)
         print("Sending Sql Query Message : " + str(sql_msg))
-        pass
+        self.send(sql_msg.get_query())
 
 
 def main():
@@ -207,7 +215,7 @@ def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
             sdn_mocker.open()
         if odbc_config is not None:
             odbc_mocker = OdbcMocker.fromdict(odbc_config)
-            # odbc_mocker.open()
+            odbc_mocker.open()
 
         # Parse the messages and send them
         prev_timestamp = None
@@ -219,6 +227,8 @@ def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
             elif (msg.tag == SqlQueryMessage.get_root_tag()):
                 msg = SqlQueryMessage(msg)
                 mocker = odbc_mocker
+            else:
+                continue
 
             delay = calculate_delay(test_config['realtime'],
                                     test_config['max_delay'],
@@ -232,8 +242,7 @@ def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
         if sdn_mocker is not None:
             sdn_mocker.close()
         if odbc_mocker is not None:
-            pass
-            # odbc_mocker.close()
+            odbc_mocker.close()
 
 
 def parse_sys_args():
