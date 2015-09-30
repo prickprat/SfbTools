@@ -4,6 +4,7 @@ import re
 import logging
 import mmap
 import abc
+# import dateutil.parser as DUP
 
 
 class XmlMessage(metaclass=abc.ABCMeta):
@@ -116,6 +117,7 @@ class XmlMessage(metaclass=abc.ABCMeta):
         except ValueError as e:
             logging.error("ValueError raised : " + str(e))
             raise
+        # return DUP.parse(timestamp_str)
 
     @abc.abstractmethod
     def get_timestamp(self):

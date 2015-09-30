@@ -3,30 +3,32 @@
 
 TODO
 
-configuration on commandline string
 
-Mocker is OPTIMISTIC : each message is performed in isolation :-> catches errors and moves on to next. prevents dirty tests. e.g. if sdn mocker not configured but sql is.
+Mocker is PESSIMISTIC: Does not execute any mockMessages if any are malformed.
+    Parse FIRST and validate BEFORE Running -- avoid dirty tests.
 
 CLEANUP needs to be done within each Test
 
-EDGE CAse testing
+EDGE Case testing
 
-message with no mocker configuration
-JSON not a dictionary ??
-ssmssss
-cdata for xml
 
-how to write a query to a different database?
-
-mockconfiguration from Mock_Test
+how do you write a query to a different database?
 
 Error Checking on configuration class instantiation
 
->> pyodbc connect with odbc driver
-
 timestamp conversion util>> dateutils
 
-'{ "driver":"SQL Server", "server":"sqlfrontend1.lync2013.local", "database":"LyncCdr", "uid":"administrator", "pwd":"Helpme1!" }'
+SQL SERVER connection error handling.
+
+
+Better Logging:
+    Error Logging
+    Debug logging
+    Print statements
+
+
+cxn = pyodbc.connect("DRIVER={SQLite3 ODBC Driver};SERVER=localhost;DATABASE=C:/Users/prickprat/Documents/Programming/SqliteDatabases/test.db;Trusted_connection=yes")
+
 
 
 

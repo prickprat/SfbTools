@@ -1,76 +1,68 @@
 import logging
 import unittest
-from xmlmessage import SdnMockerMessage
+from xmlmessage import MockerConfiguration
 from xml.etree.ElementTree import ParseError
 
 # Disable non-critical logging for Testing
 logging.disable(logging.CRITICAL)
 
 XML_1 = """
-  <SdnMockerConfiguration>
-    <TargetUrl>https://127.0.0.1:3000/SdnApiReceiver/site</TargetUrl>
-    <MaxDelay>100</MaxDelay>
-    <RealTime>True</RealTime>
-  </SdnMockerConfiguration>
+<MockerConfiguration>
+  <MaxDelay>100</MaxDelay>
+  <RealTime>True</RealTime>
+</MockerConfiguration>
 """
 XML_2 = """
-<SdnMockerConfiguration>
-</SdnMockerConfiguration>
+<MockerConfiguration>
+</MockerConfiguration>
 """
 XML_3 = """
-<SdnMockerConfiguration>
-    <TargetUrl>random!@888**</TargetUrl>
+<MockerConfiguration>
     <MaxDelay>random##$</MaxDelay>
     <RealTime>random!@888**</RealTime>
-</SdnMockerConfiguration>
+</MockerConfiguration>
 """
 
 
-class TestSdnMockerMessage(unittest.TestCase):
+class TestMockerConfiguration(unittest.TestCase):
 
     def test_valid_xml(self):
-        msg = SdnMockerMessage.fromstring(XML_1)
-        self.assertTrue(isinstance(msg, SdnMockerMessage),
-                        msg="valid xml Should be an instance of SdnMockerMessage.")
+        msg = MockerConfiguration.fromstring(XML_1)
+        self.assertTrue(isinstance(msg, MockerConfiguration),
+                        msg="valid xml Should be an instance of MockerConfiguration.")
 
     def test_invalid_mxl(self):
         # Malformed Tag
         test_input = "<test</test>"
         with self.assertRaises(ParseError, msg="Should raise ParseError for malformed tag."):
-            SdnMockerMessage.fromstring(test_input)
+            MockerConfiguration.fromstring(test_input)
         # Empty string
         test_input = ""
         with self.assertRaises(ParseError, msg="Should raise ParseError for empty input."):
-            SdnMockerMessage.fromstring(test_input)
+            MockerConfiguration.fromstring(test_input)
         # non-xml content
         test_input = "sdad<test></test>sdaf"
         with self.assertRaises(ParseError, msg="Should raise ParseError for non-xml content."):
-            SdnMockerMessage.fromstring(test_input)
+            MockerConfiguration.fromstring(test_input)
 
 
 class TestGetters(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.msg_1 = SdnMockerMessage.fromstring(XML_1)
-        cls.msg_2 = SdnMockerMessage.fromstring(XML_2)
-        cls.msg_3 = SdnMockerMessage.fromstring(XML_3)
+        cls.msg_1 = MockerConfiguration.fromstring(XML_1)
+        cls.msg_2 = MockerConfiguration.fromstring(XML_2)
+        cls.msg_3 = MockerConfiguration.fromstring(XML_3)
 
     def test_todist(self):
         self.assertEqual(self.msg_1.todict(),
-                         {'target_url': "http://127.0.0.1:3000/SdnApiReceiver/site",
-                          'target_ip': "127.0.0.1",
-                          'target_port': "3000",
-                          'max_delay': 100,
+                         {'max_delay': 100,
                           'realtime': True},
                          "Should return a dictionary of configurations.")
 
     def test_todist_empty(self):
         self.assertEqual(self.msg_2.todict(),
-                         {'target_url': None,
-                          'target_ip': None,
-                          'target_port': None,
-                          'max_delay': None,
+                         {'max_delay': None,
                           'realtime': None},
                          "Should return a dictionary of configurations with None values.")
 

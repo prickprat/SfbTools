@@ -92,7 +92,7 @@ class SdnMocker():
 class OdbcMocker():
 
     """
-    Generates a configurable instance of a SDN mocker.
+    Generates a configurable instance of an ODBC mocker.
     Uses the Mocker interface.
     """
 
@@ -172,10 +172,8 @@ def main():
         sdn_config = process_dict_arg(args.sdn_config)
     if args.odbc_config is not None:
         odbc_config = process_dict_arg(args.odbc_config)
-    print(sdn_config)
-    print(odbc_config)
 
-    # run_mocker(args.infile, sdn_config, odbc_config)
+    run_mocker(args.infile, sdn_config, odbc_config)
 
 
 def calculate_delay(is_realtime, max_delay, curr_timestamp, prev_timestamp):
@@ -261,7 +259,7 @@ def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
 def parse_sys_args():
     arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
                                          description="""
-    Skype for Business SDN Mocker Tool.
+    Skype for Business Mocker Tool.
 
     Mocks the Skype SDN API using pre-configured SDN messages.
     Each Sdn Mocker test is configured as a single xml file.
@@ -299,7 +297,15 @@ def parse_sys_args():
                         messages in the file. The Max Delay time is still respected.
                         If disabled then the time delay is always Max Delay. True or False.
                         (e.g. True)
-        """)
+
+    The following ODBC parameters are supported :
+        driver      -   Odbc Driver used for the connection.
+        server      -   Location of database server.
+        database    -   Database name. [Optional]
+        uid         -   user id. [Optional]
+        pwd         -   user password. [Optional]
+
+""")
     arg_parser.add_argument("infile",
                             type=str,
                             help="""
@@ -308,19 +314,19 @@ def parse_sys_args():
                             """)
 
     arg_parser.add_argument("--sdn-config",
-                            metavar="SDN_CONFIG",
+                            metavar="SDN_PARAMS",
                             type=str,
-                            help="""SDN configuration in JSON format.
+                            help="""SDN configuration must be in dictionary format.
                             E.g.
                             { "receiver": "https://127.0.0.1:3000/SdnApiReceiver/site" }""")
 
     arg_parser.add_argument("--odbc-config",
-                            metavar="ODBC_CONFIG",
+                            metavar="ODBC_PARAMS",
                             type=str,
-                            help="""ODBC configuration in JSON format.
-                            E.g. { "driver": "MSQL",
-                              "server": "SQLSERVER",
-                              "database": "LyncCDR",
+                            help=r"""ODBC connection string parameters in python dictionary format.
+                            E.g. { "driver": "SQL SERVER",
+                              "server": "10.102.70.4\\\\SqlServer",
+                              "database": "LcsCDR",
                               "uid": "sa",
                               "pwd": "C1sc0c1sc0" }""")
 

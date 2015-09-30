@@ -2,7 +2,6 @@ import logging
 import unittest
 import datetime as DT
 from xmlmessage import SdnMessage
-from xmlmessage import convert_timestamp
 from xml.etree.ElementTree import ParseError
 
 # Disable non-critical logging for Testing
@@ -198,27 +197,27 @@ class TestConvertTimestamp(unittest.TestCase):
         # Full microseconds
         zulu = "2000-01-01T01:01:01.999Z"
         expected = DT.datetime(2000, 1, 1, 1, 1, 1, 999000, DT.timezone.utc)
-        output = convert_timestamp(zulu)
+        output = SdnMessage.convert_timestamp(zulu)
         self.assertEqual(expected, output, "Should capture all Microseconds.")
         # Nanoseconds
         zulu = "2000-01-01T01:01:01.11121314Z"
         expected = DT.datetime(2000, 1, 1, 1, 1, 1, 111213, DT.timezone.utc)
-        output = convert_timestamp(zulu)
+        output = SdnMessage.convert_timestamp(zulu)
         self.assertEqual(expected, output, "Should trim nanoseconds to microseconds.")
         # No fractional seconds
         zulu = "2000-01-01T01:01:01Z"
         expected = DT.datetime(2000, 1, 1, 1, 1, 1, 0,  DT.timezone.utc)
-        output = convert_timestamp(zulu)
+        output = SdnMessage.convert_timestamp(zulu)
         self.assertEqual(expected, output, "Should parse no microseconds.")
         # Maximum date allowed
         zulu = "9999-12-31T23:59:59.9999999Z"
         expected = DT.datetime(9999, 12, 31, 23, 59, 59, 999999,  DT.timezone.utc)
-        output = convert_timestamp(zulu)
+        output = SdnMessage.convert_timestamp(zulu)
         self.assertEqual(expected, output, "Should parse the maximum datetime allowed.")
         # Minimum date allowed
         zulu = "0001-01-01T00:00:00.0000000Z"
         expected = DT.datetime(1, 1, 1, 0, 0, 0, 0,  DT.timezone.utc)
-        output = convert_timestamp(zulu)
+        output = SdnMessage.convert_timestamp(zulu)
         self.assertEqual(expected, output, "Should parse the minimum datetime allowed.")
 
     def test_timezone_offset(self):
@@ -226,52 +225,52 @@ class TestConvertTimestamp(unittest.TestCase):
         test_input = "2000-01-01T01:01:01.999+11:40"
         expected_offset = DT.timezone(DT.timedelta(hours=11, minutes=40))
         expected = DT.datetime(2000, 1, 1, 1, 1, 1, 999000, expected_offset)
-        output = convert_timestamp(test_input)
+        output = SdnMessage.convert_timestamp(test_input)
         self.assertEqual(expected, output, "Should preserve positive UTC offset.")
         # Negative UTC offset
         test_input = "2000-01-01T01:01:01.999-01:22"
         expected_offset = DT.timezone(-DT.timedelta(hours=1, minutes=22))
         expected = DT.datetime(2000, 1, 1, 1, 1, 1, 999000, expected_offset)
-        output = convert_timestamp(test_input)
+        output = SdnMessage.convert_timestamp(test_input)
         self.assertEqual(expected, output, "Should preserve negative UTC offset.")
         # Zero UTC offset
         test_input = "2000-01-01T01:01:01.999+00:00"
         expected_offset = DT.timezone(-DT.timedelta(hours=0, minutes=0))
         expected = DT.datetime(2000, 1, 1, 1, 1, 1, 999000, expected_offset)
-        output = convert_timestamp(test_input)
+        output = SdnMessage.convert_timestamp(test_input)
         self.assertEqual(expected, output, "Should preserve negative UTC offset.")
 
     def test_invalid_timezone(self):
         # Invalid timezone negative
         test_input = "2000-01-01T01:01:01.999-24:01"
         with self.assertRaises(ValueError, msg="Should return None for invalid negative timezone."):
-            convert_timestamp(test_input)
+            SdnMessage.convert_timestamp(test_input)
         # Invalid timezone positive
         test_input = "2000-01-01T01:01:01.999+24:01"
         with self.assertRaises(ValueError, msg="Should return None for invalid positive timezone."):
-            convert_timestamp(test_input)
+            SdnMessage.convert_timestamp(test_input)
         # Invalid timezone Zulu
         test_input = "2000-01-01T01:01:01.999P"
         with self.assertRaises(ValueError, msg="Should return None for invalid positive timezone."):
-            convert_timestamp(test_input)
+            SdnMessage.convert_timestamp(test_input)
         # No Z or timezone
         test_input = "2000-01-01T01:01:01.999"
         with self.assertRaises(ValueError, msg="Should return None for no timezone."):
-            convert_timestamp(test_input)
+            SdnMessage.convert_timestamp(test_input)
 
     def test_invalid_timestamp(self):
         # Invalid datetime stamp
         test_input = "Monday"
         with self.assertRaises(ValueError, msg="Should raise ValueError for invalid timestamp."):
-            convert_timestamp(test_input)
+            SdnMessage.convert_timestamp(test_input)
         # Invalid hour stamp
         test_input = "2000-01-01T25:01:01.999Z"
         with self.assertRaises(ValueError, msg="Should raise ValueError for invalid hour."):
-            convert_timestamp(test_input)
+            SdnMessage.convert_timestamp(test_input)
         # Invalid date stamp
         test_input = "2000-01-32T12:01:01.999Z"
         with self.assertRaises(ValueError, msg="Should raise ValueError for invalid date."):
-            convert_timestamp(test_input)
+            SdnMessage.convert_timestamp(test_input)
 
 
 if __name__ == '__main__':
