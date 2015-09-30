@@ -4,8 +4,6 @@ from urllib.request import Request
 from urllib.error import URLError
 from xmlmessage import SdnMessage
 from xmlmessage import SqlQueryMessage
-from xmlmessage import XMLMessageFactory
-from xmlmessage import SdnMockerMessage
 from xmlmessage import MockerConfiguration
 import xml.etree.ElementTree as ET
 import argparse
@@ -14,7 +12,7 @@ import logging.config
 import logging_conf
 import time
 import pyodbc
-import json
+import ast
 
 
 class SdnMocker():
@@ -30,7 +28,6 @@ class SdnMocker():
         except KeyError as e:
             logging.error("KeyError : " + str(e))
             raise ValueError("receiver must be given as parameters.")
-
 
     @classmethod
     def fromdict(cls, config_dict):
@@ -97,8 +94,6 @@ class OdbcMocker():
     """
     Generates a configurable instance of a SDN mocker.
     Uses the Mocker interface.
-
-    NB: PASSWORDS ARE CURRENTLY EXPOSED.
     """
 
     def __init__(self, **kwargs):
@@ -127,14 +122,17 @@ class OdbcMocker():
         Opens the odbc connection.
         """
         print("Trying to connect")
-        # TRY CATCH in case connection failed
-        if self._closed:
-            self._connection = pyodbc.connect(driver=self.driver,
-                                              server=self.server,
-                                              database=self.database,
-                                              uid=self.uid,
-                                              pwd=self.pwd)
-        self._closed = False
+        try:
+            if self._closed:
+                self._connection = pyodbc.connect(driver=self.driver,
+                                                  server=self.server,
+                                                  database=self.database,
+                                                  uid=self.uid,
+                                                  pwd=self.pwd)
+                self._closed = False
+        except:
+            print("POKEMON EXCEPTION!!")
+            raise
 
     def close(self):
         """
@@ -171,13 +169,13 @@ def main():
     sdn_config = None
     odbc_config = None
     if args.sdn_config is not None:
-        sdn_config = json.loads(args.sdn_config)
+        sdn_config = process_dict_arg(args.sdn_config)
     if args.odbc_config is not None:
-        odbc_config = json.loads(args.odbc_config)
+        odbc_config = process_dict_arg(args.odbc_config)
     print(sdn_config)
     print(odbc_config)
 
-    run_mocker(args.infile, sdn_config, odbc_config)
+    # run_mocker(args.infile, sdn_config, odbc_config)
 
 
 def calculate_delay(is_realtime, max_delay, curr_timestamp, prev_timestamp):
@@ -193,6 +191,21 @@ def calculate_delay(is_realtime, max_delay, curr_timestamp, prev_timestamp):
     delay = min(max_delay, delay)
     delay = max(delay, 0)
     return delay
+
+
+def process_dict_arg(arg_str):
+    """
+    Converts a str representing a python dictionary to a dict.
+    Raises ValueError if conversion is not possible.
+    """
+    try:
+        dict_arg = ast.literal_eval(arg_str.strip())
+        if not isinstance(dict_arg, dict):
+            raise TypeError
+        return dict_arg
+    except (SyntaxError, TypeError, ValueError) as e:
+        logging.error(str(e))
+        raise ValueError("Invalid configuration argument.")
 
 
 def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
@@ -268,19 +281,17 @@ def parse_sys_args():
                 ...
             </LyncDiagnostic>
             ...
-            <SqlMessage>
+            <SqlQueryMessage>
                 <TimeStamp>...</TimeStamp>
-                <Query>...</Query>
-            </SqlMessage>
+                <Query><![CDATA[...]]></Query>
+            </SqlQueryMessage>
             ...
         </MockMessages>
     </Mocker>
     ----------------------------------------------------------------
 
     Configuration Options:
-        Description -   Short description of the mock scenario. [Optional]
-        TargetUrl   -   The full url of the SDN receiver.
-                        (e.g. https://127.0.0.1:3000/SdnApiReceiver/site)
+        Description -   Short description of the mock test scenario. [Optional]
         MaxDelay    -   The maximum delay time for each consecutive message.
                         Number of seconds.
                         (e.g. 120)
