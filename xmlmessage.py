@@ -4,7 +4,7 @@ import re
 import logging
 import mmap
 import abc
-# import dateutil.parser as DUP
+import dateutil.parser as DUP
 
 
 class XmlMessage(metaclass=abc.ABCMeta):
@@ -80,44 +80,48 @@ class XmlMessage(metaclass=abc.ABCMeta):
         Arguments:
         timestamp_str -- ISO 8601 formatted datetime string with time-zone information.
         """
-        timestamp_regex = re.compile(
-            r'(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})'
-            r'T'
-            r'(?P<hour>\d{2}):(?P<minute>\d{2}):(?P<second>\d{2})'
-            r'(?P<fractional>\.\d+)?'
-            r'((?P<zulu>[zZ])|(?P<z_sign>[+-])(?P<z_hour>\d{2}):(?P<z_minute>\d{2}))')
-        try:
-            m = re.search(timestamp_regex, timestamp_str)
-            if m is None:
-                raise ValueError("Timestamp string does not match the ISO-8601 format.")
-            # Trim fractional seconds to nearest microsecond
-            fractional_seconds = m.group('fractional')
-            microseconds = 0
-            if fractional_seconds is not None:
-                microseconds = int(float(fractional_seconds) * 1e6)
-            # Calculate the timezone delta
-            tz_delta = datetime.timedelta(0)  # Zulu Time offset
-            if m.group('zulu') is None:
-                sign = -1 if (m.group('z_sign') == '-') else 1
-                tz_delta = sign * datetime.timedelta(hours=int(m.group('z_hour')),
-                                                     minutes=int(m.group('z_minute')))
+        # timestamp_regex = re.compile(
+        #     r'(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})'
+        #     r'T'
+        #     r'(?P<hour>\d{2}):(?P<minute>\d{2}):(?P<second>\d{2})'
+        #     r'(?P<fractional>\.\d+)?'
+        #     r'((?P<zulu>[zZ])|(?P<z_sign>[+-])(?P<z_hour>\d{2}):(?P<z_minute>\d{2}))')
+        # try:
+        #     m = re.search(timestamp_regex, timestamp_str)
+        #     if m is None:
+        #         raise ValueError("Timestamp string does not match the ISO-8601 format.")
+        #     # Trim fractional seconds to nearest microsecond
+        #     fractional_seconds = m.group('fractional')
+        #     microseconds = 0
+        #     if fractional_seconds is not None:
+        #         microseconds = int(float(fractional_seconds) * 1e6)
+        #     # Calculate the timezone delta
+        #     tz_delta = datetime.timedelta(0)  # Zulu Time offset
+        #     if m.group('zulu') is None:
+        #         sign = -1 if (m.group('z_sign') == '-') else 1
+        #         tz_delta = sign * datetime.timedelta(hours=int(m.group('z_hour')),
+        #                                              minutes=int(m.group('z_minute')))
 
-            converted_datetime = datetime.datetime(int(m.group('year')),
-                                                   int(m.group('month')),
-                                                   int(m.group('day')),
-                                                   int(m.group('hour')),
-                                                   int(m.group('minute')),
-                                                   int(m.group('second')),
-                                                   microseconds,
-                                                   datetime.timezone(tz_delta))
-            return converted_datetime
-        except TypeError as e:
-            logging.error("TypeError raised : " + str(e))
-            raise
-        except ValueError as e:
-            logging.error("ValueError raised : " + str(e))
-            raise
-        # return DUP.parse(timestamp_str)
+        #     converted_datetime = datetime.datetime(int(m.group('year')),
+        #                                            int(m.group('month')),
+        #                                            int(m.group('day')),
+        #                                            int(m.group('hour')),
+        #                                            int(m.group('minute')),
+        #                                            int(m.group('second')),
+        #                                            microseconds,
+        #                                            datetime.timezone(tz_delta))
+        #     return converted_datetime
+        # except TypeError as e:
+        #     logging.error("TypeError raised : " + str(e))
+        #     raise
+        # except ValueError as e:
+        #     logging.error("ValueError raised : " + str(e))
+        #     raise
+        try:
+            timestamp = DUP.parse(timestamp_str)
+        except (ValueError, TypeError) as e:
+            logging.error("{0} raised : {1}".format(e.__class__, str(e)))
+            raise ValueError("Timestamp string does not match the ISO-8601 format.")
 
     @abc.abstractmethod
     def get_timestamp(self):

@@ -261,13 +261,16 @@ def parse_sys_args():
                                          description="""
     Skype for Business Mocker Tool.
 
-    Mocks the Skype SDN API using pre-configured SDN messages.
-    Each Sdn Mocker test is configured as a single xml file.
-    The file must contain a SdnMocker element which configures the tool and
-    successive LyncDiagnostic Messages which will be sent in order of
-    appearance to the target server.
+    This tool replicates the Skype SDN 2.1 API and SQL Agent using user defined Mock Messages.
+    Each 'Mocker Test' represents a test scenario and is configured as a single xml file.
+    These Mock Messages are replayed using parametrised SDN and ODBC configurations.
 
-    -------------------Mock File Format : Example -----------------
+    Details below.
+
+    --------------------------Mock Test File--------------------------
+
+    **** Format Example ****
+
     <Mocker>
         <Description>...</Description>
         <MockerConfiguration>
@@ -286,17 +289,33 @@ def parse_sys_args():
             ...
         </MockMessages>
     </Mocker>
-    ----------------------------------------------------------------
 
-    Configuration Options:
+    ***********************
+
+    Elements explained :
+
         Description -   Short description of the mock test scenario. [Optional]
         MaxDelay    -   The maximum delay time for each consecutive message.
                         Number of seconds.
                         (e.g. 120)
         RealTime    -   Realtime uses the actual time interval between consecutive
-                        messages in the file. The Max Delay time is still respected.
-                        If disabled then the time delay is always Max Delay. True or False.
+                        mock messages. The Max Delay time is still respected.
+                        If disabled then the time delay is always Max Delay.
+                        True or False.
                         (e.g. True)
+
+    -------------------SDN Configuration -----------------------------
+
+    The SDN configuration must be in python dictionary format.
+
+    The following SDN parameters are supported :
+        receiver    -   Target URL for the http/https listener
+
+        e.g. --sdn-config "{ 'receiver': 'https://127.0.0.1:3000/SdnApiReceiver/site' }"
+
+    -------------------ODBC Configuration -----------------------------
+
+    The ODBC connection parameters must be in python dictionary format.
 
     The following ODBC parameters are supported :
         driver      -   Odbc Driver used for the connection.
@@ -305,30 +324,31 @@ def parse_sys_args():
         uid         -   user id. [Optional]
         pwd         -   user password. [Optional]
 
+        e.g. --odbc-config "{ 'driver': 'SQL SERVER',
+                              'server': '10.102.70.4\\\\SqlServer',
+                              'database': 'LcsCDR',
+                              'uid': 'sa',
+                              'pwd': 'C1sc0c1sc0' }"
+
 """)
     arg_parser.add_argument("infile",
                             type=str,
                             help="""
-                            Path to the input file.
-                            This needs to be in the Mock file format as above.
+                            Path to the Mock Test xml file.
+                            This needs to be in the Mock File Format --
                             """)
 
     arg_parser.add_argument("--sdn-config",
                             metavar="SDN_PARAMS",
                             type=str,
                             help="""SDN configuration must be in dictionary format.
-                            E.g.
-                            { "receiver": "https://127.0.0.1:3000/SdnApiReceiver/site" }""")
+                            See the detailed description using --help.""")
 
     arg_parser.add_argument("--odbc-config",
                             metavar="ODBC_PARAMS",
                             type=str,
                             help=r"""ODBC connection string parameters in python dictionary format.
-                            E.g. { "driver": "SQL SERVER",
-                              "server": "10.102.70.4\\\\SqlServer",
-                              "database": "LcsCDR",
-                              "uid": "sa",
-                              "pwd": "C1sc0c1sc0" }""")
+                            See the detailed description using --help.""")
 
     return arg_parser.parse_args()
 

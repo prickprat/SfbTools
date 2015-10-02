@@ -26,8 +26,11 @@ Better Logging:
     Debug logging
     Print statements
 
+Full Mock Test With SQlite3::
 
-cxn = pyodbc.connect("DRIVER={SQLite3 ODBC Driver};SERVER=localhost;DATABASE=C:/Users/prickprat/Documents/Programming/SqliteDatabases/test.db;Trusted_connection=yes")
+    cxn = pyodbc.connect("DRIVER={SQLite3 ODBC Driver};SERVER=localhost;DATABASE=C:/Users/prickprat/Documents/Programming/SqliteDatabases/test.db;Trusted_connection=yes")
+
+xml xsd --- ??
 
 
 
