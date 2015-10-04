@@ -32,7 +32,9 @@ def clean(in_path, out_path):
 def clean_line(line, inside_message, line_no=None):
     """
     Helper method to parse and clean a IRLYNC Log file (for SDN messages).
-    Automatically right strips for newlines and deals with split-log issues.
+
+    Removes newlines and the '.' character from the end of the line.
+    Automatically deals with split-log issues.
 
     Arugments:
     line            - Input line to clean
@@ -45,6 +47,9 @@ def clean_line(line, inside_message, line_no=None):
 
     """
     line = line.rstrip('\n')
+    # Strip offending period artefacts
+    if line[-1] == '.':
+        line = line[:-1]
 
     if inside_message:
         match = END_RX.search(line)
@@ -73,8 +78,9 @@ def parse_sys_args():
                                          description="""
     Skype for Business SDN Log Cleaner Tool.
 
-    Designed to clean up IRLYNC logs, fix split-log issues and output
-    only the SDN Message blocks from the log file.
+    Designed to clean up IRLYNC logs of artifacts left from logging.
+    Fixes split-log issues and removes trailing '.' characters.
+    Outputs only the SDN Message blocks.
 
     """)
     arg_parser.add_argument("infile",

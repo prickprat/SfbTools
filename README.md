@@ -30,11 +30,9 @@ Full Mock Test With SQlite3::
 
     cxn = pyodbc.connect("DRIVER={SQLite3 ODBC Driver};SERVER=localhost;DATABASE=C:/Users/prickprat/Documents/Programming/SqliteDatabases/test.db;Trusted_connection=yes")
 
->> If no timestamp found default to 0 interval , log warning.
->> 
-VALIDATE USING XSD before executing
+If no timestamp found default to 0 interval , log warning.
 
-LOG Clearner - remove periods at the end of each line.
+VALIDATE USING XSD before executing
 
 
 
