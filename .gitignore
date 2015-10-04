@@ -1,5 +1,5 @@
 #Temporary
-test_files/
+system_test/
 *.log
 
 #Byte-compiled / optimized / DLL files
