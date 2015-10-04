@@ -1,80 +1,40 @@
-<Mocker>
+<?xml version="1.0"?>
+
+<Mocker xmlns="http://www.ir.com/Mocker"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.ir.com/Mocker ../schemas/Mocker.Schema.xsd">
+
   <MockerConfiguration>
     <MaxDelay>5</MaxDelay>
-    <RealTime>True</RealTime>
+    <RealTime>true</RealTime>
   </MockerConfiguration>
   <MockMessages>
-    <LyncDiagnostics Version="C">.
-      <ConnectionInfo>.
-        <CallId>f618bedf22a740468994e9cdb460bbc2</CallId>.
-        <ConversationId>AdDOtX/n3ha2SrJNQ3uUsY3YVCmfyg==</ConversationId>.
-        <ConferenceId>JGL4BFL5</ConferenceId>.
-        <TimeStamp>2015-08-04T13:27:54.4519455Z</TimeStamp>.
-        <Connectivity>DIRECT</Connectivity>.
-        <StartTime>2015-08-04T13:00:16.0451Z</StartTime>.
-        <EndTime>2015-08-04T13:28:44.0103Z</EndTime>.
-        <ConferenceURI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</ConferenceURI>.
-        <MediaBypass>false</MediaBypass>.
-        <MediationServerLegPosition>BeforeMedServer</MediationServerLegPosition>.
-        <SourcePool>prod-se13a.etcuc.com</SourcePool>.
-      </ConnectionInfo>.
-    </LyncDiagnostics>
     <SqlQueryMessage>
-      <TimeStamp>2015-08-04T13:27:55.4519455Z</TimeStamp>
+      <TimeStamp>2015-08-04T13:27:55.451000900000455Z</TimeStamp>
       <Query>SELECT * FROM table1;</Query>
     </SqlQueryMessage>
-    <LyncDiagnostics Version="C">.
-      <ConnectionInfo>.
-        <CallId>f618bedf22a740468994e9cdb460bbc2</CallId>.
-        <ConversationId>AdDOtX/n3ha2SrJNQ3uUsY3YVCmfyg==</ConversationId>.
-        <ConferenceId>JGL4BFL5</ConferenceId>.
-        <TimeStamp>2015-08-04T13:27:56.4519455Z</TimeStamp>.
-        <Connectivity>DIRECT</Connectivity>.
-        <StartTime>2015-08-04T13:00:16.0451Z</StartTime>.
-        <EndTime>2015-08-04T13:28:44.0103Z</EndTime>.
-        <ConferenceURI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</ConferenceURI>.
-        <MediaBypass>false</MediaBypass>.
-        <MediationServerLegPosition>BeforeMedServer</MediationServerLegPosition>.
-        <SourcePool>prod-se13a.etcuc.com</SourcePool>.
-      </ConnectionInfo>.
-    </LyncDiagnostics>
-    <LyncDiagnostics Version="C">.
-      <ConnectionInfo>.
-        <CallId>f618bedf22a740468994e9cdb460bbc2</CallId>.
-        <ConversationId>AdDOtX/n3ha2SrJNQ3uUsY3YVCmfyg==</ConversationId>.
-        <ConferenceId>JGL4BFL5</ConferenceId>.
-        <TimeStamp>2015-08-04T13:27:58.4519455Z</TimeStamp>.
-        <Connectivity>DIRECT</Connectivity>.
-        <StartTime>2015-08-04T13:00:16.0451Z</StartTime>.
-        <EndTime>2015-08-04T13:28:44.0103Z</EndTime>.
-        <ConferenceURI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</ConferenceURI>.
-        <MediaBypass>false</MediaBypass>.
-        <MediationServerLegPosition>BeforeMedServer</MediationServerLegPosition>.
-        <SourcePool>prod-se13a.etcuc.com</SourcePool>.
-      </ConnectionInfo>.
-    </LyncDiagnostics>
-    <LyncDiagnostics Version="C">.
-      <ConnectionInfo>.
-        <CallId>5ad9356a-07ae-46f9-a1ee-da2b599be7b1</CallId>.
-        <CSEQ>540</CSEQ>.
-        <ConversationId>0dbf59718afd4e4ea413f31cedd319da</ConversationId>.
-        <ConferenceId>1Q4K7BWB</ConferenceId>.
-        <TimeStamp>2015-08-04T13:28:58.4519455Z</TimeStamp>.
-        <SourcePool>prod-se13a.etcuc.com</SourcePool>.
-      </ConnectionInfo>.
-      <Invite>.
-        <Caller>.
-          <Id>84a23fe81a</Id>.
-          <EPId>712265ABFC</EPId>.
-          <URI>sip:mshort@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:1Q4K7BWB</URI>.
-          <Contact>sip:mshort@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:1Q4K7BWB</Contact>.
-          <UserAgent>RTCC/6.0.0.0 AV-MCU</UserAgent>.
-          <IncallEnabled>false</IncallEnabled>.
-        </Caller>.
-        <Callee>.
-          <URI>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:MediationServer:VT-piv_FKF6W5uXG0Y-ZigAA;grid=4801dcda924543c88b62cc1005413232</URI>.
-        </Callee>.
-      </Invite>.
+    <LyncDiagnostics Version="C">
+      <ConnectionInfo>
+        <CallId>5ad9356a-07ae-46f9-a1ee-da2b599be7b1</CallId>
+        <CSEQ>540</CSEQ>
+        <ConversationId>0dbf59718afd4e4ea413f31cedd319da</ConversationId>
+        <ConferenceId>1Q4K7BWB</ConferenceId>
+        <TimeStamp>2015-08-04T13:28:58.4519455Z</TimeStamp>
+        <SourcePool>prod-se13a.etcuc.com</SourcePool>
+      </ConnectionInfo>
+      <Invite>
+        <Caller>
+          <Id>84a23fe81a</Id>
+          <EPId>712265ABFC</EPId>
+          <URI>sip:mshort@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:1Q4K7BWB</URI>
+          <Contact>sip:mshort@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:1Q4K7BWB</Contact>
+          <UserAgent>RTCC/6.0.0.0 AV-MCU</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+        </Caller>
+        <Callee>
+          <URI>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:MediationServer:VT-piv_FKF6W5uXG0Y-ZigAA;grid=4801dcda924543c88b62cc1005413232</URI>
+        </Callee>
+      </Invite>
       <RawSDP>v=0.
       o=- 169 0 IN IP4 10.5.0.131.
       s=session.
@@ -113,84 +73,84 @@
       a=rtpmap:13 CN/8000.
       a=rtpmap:118 CN/16000.
       a=ptime:20.
-      </RawSDP>.
+      </RawSDP>
     </LyncDiagnostics>
     <SqlQueryMessage>
       <TimeStamp>2015-08-04T13:29:58.4519455Z</TimeStamp>
       <Query>SELECT * FROM table1;</Query>
     </SqlQueryMessage>
-    <LyncDiagnostics Version="C">.
-      <ConnectionInfo>.
-        <CallId>4cdcb258-8979-4a45-9eca-c9d49cfcbdd5</CallId>.
-        <CSEQ>10329</CSEQ>.
-        <ConversationId>0dbf59718afd4e4ea413f31cedd319da</ConversationId>.
-        <TimeStamp>2014-08-04T13:27:58.4519455Z</TimeStamp>.
-        <SourcePool>prod-se13a.etcuc.com</SourcePool>.
-      </ConnectionInfo>.
-      <Ended Type="audio">.
-        <From>.
-          <Id>80515aceb</Id>.
-          <EPId>94F8D0BF17</EPId>.
-          <URI>sip:anonymous@enablingtechcorp.com;user=phone</URI>.
-          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:MediationServer:VT-piv_FKF6W5uXG0Y-ZigAA;grid=4801dcda924543c88b62cc1005413232</Contact>.
-          <IP>10.5.0.131</IP>.
-          <Port>49574</Port>.
-          <UserAgent>RTCC/6.0.0.0 MediationServer</UserAgent>.
-          <IncallEnabled>false</IncallEnabled>.
-        </From>.
-        <To>.
-          <Id>be2ecc66c</Id>.
-          <EPId>AA461D3477</EPId>.
-          <URI>sip:+14436255248@enablingtechcorp.com;user=phone</URI>.
-          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:Microsoft.Rtc.Applications.Caa:rbGdoQiOuFq_M-2n7wR2EgAA</Contact>.
-          <IP>10.5.0.131</IP>.
-          <Port>57444</Port>.
-        </To>.
-        <Properties>.
-          <MSDiagnostics>10014;source="PROD-SE13A.etcuc.com";reason="An internal exception received while processing the incoming request";component="MediationServer";Exception="The specified Uri (sip:Restricted@68.68.119.105:5060;user=phone) has one or more invalid elements.  Parameter name: uri"</MSDiagnostics>.
-          <MSDiagnosticsPublic>10014;reason="An internal exception received while processing the incoming request";component="MediationServer";Exception="The specified Uri (sip:Restricted@68.68.119.105:5060;user=phone) has one or more invalid elements.  Parameter name: uri"</MSDiagnosticsPublic>.
-        </Properties>.
-      </Ended>.
-      <Ended Type="audio">.
-        <From>.
-          <Id>be2ecc66c</Id>.
-          <EPId>AA461D3477</EPId>.
-          <URI>sip:+14436255248@enablingtechcorp.com;user=phone</URI>.
-          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:Microsoft.Rtc.Applications.Caa:rbGdoQiOuFq_M-2n7wR2EgAA</Contact>.
-          <IP>10.5.0.131</IP>.
-          <Port>57444</Port>.
-        </From>.
-        <To>.
-          <Id>80515aceb</Id>.
-          <EPId>94F8D0BF17</EPId>.
-          <URI>sip:anonymous@enablingtechcorp.com;user=phone</URI>.
-          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:MediationServer:VT-piv_FKF6W5uXG0Y-ZigAA;grid=4801dcda924543c88b62cc1005413232</Contact>.
-          <IP>10.5.0.131</IP>.
-          <Port>49574</Port>.
-          <UserAgent>RTCC/6.0.0.0 MediationServer</UserAgent>.
-          <IncallEnabled>false</IncallEnabled>.
-        </To>.
-        <Properties>.
-          <MSDiagnostics>10014;source="PROD-SE13A.etcuc.com";reason="An internal exception received while processing the incoming request";component="MediationServer";Exception="The specified Uri (sip:Restricted@68.68.119.105:5060;user=phone) has one or more invalid elements.  Parameter name: uri"</MSDiagnostics>.
-          <MSDiagnosticsPublic>10014;reason="An internal exception received while processing the incoming request";component="MediationServer";Exception="The specified Uri (sip:Restricted@68.68.119.105:5060;user=phone) has one or more invalid elements.  Parameter name: uri"</MSDiagnosticsPublic>.
-        </Properties>.
-      </Ended>.
-      <Bye>.
-        <EndPoint>.
-          <Id>80515aceb</Id>.
-          <EPId>94F8D0BF17</EPId>.
-          <URI>sip:anonymous@enablingtechcorp.com;user=phone</URI>.
-          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:MediationServer:VT-piv_FKF6W5uXG0Y-ZigAA;grid=4801dcda924543c88b62cc1005413232</Contact>.
-          <UserAgent>RTCC/6.0.0.0 MediationServer</UserAgent>.
-          <IncallEnabled>false</IncallEnabled>.
-        </EndPoint>.
-        <EndPoint>.
-          <Id>be2ecc66c</Id>.
-          <EPId>AA461D3477</EPId>.
-          <URI>sip:+14436255248@enablingtechcorp.com;user=phone</URI>.
-          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:Microsoft.Rtc.Applications.Caa:rbGdoQiOuFq_M-2n7wR2EgAA</Contact>.
-        </EndPoint>.
-      </Bye>.
+    <LyncDiagnostics Version="C">
+      <ConnectionInfo>
+        <CallId>4cdcb258-8979-4a45-9eca-c9d49cfcbdd5</CallId>
+        <CSEQ>10329</CSEQ>
+        <ConversationId>0dbf59718afd4e4ea413f31cedd319da</ConversationId>
+        <TimeStamp>2014-08-04T13:27:58.4519455Z</TimeStamp>
+        <SourcePool>prod-se13a.etcuc.com</SourcePool>
+      </ConnectionInfo>
+      <Ended Type="audio">
+        <From>
+          <Id>80515aceb</Id>
+          <EPId>94F8D0BF17</EPId>
+          <URI>sip:anonymous@enablingtechcorp.com;user=phone</URI>
+          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:MediationServer:VT-piv_FKF6W5uXG0Y-ZigAA;grid=4801dcda924543c88b62cc1005413232</Contact>
+          <IP>10.5.0.131</IP>
+          <Port>49574</Port>
+          <UserAgent>RTCC/6.0.0.0 MediationServer</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+        </From>
+        <To>
+          <Id>be2ecc66c</Id>
+          <EPId>AA461D3477</EPId>
+          <URI>sip:+14436255248@enablingtechcorp.com;user=phone</URI>
+          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:Microsoft.Rtc.Applications.Caa:rbGdoQiOuFq_M-2n7wR2EgAA</Contact>
+          <IP>10.5.0.131</IP>
+          <Port>57444</Port>
+        </To>
+        <Properties>
+          <MSDiagnostics>10014;source="PROD-SE13A.etcuc.com";reason="An internal exception received while processing the incoming request";component="MediationServer";Exception="The specified Uri (sip:Restricted@68.68.119.105:5060;user=phone) has one or more invalid elements.  Parameter name: uri"</MSDiagnostics>
+          <MSDiagnosticsPublic>10014;reason="An internal exception received while processing the incoming request";component="MediationServer";Exception="The specified Uri (sip:Restricted@68.68.119.105:5060;user=phone) has one or more invalid elements.  Parameter name: uri"</MSDiagnosticsPublic>
+        </Properties>
+      </Ended>
+      <Ended Type="audio">
+        <From>
+          <Id>be2ecc66c</Id>
+          <EPId>AA461D3477</EPId>
+          <URI>sip:+14436255248@enablingtechcorp.com;user=phone</URI>
+          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:Microsoft.Rtc.Applications.Caa:rbGdoQiOuFq_M-2n7wR2EgAA</Contact>
+          <IP>10.5.0.131</IP>
+          <Port>57444</Port>
+        </From>
+        <To>
+          <Id>80515aceb</Id>
+          <EPId>94F8D0BF17</EPId>
+          <URI>sip:anonymous@enablingtechcorp.com;user=phone</URI>
+          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:MediationServer:VT-piv_FKF6W5uXG0Y-ZigAA;grid=4801dcda924543c88b62cc1005413232</Contact>
+          <IP>10.5.0.131</IP>
+          <Port>49574</Port>
+          <UserAgent>RTCC/6.0.0.0 MediationServer</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+        </To>
+        <Properties>
+          <MSDiagnostics>10014;source="PROD-SE13A.etcuc.com";reason="An internal exception received while processing the incoming request";component="MediationServer";Exception="The specified Uri (sip:Restricted@68.68.119.105:5060;user=phone) has one or more invalid elements.  Parameter name: uri"</MSDiagnostics>
+          <MSDiagnosticsPublic>10014;reason="An internal exception received while processing the incoming request";component="MediationServer";Exception="The specified Uri (sip:Restricted@68.68.119.105:5060;user=phone) has one or more invalid elements.  Parameter name: uri"</MSDiagnosticsPublic>
+        </Properties>
+      </Ended>
+      <Bye>
+        <EndPoint>
+          <Id>80515aceb</Id>
+          <EPId>94F8D0BF17</EPId>
+          <URI>sip:anonymous@enablingtechcorp.com;user=phone</URI>
+          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:MediationServer:VT-piv_FKF6W5uXG0Y-ZigAA;grid=4801dcda924543c88b62cc1005413232</Contact>
+          <UserAgent>RTCC/6.0.0.0 MediationServer</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+        </EndPoint>
+        <EndPoint>
+          <Id>be2ecc66c</Id>
+          <EPId>AA461D3477</EPId>
+          <URI>sip:+14436255248@enablingtechcorp.com;user=phone</URI>
+          <Contact>sip:prod-se13a.etcuc.com@enablingtechcorp.com;gruu;opaque=srvr:Microsoft.Rtc.Applications.Caa:rbGdoQiOuFq_M-2n7wR2EgAA</Contact>
+        </EndPoint>
+      </Bye>
     </LyncDiagnostics>
   </MockMessages>
 </Mocker>

@@ -262,14 +262,16 @@ def parse_sys_args():
     Skype for Business Mocker Tool.
 
     This tool replicates the Skype SDN 2.1 API and SQL Agent using user defined Mock Messages.
-    Each 'Mocker Test' represents a test scenario and is configured as a single xml file.
+    Each 'Mocker Test' is an XML document representing a test scenario. It contains configurations
+    and Mock Messages sent to either the SDN receiver or SQL database.
+
     These Mock Messages are replayed using parametrised SDN and ODBC configurations.
 
     Details below.
 
     --------------------------Mock Test File--------------------------
 
-    **** Format Example ****
+    *********** Format Example ****************
 
     <Mocker>
         <Description>...</Description>
@@ -290,7 +292,7 @@ def parse_sys_args():
         </MockMessages>
     </Mocker>
 
-    ***********************
+    *******************************************
 
     Elements explained :
 
@@ -301,8 +303,8 @@ def parse_sys_args():
         RealTime    -   Realtime uses the actual time interval between consecutive
                         mock messages. The Max Delay time is still respected.
                         If disabled then the time delay is always Max Delay.
-                        True or False.
-                        (e.g. True)
+                        true or false.
+                        (e.g. true)
 
     -------------------SDN Configuration -----------------------------
 
@@ -316,6 +318,7 @@ def parse_sys_args():
     -------------------ODBC Configuration -----------------------------
 
     The ODBC connection parameters must be in python dictionary format.
+    NB: Backslashes must be triple escaped (e.g. \\\\\\\\ for \\)
 
     The following ODBC parameters are supported :
         driver      -   Odbc Driver used for the connection.
@@ -325,30 +328,30 @@ def parse_sys_args():
         pwd         -   user password. [Optional]
 
         e.g. --odbc-config "{ 'driver': 'SQL SERVER',
-                              'server': '10.102.70.4\\\\SqlServer',
+                              'server': '10.102.70.4\\\\\\\\SqlServer',
                               'database': 'LcsCDR',
                               'uid': 'sa',
-                              'pwd': 'C1sc0c1sc0' }"
+                              'pwd': 'C1sc0c1sc0' }" """)
 
-""")
     arg_parser.add_argument("infile",
                             type=str,
                             help="""
-                            Path to the Mock Test xml file.
-                            This needs to be in the Mock File Format --
-                            """)
+                            Path to the Mock Test XML file.
+                            See the detailed description above for formatting.""")
 
     arg_parser.add_argument("--sdn-config",
                             metavar="SDN_PARAMS",
                             type=str,
-                            help="""SDN configuration must be in dictionary format.
-                            See the detailed description using --help.""")
+                            help="""
+                            SDN Mocker configuration parameters in python dictionary format.
+                            See the detailed description above.""")
 
     arg_parser.add_argument("--odbc-config",
                             metavar="ODBC_PARAMS",
                             type=str,
-                            help=r"""ODBC connection string parameters in python dictionary format.
-                            See the detailed description using --help.""")
+                            help="""
+                            ODBC connection string parameters in python dictionary format.
+                            See the detailed description above.""")
 
     return arg_parser.parse_args()
 

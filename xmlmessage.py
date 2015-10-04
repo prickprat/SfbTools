@@ -90,13 +90,13 @@ class XmlMessage(metaclass=abc.ABCMeta):
         #     m = re.search(timestamp_regex, timestamp_str)
         #     if m is None:
         #         raise ValueError("Timestamp string does not match the ISO-8601 format.")
-        #     # Trim fractional seconds to nearest microsecond
+        # Trim fractional seconds to nearest microsecond
         #     fractional_seconds = m.group('fractional')
         #     microseconds = 0
         #     if fractional_seconds is not None:
         #         microseconds = int(float(fractional_seconds) * 1e6)
-        #     # Calculate the timezone delta
-        #     tz_delta = datetime.timedelta(0)  # Zulu Time offset
+        # Calculate the timezone delta
+        # tz_delta = datetime.timedelta(0)  # Zulu Time offset
         #     if m.group('zulu') is None:
         #         sign = -1 if (m.group('z_sign') == '-') else 1
         #         tz_delta = sign * datetime.timedelta(hours=int(m.group('z_hour')),
@@ -119,6 +119,9 @@ class XmlMessage(metaclass=abc.ABCMeta):
         #     raise
         try:
             timestamp = DUP.parse(timestamp_str)
+            if timestamp.utcoffset() is None:
+                raise ValueError("Timestamp did not contain UTC offset information.")
+
         except (ValueError, TypeError) as e:
             logging.error("{0} raised : {1}".format(e.__class__, str(e)))
             raise ValueError("Timestamp string does not match the ISO-8601 format.")
