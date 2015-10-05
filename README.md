@@ -34,6 +34,10 @@ If no timestamp found default to 0 interval , log warning.
 
 VALIDATE USING XSD before executing
 
+Replace xml.etree with lxml.etree
+
+MockMessages -> MockerMessages
+
 
 
 

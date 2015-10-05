@@ -2,10 +2,11 @@ import http.client
 from urllib.request import urlopen
 from urllib.request import Request
 from urllib.error import URLError
+from xmlmessage import XmlMessage
 from xmlmessage import SdnMessage
 from xmlmessage import SqlQueryMessage
 from xmlmessage import MockerConfiguration
-import xml.etree.ElementTree as ET
+from lxml import etree as ET
 import argparse
 import logging
 import logging.config
@@ -206,15 +207,27 @@ def process_dict_arg(arg_str):
         raise ValueError("Invalid configuration argument.")
 
 
+def validate_mock_test(mock_file_path, mocker_xsd_path):
+    mock_test = ET.parse(mock_file_path)
+    mocker_schema_doc = ET.parse(mocker_xsd_path)
+    mocker_schema = ET.XMLSchema(mocker_schema_doc)
+    return mocker_schema.validate(mock_test)
+
+
 def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
-    # Parse the mocker file
+    # Parse the Mocker Test
     try:
         mock_test = ET.parse(mock_file_path)
     except ET.ParseError as e:
         logging.error("ParseError whilst parsing mock file : " + str(e))
         raise ValueError("Invalid Mocker Test Format.")
 
-    test_config_elem = mock_test.find(MockerConfiguration.get_root_tag())
+    # Validate the Mocker Test
+    if not validate_mock_test(mock_file_path, './schemas/Mocker.Schema.xsd'):
+        raise ValueError("Invalid Mocker Test Format.")
+
+    default_ns = mock_test.getroot().nsmap.get(None, '')
+    test_config_elem = mock_test.find('./{{{0}}}MockerConfiguration'.format(default_ns))
     test_config = MockerConfiguration(test_config_elem).todict()
     print(test_config)
     # Initialise the mockers
@@ -230,12 +243,12 @@ def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
 
         # Parse the messages and send them
         prev_timestamp = None
-        for msg in list(mock_test.find("./MockMessages")):
+        for msg in list(mock_test.find("./{{{0}}}MockMessages".format(default_ns))):
             mocker = None
-            if (msg.tag == SdnMessage.get_root_tag()):
+            if (msg.tag == "{{{0}}}{1}".format(default_ns, SdnMessage.get_root_tag())):
                 msg = SdnMessage(msg)
                 mocker = sdn_mocker
-            elif (msg.tag == SqlQueryMessage.get_root_tag()):
+            elif (msg.tag == "{{{0}}}{1}".format(default_ns, SqlQueryMessage.get_root_tag())):
                 msg = SqlQueryMessage(msg)
                 mocker = odbc_mocker
             else:
@@ -273,7 +286,10 @@ def parse_sys_args():
 
     *********** Format Example ****************
 
-    <Mocker>
+    <Mocker xmlns="http://www.ir.com/Mocker"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.ir.com/Mocker ../schemas/Mocker.Schema.xsd">
+
         <Description>...</Description>
         <MockerConfiguration>
             <MaxDelay>....</MaxDelay>

@@ -1,5 +1,4 @@
-import xml.etree.ElementTree as ET
-import datetime
+from lxml import etree as ET
 import re
 import logging
 import mmap
@@ -12,12 +11,14 @@ class XmlMessage(metaclass=abc.ABCMeta):
     """
     Abstract XML message class
     """
+    _namespace = {}
 
     def __init__(self, root_element):
         """
         Returns and instance of an XML message.
 
-        root    -   root XML element for the XML Message.
+        root        -   root XML element for the XML Message.
+        default_ns  -   Default Namespace for the root element.
         """
         self._etree = ET.ElementTree(element=root_element)
         self.root = self._etree.getroot()
@@ -33,6 +34,21 @@ class XmlMessage(metaclass=abc.ABCMeta):
         except ET.ParseError as e:
             logging.error("Parse Error: " + str(e))
             raise
+
+    def qualify_xpath(self, x_path):
+        # Split the xpath variables
+        path_tokens = x_path.split('/')
+        # Extract default namespace from xml Element
+        default_ns = self.root.nsmap.get(None, '')
+
+        # prefix with default namespace if normal tag
+        for i, token in enumerate(path_tokens):
+            if (any(x in token for x in (':', '.', '=', '}'))
+                    or token == ""):
+                continue
+
+            path_tokens[i] = "{{{0}}}{1}".format(default_ns, token)
+        return '/'.join(path_tokens)
 
     @classmethod
     @abc.abstractmethod
@@ -63,7 +79,7 @@ class XmlMessage(metaclass=abc.ABCMeta):
                         'unicode' returns a unicode string.
         """
         try:
-            return ET.tostring(self.root, encoding)
+            return ET.tostring(self.root, encoding=encoding)
         except LookupError as e:
             logging.error("LookupError: " + str(e))
             raise ValueError("Encoding parameter must be either 'us-ascii' or 'unicode'.")
@@ -80,43 +96,6 @@ class XmlMessage(metaclass=abc.ABCMeta):
         Arguments:
         timestamp_str -- ISO 8601 formatted datetime string with time-zone information.
         """
-        # timestamp_regex = re.compile(
-        #     r'(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})'
-        #     r'T'
-        #     r'(?P<hour>\d{2}):(?P<minute>\d{2}):(?P<second>\d{2})'
-        #     r'(?P<fractional>\.\d+)?'
-        #     r'((?P<zulu>[zZ])|(?P<z_sign>[+-])(?P<z_hour>\d{2}):(?P<z_minute>\d{2}))')
-        # try:
-        #     m = re.search(timestamp_regex, timestamp_str)
-        #     if m is None:
-        #         raise ValueError("Timestamp string does not match the ISO-8601 format.")
-        # Trim fractional seconds to nearest microsecond
-        #     fractional_seconds = m.group('fractional')
-        #     microseconds = 0
-        #     if fractional_seconds is not None:
-        #         microseconds = int(float(fractional_seconds) * 1e6)
-        # Calculate the timezone delta
-        # tz_delta = datetime.timedelta(0)  # Zulu Time offset
-        #     if m.group('zulu') is None:
-        #         sign = -1 if (m.group('z_sign') == '-') else 1
-        #         tz_delta = sign * datetime.timedelta(hours=int(m.group('z_hour')),
-        #                                              minutes=int(m.group('z_minute')))
-
-        #     converted_datetime = datetime.datetime(int(m.group('year')),
-        #                                            int(m.group('month')),
-        #                                            int(m.group('day')),
-        #                                            int(m.group('hour')),
-        #                                            int(m.group('minute')),
-        #                                            int(m.group('second')),
-        #                                            microseconds,
-        #                                            datetime.timezone(tz_delta))
-        #     return converted_datetime
-        # except TypeError as e:
-        #     logging.error("TypeError raised : " + str(e))
-        #     raise
-        # except ValueError as e:
-        #     logging.error("ValueError raised : " + str(e))
-        #     raise
         try:
             timestamp = DUP.parse(timestamp_str)
             if timestamp.utcoffset() is None:
@@ -144,7 +123,7 @@ class SdnMessage(XmlMessage):
         Returns true if the Message contains any of the given call Ids.
         Case-insensitive.
         """
-        call_id_element = self.root.find("./ConnectionInfo/CallId")
+        call_id_element = self.root.find(self.qualify_xpath("./ConnectionInfo/CallId"))
         call_ids_lower = map(lambda x: x.lower(), call_ids)
         if (call_id_element is not None and
                 call_id_element.text.lower() in call_ids_lower):
@@ -156,7 +135,8 @@ class SdnMessage(XmlMessage):
         Returns true if the Message contains any of the given conference Ids.
         Case-insensitive.
         """
-        conference_id_element = self.root.find("./ConnectionInfo/ConferenceId")
+        conference_id_element = self.root.find(
+            self.qualify_xpath("./ConnectionInfo/ConferenceId"))
         conf_ids_lower = map(lambda x: x.lower(), conf_ids)
         if (conference_id_element is not None and
                 conference_id_element.text.lower() in conf_ids_lower):
@@ -170,7 +150,8 @@ class SdnMessage(XmlMessage):
         Timestamp is incorrectly formatted.s
         """
 
-        timestamp_element = self.root.find("./ConnectionInfo/TimeStamp")
+        timestamp_element = self.root.find(
+            self.qualify_xpath("./ConnectionInfo/TimeStamp"))
         if (timestamp_element is not None):
             timestamp_str = timestamp_element.text
 
@@ -219,8 +200,8 @@ class MockerConfiguration(XmlMessage):
                     "ValueError: String to int conversion failed.")
                 raise
 
-        max_delay = self.root.findtext('./MaxDelay')
-        real_time = self.root.findtext('./RealTime')
+        max_delay = self.root.findtext(self.qualify_xpath('./MaxDelay'))
+        real_time = self.root.findtext(self.qualify_xpath('./RealTime'))
 
         return {'max_delay': str_to_int(max_delay),
                 'realtime': str_to_bool(real_time)}
@@ -242,7 +223,8 @@ class SqlQueryMessage(XmlMessage):
         Timestamp is incorrectly formatted.
         """
 
-        timestamp_element = self.root.find("./TimeStamp")
+        timestamp_element = self.root.find(
+            self.qualify_xpath("./TimeStamp"))
         if timestamp_element is not None:
             timestamp_str = timestamp_element.text
 
@@ -257,7 +239,8 @@ class SqlQueryMessage(XmlMessage):
         """
         Returns the SQL query as a string.
         """
-        query_element = self.root.find("./Query")
+        query_element = self.root.find(
+            self.qualify_xpath("./Query"))
         if query_element is not None:
             return query_element.text
         return None
