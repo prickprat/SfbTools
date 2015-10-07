@@ -100,7 +100,7 @@ class XmlMessage(metaclass=abc.ABCMeta):
             timestamp = DUP.parse(timestamp_str)
             if timestamp.utcoffset() is None:
                 raise ValueError("Timestamp did not contain UTC offset information.")
-
+            return timestamp
         except (ValueError, TypeError) as e:
             logging.error("{0} raised : {1}".format(e.__class__, str(e)))
             raise ValueError("Timestamp string does not match the ISO-8601 format.")
@@ -110,6 +110,16 @@ class XmlMessage(metaclass=abc.ABCMeta):
         """
         Returns the timestamp for the message as a datetime object.
         """
+
+    @abc.abstractmethod
+    def set_timestamp(self, timestamp):
+        """
+        Sets the timestamp in the xml message in ISO 8601 format.
+
+        timestamp   -   Must be a datetime object with a utcoffset/
+        """
+
+
 
 
 class SdnMessage(XmlMessage):
