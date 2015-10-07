@@ -82,7 +82,7 @@ class SdnMocker():
             print('Sdn Mocker Sleeping for {0}s.'.format(delay))
             time.sleep(delay)
             print("Sending Sdn Message : " + str(sdn_msg))
-            if self.send(sdn_msg.tostring(encoding="us-ascii")):
+            if self.send(sdn_msg.tostring(encoding="utf-8")):
                 print("Response Received from Server.")
         except URLError as e:
             logging.error("URLError : " + str(e))
@@ -235,7 +235,7 @@ def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
     try:
         if sdn_config is not None:
             sdn_mocker = SdnMocker.fromdict(sdn_config)
-            sdn_mocker.open()
+            # sdn_mocker.open()
         if odbc_config is not None:
             odbc_mocker = OdbcMocker.fromdict(odbc_config)
             odbc_mocker.open()

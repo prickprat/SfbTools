@@ -57,12 +57,13 @@ class XmlMessage(metaclass=abc.ABCMeta):
         Returns the tag of the root xml element for this xml wrapper.
         """
 
-    def get_root_regex(self):
+    @classmethod
+    def get_root_regex(cls):
         """
         Returns a re.compile object which can be used to
         extract this xml element from text.
         """
-        root_tag = self.get_root_tag()
+        root_tag = cls.get_root_tag()
         rx_str = "<{0}.*?>.*?</{0}>".format(root_tag).encode('utf-8')
         return re.compile(rx_str, re.DOTALL | re.MULTILINE | re.IGNORECASE)
 
@@ -111,13 +112,13 @@ class XmlMessage(metaclass=abc.ABCMeta):
         Returns the timestamp for the message as a datetime object.
         """
 
-    @abc.abstractmethod
-    def set_timestamp(self, timestamp):
-        """
-        Sets the timestamp in the xml message in ISO 8601 format.
+    # @abc.abstractmethod
+    # def set_timestamp(self, timestamp):
+    #     """
+    #     Sets the timestamp in the xml message in ISO 8601 format.
 
-        timestamp   -   Must be a datetime object with a utcoffset/
-        """
+    #     timestamp   -   Must be a datetime object with a utcoffset/
+    #     """
 
 
 
@@ -274,12 +275,14 @@ class XMLMessageFactory:
         self._root_rx = xml_wrapper.get_root_regex()
         self._fileno = file_obj.fileno()
         self._xml_wrapper = xml_wrapper
+        self._mmap = None
 
     def open(self):
         self._mmap = mmap.mmap(self._fileno, 0, access=mmap.ACCESS_READ)
 
     def close(self):
-        self._mmap.close()
+        if self._mmap is not None:
+            self._mmap.close()
 
     def __del__(self):
         self.close()
@@ -299,7 +302,7 @@ class XMLMessageFactory:
         if match:
             try:
                 self._current_pos = match.end()
-                return self._xml_wrapper(match.group(0))
+                return self._xml_wrapper.fromstring(match.group(0))
             except ET.ParseError:
                 logging.error("ParseError : Stopping iterator.")
                 raise StopIteration

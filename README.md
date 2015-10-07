@@ -28,6 +28,9 @@ System Testing
 
 
 PRIORITY:
+Dot issues in validation
+    >. in lync connection
+
 Unit Testing
     * UTC timestamp conversion
     * lxml conversion
