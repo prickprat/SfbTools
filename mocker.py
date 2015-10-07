@@ -2,7 +2,6 @@ import http.client
 from urllib.request import urlopen
 from urllib.request import Request
 from urllib.error import URLError
-from xmlmessage import XmlMessage
 from xmlmessage import SdnMessage
 from xmlmessage import SqlQueryMessage
 from xmlmessage import MockerConfiguration
@@ -312,6 +311,9 @@ def parse_sys_args():
 
     Elements explained :
 
+        Mocker      -   The root element for the xml.
+                        Namespace must be 'http://www.ir.com/Mocker' since this test is validated
+                        against Mocker.Schema.xsd before it is fired.
         Description -   Short description of the mock test scenario. [Optional]
         MaxDelay    -   The maximum delay time for each consecutive message.
                         Number of seconds.
