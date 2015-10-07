@@ -1,0 +1,185 @@
+04/08/2015 09:27:54 IRLYNC   httpserv 000000036 T3800              [callback] callback Start_Prognosis_datadump >>>>>>>>>>>>>>>>>>: <LyncDiagnostics Version="C">.
+  <ConnectionInfo>.
+    <CallId>f618bedf22a740468994e9cdb460bbc2</CallId>.
+    <ConversationId>AdDOtX/n3ha2SrJNQ3uUsY3YVCmfyg==</ConversationId>.
+    <ConferenceId>JGL4BFL5</ConferenceId>.
+    <TimeStamp>2015-08-04T13:27:54.4519455Z</TimeStamp>.
+    <Connectivity>DIRECT</Connectivity>.
+    <StartTime>2015-08-04T13:00:16.0451Z</StartTime>.
+    <EndTime>2015-08-04T13:28:44.0103Z</EndTime>.
+    <ConferenceURI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</ConferenceURI>.
+    <MediaBypass>false</MediaBypass>.
+    <MediationServerLegPosition>BeforeMedServer</MediationServerLegPosition>.
+    <SourcePool>prod-se13a.etcuc.com</SourcePool>.
+  </ConnectionInfo>.
+  <QualityUpdate Type="audio">.
+    <From>.
+      <Id>f8e80feafe</Id>.
+      <EPId>8e4c529b7b</EPId>.
+      <URI>sip:jshoemaker@enablingtechcorp.com</URI>.
+      <Contact>sip:jshoemaker@enablingtechcorp.com;opaque=user:epid:ISZZvuy6sVS6BNkMreI5EwAA;gruu</Contact>.
+      <IP>192.168.1.2</IP>.
+      <Port>2702</Port>.
+      <Inside>false</Inside>.
+      <VPN>false</VPN>.
+      <Connection>Wifi</Connection>.
+      <BSSID>00-15-FF-1C-76-9E</BSSID>.
+      <ReflexiveIP>70.192.205.110</ReflexiveIP>.
+      <ReflexivePort>54479</ReflexivePort>.
+      <UserAgent>UCCAPI/16.0.4229.1006 OC/16.0.4229.1006 (Skype for Business)</UserAgent>.
+      <WifiDriverDeviceDesc>Intel(R) Centrino(R) Advanced-N 6235;Microsoft Wi-Fi Direct Virtual Adapter</WifiDriverDeviceDesc>.
+      <WifiDriverVersion>Intel:15.16.0.2;Microsoft:10.0.10240.16384</WifiDriverVersion>.
+      <OS>Windows 10.0.10240 SP: 0.0 Type: 1(Workstation) Suite: 256 Arch: x64 WOW64: True</OS>.
+      <CPUName>Intel(R) Core(TM) i7-3635QM CPU @ 2.40GHz</CPUName>.
+      <CPUNumberOfCores>4</CPUNumberOfCores>.
+      <CPUProcessorSpeed>2395</CPUProcessorSpeed>.
+      <MACAddr>C8-F7-33-F2-D5-28-00-00</MACAddr>.
+      <LinkSpeed>72000000</LinkSpeed>.
+    </From>.
+    <To>.
+      <Id>51a61c1b2</Id>.
+      <EPId>E3DE39FBF1</EPId>.
+      <URI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</URI>.
+      <Contact>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</Contact>.
+      <IP>10.5.0.131</IP>.
+      <Port>49158</Port>.
+      <Relay>216.230.111.136</Relay>.
+      <RelayPort>58060</RelayPort>.
+      <VPN>false</VPN>.
+      <Connection>Ethernet</Connection>.
+      <ReflexiveIP>10.5.0.131</ReflexiveIP>.
+      <ReflexivePort>50007</ReflexivePort>.
+      <UserAgent>RTCC/6.0.0.0 AV-MCU/6.0.9319.0</UserAgent>.
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 3 (Server) Suite: 0000000000000112 Arch: x64 WOW64: False</OS>.
+      <CPUName>Intel(R) Xeon(R) CPU E5-2660 v2 @ 2.20GHz</CPUName>.
+      <CPUNumberOfCores>12</CPUNumberOfCores>.
+      <CPUProcessorSpeed>2600</CPUProcessorSpeed>.
+      <Virtualization>HyperV</Virtualization>.
+      <MACAddr>00-50-56-9F-61-60</MACAddr>.
+      <LinkSpeed>4.2949673E+09</LinkSpeed>.
+    </To>.
+    <Properties>.
+      <StreamQuality>Poor</StreamQuality>.
+      <Protocol>UDP</Protocol>.
+      <Codec Name="SIREN/16000">.
+        <Bandwidth>35500</Bandwidth>.
+        <MaxBandwidth>68600</MaxBandwidth>.
+      </Codec>.
+      <PacketUtilization>42502</PacketUtilization>.
+      <PacketLossRate>0.001034223</PacketLossRate>.
+      <PacketLossRateMax>0.2372881</PacketLossRateMax>.
+      <JitterInterArrival>16</JitterInterArrival>.
+      <JitterInterArrivalMax>33</JitterInterArrivalMax>.
+      <RoundTrip>67</RoundTrip>.
+      <RoundTripMax>436</RoundTripMax>.
+      <DegradationAvg>0.18</DegradationAvg>.
+      <RatioConcealedSamplesAvg>0.004258586</RatioConcealedSamplesAvg>.
+      <EchoPercentMicIn>0.4695695</EchoPercentMicIn>.
+      <EchoPercentSend>0.3296143</EchoPercentSend>.
+      <BurstDuration>220</BurstDuration>.
+      <BurstDensity>10000</BurstDensity>.
+      <BurstGapDuration>168880</BurstGapDuration>.
+      <DegradationMax>1.22</DegradationMax>.
+      <SendListenMOSMin>1.03</SendListenMOSMin>.
+      <SendListenMOS>2.96</SendListenMOS>.
+      <OverallMinNetworkMOS>2.52</OverallMinNetworkMOS>.
+      <OverallAvgNetworkMOS>3.57</OverallAvgNetworkMOS>.
+      <RelativeOneWayAverage>6E-07</RelativeOneWayAverage>.
+      <AppliedBandwidthLimit>150800</AppliedBandwidthLimit>.
+      <CaptureDevice>Echo Cancelling Speakerphone (2- Jabra SPEAK 510 USB)</CaptureDevice>.
+      <CaptureDeviceDriver>Microsoft: 10.0.10240.16384</CaptureDeviceDriver>.
+      <AudioTimestampErrorMicMs>0.04081016</AudioTimestampErrorMicMs>.
+    </Properties>.
+    <Route>.
+      <Hop>66.174.12.241</Hop>.
+      <Hop>69.83.28.244</Hop>.
+      <Hop>69.83.28.17</Hop>.
+      <Hop>69.83.28.170</Hop>.
+      <Hop>4.59.144.25</Hop>.
+      <Hop>4.69.136.186</Hop>.
+      <Hop>4.53.198.42</Hop>.
+      <Hop>216.230.97.163</Hop>.
+      <Hop>216.230.111.136</Hop>.
+    </Route>.
+  </QualityUpdate>.
+  <QualityUpdate Type="audio">.
+    <From>.
+      <Id>51a61c1b2</Id>.
+      <EPId>E3DE39FBF1</EPId>.
+      <URI>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</URI>.
+      <Contact>sip:tanderson@enablingtechcorp.com;gruu;opaque=app:conf:audio-video:id:JGL4BFL5</Contact>.
+      <IP>10.5.0.131</IP>.
+      <Port>49158</Port>.
+      <Relay>216.230.111.136</Relay>.
+      <RelayPort>58060</RelayPort>.
+      <VPN>false</VPN>.
+      <Connection>Ethernet</Connection>.
+      <ReflexiveIP>10.5.0.131</ReflexiveIP>.
+      <ReflexivePort>50007</ReflexivePort>.
+      <UserAgent>RTCC/6.0.0.0 AV-MCU/6.0.9319.0</UserAgent>.
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 3 (Server) Suite: 0000000000000112 Arch: x64 WOW64: False</OS>.
+      <CPUName>Intel(R) Xeon(R) CPU E5-2660 v2 @ 2.20GHz</CPUName>.
+      <CPUNumberOfCores>12</CPUNumberOfCores>.
+      <CPUProcessorSpeed>2600</CPUProcessorSpeed>.
+      <Virtualization>HyperV</Virtualization>.
+      <MACAddr>00-50-56-9F-61-60</MACAddr>.
+      <LinkSpeed>4.2949673E+09</LinkSpeed>.
+    </From>.
+    <To>.
+      <Id>f8e80feafe</Id>.
+      <EPId>8e4c529b7b</EPId>.
+      <URI>sip:jshoemaker@enablingtechcorp.com</URI>.
+      <Contact>sip:jshoemaker@enablingtechcorp.com;opaque=user:epid:ISZZvuy6sVS6BNkMreI5EwAA;gruu</Contact>.
+      <IP>192.168.1.2</IP>.
+      <Port>2702</Port>.
+      <Inside>false</Inside>.
+      <VPN>false</VPN>.
+      <Connection>Wifi</Connection>.
+      <BSSID>00-15-FF-1C-76-9E</BSSID>.
+      <ReflexiveIP>70.192.205.110</ReflexiveIP>.
+      <ReflexivePort>54479</ReflexivePort>.
+      <UserAgent>UCCAPI/16.0.4229.1006 OC/16.0.4229.1006 (Skype for Business)</UserAgent>.
+      <WifiDriverDeviceDesc>Intel(R) Centrino(R) Advanced-N 6235;Microsoft Wi-Fi Direct Virtual Adapter</WifiDriverDeviceDesc>.
+      <WifiDriverVersion>Intel:15.16.0.2;Microsoft:10.0.10240.16384</WifiDriverVersion>.
+      <OS>Windows 10.0.10240 SP: 0.0 Type: 1(Workstation) Suite: 256 Arch: x64 WOW64: True</OS>.
+      <CPUName>Intel(R) Core(TM) i7-3635QM CPU @ 2.40GHz</CPUName>.
+      <CPUNumberOfCores>4</CPUNumberOfCores>.
+      <CPUProcessorSpeed>2395</CPUProcessorSpeed>.
+      <MACAddr>C8-F7-33-F2-D5-28-00-00</MACAddr>.
+      <LinkSpeed>72000000</LinkSpeed>.
+    </To>.
+    <Properties>.
+      <StreamQuality>Good</StreamQuality>.
+      <Protocol>UDP</Protocol>.
+      <Codec Name="G722/16000">.
+        <Bandwidth>70400</Bandwidth>.
+        <MaxBandwidth>164600</MaxBandwidth>.
+      </Codec>.
+      <ConversationalMOS>3</ConversationalMOS>.
+      <PacketUtilization>44988</PacketUtilization>.
+      <PacketLossRate>0.0009773</PacketLossRate>.
+      <PacketLossRateMax>0.1880342</PacketLossRateMax>.
+      <JitterInterArrival>4</JitterInterArrival>.
+      <JitterInterArrivalMax>17</JitterInterArrivalMax>.
+      <RoundTrip>84</RoundTrip>.
+      <RoundTripMax>129</RoundTripMax>.
+      <HealerPacketDropRatio>4.210172E-005</HealerPacketDropRatio>.
+      <DegradationAvg>0.06272316</DegradationAvg>.
+      <RatioConcealedSamplesAvg>0.002694028</RatioConcealedSamplesAvg>.
+      <RecvNoiseLevel>-58</RecvNoiseLevel>.
+      <RecvSignalLevel>-10</RecvSignalLevel>.
+      <DegradationMax>0.2316666</DegradationMax>.
+      <RecvListenMOSMin>1.02</RecvListenMOSMin>.
+      <RecvListenMOS>4.12</RecvListe
+04/08/2015 09:27:54 IRLYNC   httpserv 000000036 T3800              nMOS>.
+      <OverallMinNetworkMOS>4.068334</OverallMinNetworkMOS>.
+      <OverallAvgNetworkMOS>4.237277</OverallAvgNetworkMOS>.
+      <RelativeOneWayAverage>0.0090004</RelativeOneWayAverage>.
+      <AppliedBandwidthLimit>150800</AppliedBandwidthLimit>.
+      <RenderDevice>Echo Cancelling Speakerphone (2- Jabra SPEAK 510 USB)</RenderDevice>.
+      <RenderDeviceDriver>Microsoft: 10.0.10240.16384</RenderDeviceDriver>.
+      <AudioTimestampErrorSpkMs>0.01607491</AudioTimestampErrorSpkMs>.
+    </Properties>.
+  </QualityUpdate>.
+</LyncDiagnostics>
+04/08/2015 09:27:54 IRLYNC   httpserv 000000037 T3800              [callback] <<<<<<<<<<<<<<<<<< Stop_Prognosis_datadump
