@@ -48,7 +48,7 @@ def clean_line(line, inside_message, line_no=None):
     """
     line = line.rstrip('\n')
     # Strip offending period artefacts
-    if line[-1] == '.':
+    if len(line) > 0 and line[-1] == '.':
         line = line[:-1]
 
     if inside_message:
