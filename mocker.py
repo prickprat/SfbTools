@@ -86,7 +86,7 @@ class SdnMocker():
                 print("Response Received from Server.")
         except URLError as e:
             logging.error("URLError : " + str(e))
-            print("Connection Error! Check the Target Url in the OdbcMocker element.")
+            print("Connection Error! Check the receiver in the sdn configuration.")
 
 
 class OdbcMocker():

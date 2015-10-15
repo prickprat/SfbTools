@@ -8,8 +8,8 @@ import dateutil.parser as DUP
 
 class XmlMessage(metaclass=abc.ABCMeta):
 
-    """
-    Abstract XML message class
+    """class
+    Abstract XML message
     """
     _namespace = {}
 
@@ -80,7 +80,8 @@ class XmlMessage(metaclass=abc.ABCMeta):
                         'unicode' returns a unicode string.
         """
         try:
-            return ET.tostring(self.root, encoding=encoding)
+            out_str = ET.tostring(self.root, encoding=encoding)
+            return re.sub(rb'( xmlns="[^"]+"| xmlns:xsi="[^"]+")', rb'', out_str)
         except LookupError as e:
             logging.error("LookupError: " + str(e))
             raise ValueError("Encoding parameter must be either 'us-ascii' or 'unicode'.")
@@ -112,6 +113,20 @@ class XmlMessage(metaclass=abc.ABCMeta):
         Returns the timestamp for the message as a datetime object.
         """
 
+    # def remove_ns_attributes(self):
+    #     """
+    #     Removes certain attributes tags in all elements for the ElementTree.
+
+    #     Attributes removed :
+    #     xmlns
+    #     xmls:xsi
+    #     """
+    #     for elem in self._etree.iter():
+    #         if 'xmlns' in elem.attrib:
+    #             del elem.attrib['xmlns']
+    #         if 'xmlns:xsi' in elem.attrib:
+    #             del elem.attrib['xmlns:xsi']
+
     # @abc.abstractmethod
     # def set_timestamp(self, timestamp):
     #     """
@@ -119,8 +134,6 @@ class XmlMessage(metaclass=abc.ABCMeta):
 
     #     timestamp   -   Must be a datetime object with a utcoffset/
     #     """
-
-
 
 
 class SdnMessage(XmlMessage):

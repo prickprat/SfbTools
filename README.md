@@ -26,6 +26,10 @@ System Testing
     * full test on sqlite & node server
     * 
 
+Better handling of removing default namespaces:
+    * REMOVE target ns from schema?
+    * DONT use re replace
+    * 
 
 PRIORITY:
 Dot issues in validation
