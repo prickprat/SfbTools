@@ -4,6 +4,7 @@ import logging
 import mmap
 import abc
 import dateutil.parser as DUP
+from datetime import timedelta
 
 
 class XmlMessage(metaclass=abc.ABCMeta):
@@ -31,8 +32,8 @@ class XmlMessage(metaclass=abc.ABCMeta):
         """
         try:
             return cls(ET.XML(msg_str))
-        except ET.ParseError as e:
-            logging.error("Parse Error: " + str(e))
+        except ET.XMLSyntaxError as e:
+            logging.error("XMLSyntaxError: " + str(e))
             raise
 
     def qualify_xpath(self, x_path):
@@ -106,21 +107,33 @@ class XmlMessage(metaclass=abc.ABCMeta):
             logging.error("{0} raised : {1}".format(e.__class__, str(e)))
             raise ValueError("Timestamp string does not match the ISO-8601 format.")
 
+    @classmethod
+    def convert_datetime(cls, timestamp_dt):
+        """
+        """
+        offset = timestamp_dt.utcoffset()
+        dt_str = "{:%Y-%m-%dT%H:%M:%S.%f0}".format(timestamp_dt)
+        if offset is None or offset == timedelta(0):
+            offset_str = 'Z'
+        else:
+            offset_str = "{:%z}".format()
+            offset_str = offset_str[:3] + ':' + offset_str[3:]
+        dt_str = dt_str + offset_str
+        return dt_str
+
     @abc.abstractmethod
     def get_timestamp(self):
         """
         Returns the timestamp for the message as a datetime object.
         """
 
-    # @abc.abstractmethod
-    # def set_timestamp(self, timestamp):
-    #     """
-    #     Sets the timestamp in the xml message in ISO 8601 format.
+    @abc.abstractmethod
+    def set_timestamp(self, timestamp):
+        """
+        Sets the timestamp in the xml message in ISO 8601 format.
 
-    #     timestamp   -   Must be a datetime object with a utcoffset/
-    #     """
-
-
+        timestamp   -   Must be a datetime object with a utcoffset/
+        """
 
 
 class SdnMessage(XmlMessage):
@@ -155,23 +168,23 @@ class SdnMessage(XmlMessage):
         return False
 
     def get_timestamp(self):
-        """
-        Returns a datetime instance representing the TimeStamp information
-        from the SDN message. Returns None if no TimeStamp element exists or
-        Timestamp is incorrectly formatted.s
-        """
-
         timestamp_element = self.root.find(
             self.qualify_xpath("./ConnectionInfo/TimeStamp"))
+
         if (timestamp_element is not None):
             timestamp_str = timestamp_element.text
-
-            try:
-                return self.convert_timestamp(timestamp_str)
-            except (ValueError, TypeError):
-                return None
+            return self.convert_timestamp(timestamp_str)
         else:
-            return None
+            raise ValueError("TimeStamp Element does not exist in the XML element.")
+
+    def set_timestamp(self, timestamp_dt):
+        timestamp_element = self.root.find(
+            self.qualify_xpath("./ConnectionInfo/TimeStamp"))
+
+        if timestamp_element is not None:
+            timestamp_element.text = self.convert_datetime(timestamp_dt)
+        else:
+            raise ValueError("TimeStamp Element does not exist in the XML element.")
 
     def __str__(self):
         desc_template = "<SdnMessage object : Timestamp - {0} : Contains {1}>"
@@ -213,12 +226,17 @@ class MockerConfiguration(XmlMessage):
 
         max_delay = self.root.findtext(self.qualify_xpath('./MaxDelay'))
         real_time = self.root.findtext(self.qualify_xpath('./RealTime'))
+        current_time = self.root.findtext(self.qualify_xpath('./CurrentTime'))
 
         return {'max_delay': str_to_int(max_delay),
-                'realtime': str_to_bool(real_time)}
+                'realtime': str_to_bool(real_time),
+                'currenttime': str_to_bool(current_time)}
 
     def get_timestamp(self):
-        return None
+        raise NotImplementedError
+
+    def set_timestamp(self):
+        raise NotImplementedError
 
 
 class SqlQueryMessage(XmlMessage):
@@ -228,23 +246,23 @@ class SqlQueryMessage(XmlMessage):
         return "SqlQueryMessage"
 
     def get_timestamp(self):
-        """
-        Returns a datetime instance representing the TimeStamp information
-        from the SDN message. Returns None if no TimeStamp element exists or
-        Timestamp is incorrectly formatted.
-        """
-
         timestamp_element = self.root.find(
             self.qualify_xpath("./TimeStamp"))
-        if timestamp_element is not None:
-            timestamp_str = timestamp_element.text
 
-            try:
-                return self.convert_timestamp(timestamp_str)
-            except (ValueError, TypeError):
-                return None
+        if (timestamp_element is not None):
+            timestamp_str = timestamp_element.text
+            return self.convert_timestamp(timestamp_str)
         else:
-            return None
+            raise ValueError("TimeStamp Element does not exist in the XML element.")
+
+    def set_timestamp(self, timestamp_dt):
+        timestamp_element = self.root.find(
+            self.qualify_xpath("./TimeStamp"))
+
+        if timestamp_element is not None:
+            timestamp_element.text = self.convert_datetime(timestamp_dt)
+        else:
+            raise ValueError("TimeStamp Element does not exist in the XML element.")
 
     def get_query(self):
         """

@@ -2,6 +2,7 @@ import logging
 import unittest
 import datetime as DT
 from xmlmessage import SdnMessage
+from lxml import etree as ET
 from xml.etree.ElementTree import ParseError
 
 # Disable non-critical logging for Testing
@@ -48,15 +49,18 @@ class TestSdnMessageInit(unittest.TestCase):
     def test_invalid_mxl(self):
         # Malformed Tag
         test_input = "<test</test>"
-        with self.assertRaises(ParseError, msg="Should raise ParseError for malformed tag."):
+        with self.assertRaises(ET.XMLSyntaxError,
+                               msg="Should raise XMLSyntaxError for malformed tag."):
             SdnMessage.fromstring(test_input)
         # Empty string
         test_input = ""
-        with self.assertRaises(ParseError, msg="Should raise ParseError for empty input."):
+        with self.assertRaises(ET.XMLSyntaxError,
+                               msg="Should raise XMLSyntaxError for empty input."):
             SdnMessage.fromstring(test_input)
         # non-xml content
         test_input = "sdad<test></test>sdaf"
-        with self.assertRaises(ParseError, msg="Should raise ParseError for non-xml content."):
+        with self.assertRaises(ET.XMLSyntaxError,
+                               msg="Should raise XMLSyntaxError for non-xml content."):
             SdnMessage.fromstring(test_input)
 
 
@@ -170,9 +174,9 @@ class TestGetTimestamp(unittest.TestCase):
         cls.msg_3 = SdnMessage.fromstring(XML_3)
 
     def setUp(self):
-        self.msg_funcs = {'normal': TestGetTimestamp.msg_1.get_timestamp,
-                          'no_timestamp_elem': TestGetTimestamp.msg_2.get_timestamp,
-                          'incorrect_tree': TestGetTimestamp.msg_3.get_timestamp}
+        self.msg_funcs = {'normal': self.msg_1.get_timestamp,
+                          'no_timestamp_elem': self.msg_2.get_timestamp,
+                          'incorrect_tree': self.msg_3.get_timestamp}
 
     def test_normal_tree(self):
         expected_offset = DT.timezone(-DT.timedelta(hours=4, minutes=00))
@@ -181,14 +185,31 @@ class TestGetTimestamp(unittest.TestCase):
         self.assertEqual(expected, output, "Should return the correct converted datetime element.")
 
     def test_no_element(self):
-        expected = None
-        output = self.msg_funcs['no_timestamp_elem']()
-        self.assertEqual(expected, output, "Should return None if there is no TimeStamp Element.")
+        with self.assertRaises(ValueError,
+                               msg="Should raise ValueError if there is no TimeStamp Element."):
+            self.msg_funcs['no_timestamp_elem']()
 
     def test_incorrect_tree(self):
-        expected = None
-        output = self.msg_funcs['incorrect_tree']()
-        self.assertEqual(expected, output, "Should return None if the xml tree is incorrect.")
+        with self.assertRaises(ValueError, msg="Should raise ValueError for non-xml content."):
+            self.msg_funcs['incorrect_tree']()
+
+
+class TestConvertDatetime(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.msg_1 = SdnMessage.fromstring(XML_1)
+        cls.msg_2 = SdnMessage.fromstring(XML_2)
+        cls.msg_3 = SdnMessage.fromstring(XML_3)
+
+    def test_convert_zulu(self):
+        self.assertFalse(True)
+
+    def test_tz_offset(self):
+        self.assertFalse(True)
+
+    def test_invalid_datetime(self):
+        self.assertFalse(True)
 
 
 class TestConvertTimestamp(unittest.TestCase):
