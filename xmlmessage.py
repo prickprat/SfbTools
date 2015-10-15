@@ -9,8 +9,8 @@ from datetime import timedelta
 
 class XmlMessage(metaclass=abc.ABCMeta):
 
-    """
-    Abstract XML message class
+    """class
+    Abstract XML message
     """
     _namespace = {}
 
@@ -81,7 +81,8 @@ class XmlMessage(metaclass=abc.ABCMeta):
                         'unicode' returns a unicode string.
         """
         try:
-            return ET.tostring(self.root, encoding=encoding)
+            out_str = ET.tostring(self.root, encoding=encoding)
+            return re.sub(rb'( xmlns="[^"]+"| xmlns:xsi="[^"]+")', rb'', out_str)
         except LookupError as e:
             logging.error("LookupError: " + str(e))
             raise ValueError("Encoding parameter must be either 'us-ascii' or 'unicode'.")
@@ -134,7 +135,6 @@ class XmlMessage(metaclass=abc.ABCMeta):
 
         timestamp   -   Must be a datetime object with a utcoffset/
         """
-
 
 class SdnMessage(XmlMessage):
 
