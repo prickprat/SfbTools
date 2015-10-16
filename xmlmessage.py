@@ -112,15 +112,19 @@ class XmlMessage(metaclass=abc.ABCMeta):
     def convert_datetime(cls, timestamp_dt):
         """
         """
-        offset = timestamp_dt.utcoffset()
-        dt_str = "{:%Y-%m-%dT%H:%M:%S.%f0}".format(timestamp_dt)
-        if offset is None or offset == timedelta(0):
-            offset_str = 'Z'
-        else:
-            offset_str = "{:%z}".format()
-            offset_str = offset_str[:3] + ':' + offset_str[3:]
-        dt_str = dt_str + offset_str
-        return dt_str
+        try:
+            offset = timestamp_dt.utcoffset()
+            dt_str = "{:%Y-%m-%dT%H:%M:%S.%f0}".format(timestamp_dt)
+            if offset is None or offset == timedelta(0):
+                offset_str = 'Z'
+            else:
+                offset_str = "{:%z}".format(timestamp_dt)
+                offset_str = offset_str[:3] + ':' + offset_str[3:]
+            dt_str = dt_str + offset_str
+            return dt_str
+        except (ValueError, TypeError, AttributeError) as e:
+            logging.error("{0} raised : {1}".format(e.__class__, str(e)))
+            raise ValueError("Datetime input is invalid.")
 
     @abc.abstractmethod
     def get_timestamp(self):
