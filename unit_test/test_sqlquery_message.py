@@ -1,7 +1,7 @@
 import logging
 import unittest
 from xmlmessage import SqlQueryMessage
-from xml.etree.ElementTree import ParseError
+from lxml import etree as ET
 
 # Disable non-critical logging for Testing
 logging.disable(logging.CRITICAL)
@@ -36,15 +36,18 @@ class TestSqlQueryMessage(unittest.TestCase):
     def test_invalid_mxl(self):
         # Malformed Tag
         test_input = "<test</test>"
-        with self.assertRaises(ParseError, msg="Should raise ParseError for malformed tag."):
+        with self.assertRaises(ET.XMLSyntaxError,
+                               msg="Should raise ParseError for malformed tag."):
             SqlQueryMessage.fromstring(test_input)
         # Empty string
         test_input = ""
-        with self.assertRaises(ParseError, msg="Should raise ParseError for empty input."):
+        with self.assertRaises(ET.XMLSyntaxError,
+                               msg="Should raise ParseError for empty input."):
             SqlQueryMessage.fromstring(test_input)
         # non-xml content
         test_input = "sdad<test></test>sdaf"
-        with self.assertRaises(ParseError, msg="Should raise ParseError for non-xml content."):
+        with self.assertRaises(ET.XMLSyntaxError,
+                               msg="Should raise ParseError for non-xml content."):
             SqlQueryMessage.fromstring(test_input)
 
 

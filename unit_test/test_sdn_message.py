@@ -1,7 +1,9 @@
 import logging
 import unittest
 import datetime as DT
+import dateutil.parser as DUP
 from xmlmessage import SdnMessage
+from xmlmessage import NoElementException
 from lxml import etree as ET
 
 # Disable non-critical logging for Testing
@@ -184,22 +186,17 @@ class TestGetTimestamp(unittest.TestCase):
         self.assertEqual(expected, output, "Should return the correct converted datetime element.")
 
     def test_no_element(self):
-        with self.assertRaises(ValueError,
-                               msg="Should raise ValueError if there is no TimeStamp Element."):
+        with self.assertRaises(NoElementException,
+                               msg="Should raise NoElement if there is no TimeStamp Element."):
             self.msg_funcs['no_timestamp_elem']()
 
     def test_incorrect_tree(self):
-        with self.assertRaises(ValueError, msg="Should raise ValueError for incorrect xml tree."):
+        with self.assertRaises(NoElementException,
+                               msg="Should raise NoElement for incorrect xml tree."):
             self.msg_funcs['incorrect_tree']()
 
 
 class TestConvertDatetime(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.msg_1 = SdnMessage.fromstring(XML_1)
-        cls.msg_2 = SdnMessage.fromstring(XML_2)
-        cls.msg_3 = SdnMessage.fromstring(XML_3)
 
     def test_convert_zulu(self):
         # Full microseconds
@@ -254,6 +251,13 @@ class TestConvertDatetime(unittest.TestCase):
         with self.assertRaises(ValueError, msg="Should raise ValueError for invalid datetime."):
             SdnMessage.convert_datetime(test_input)
 
+    def test_invalid_tz(self):
+        # Invalid datetime timezone
+        invalid_tz = "2000-01-01T01:01:01.999+24:01"
+        invalid_dt = DUP.parse(invalid_tz)
+        with self.assertRaises(ValueError, msg="Should raise ValueError for invalid timezone."):
+            SdnMessage.convert_datetime(invalid_dt)
+
 
 class TestConvertTimestamp(unittest.TestCase):
 
@@ -278,7 +282,7 @@ class TestConvertTimestamp(unittest.TestCase):
         expected = DT.datetime(9999, 12, 31, 23, 59, 59, 999999,  DT.timezone.utc)
         output = SdnMessage.convert_timestamp(zulu)
         self.assertEqual(expected, output, "Should parse the maximum datetime allowed.")
-        # Minimum date allowed
+        # Minimu8m date allowed
         zulu = "100-01-01T00:00:00.0000000Z"
         expected = DT.datetime(100, 1, 1, 0, 0, 0, 0,  DT.timezone.utc)
         output = SdnMessage.convert_timestamp(zulu)
@@ -338,6 +342,38 @@ class TestConvertTimestamp(unittest.TestCase):
         test_input = "2000-01-32T12:01:01.999Z"
         with self.assertRaises(ValueError, msg="Should raise ValueError for invalid date."):
             SdnMessage.convert_timestamp(test_input)
+
+
+class TestSetTimestamp(unittest.TestCase):
+
+    def setUp(self):
+        self.msg_1 = SdnMessage.fromstring(XML_1)
+        self.msg_2 = SdnMessage.fromstring(XML_2)
+        self.msg_3 = SdnMessage.fromstring(XML_3)
+
+    def test_normal_tree(self):
+        # Full microseconds
+        expected = DT.datetime(2000, 1, 1, 1, 1, 1, 999000, DT.timezone.utc)
+        self.msg_1.set_timestamp(expected)
+        output = self.msg_1.get_timestamp()
+        self.assertEqual(expected, output, "Should set timestamp with full microseconds.")
+        # No fractional seconds
+        expected = DT.datetime(2000, 1, 1, 1, 1, 1, 0,  DT.timezone.utc)
+        self.msg_1.set_timestamp(expected)
+        output = self.msg_1.get_timestamp()
+        self.assertEqual(expected, output, "Should set timestamp with no microseconds.")
+
+    def test_no_element(self):
+        test_in = DT.datetime(2000, 1, 1, 1, 1, 1, 999000, DT.timezone.utc)
+        with self.assertRaises(NoElementException,
+                               msg="Should raise NoElementException for no element."):
+            self.msg_2.set_timestamp(test_in)
+
+    def test_incorrect_tree(self):
+        test_in = DT.datetime(2000, 1, 1, 1, 1, 1, 999000, DT.timezone.utc)
+        with self.assertRaises(NoElementException,
+                               msg="Should raise NoElementException for incorrect tree."):
+            self.msg_3.set_timestamp(test_in)
 
 
 if __name__ == '__main__':

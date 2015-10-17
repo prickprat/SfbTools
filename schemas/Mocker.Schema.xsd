@@ -13,6 +13,7 @@ elementFormDefault="qualified">
     <xs:all>
         <xs:element name="MaxDelay" type="xs:nonNegativeInteger"/>
         <xs:element name="RealTime" type="xs:boolean"/>
+        <xs:element name="CurrentTime" type="xs:boolean"/>
     </xs:all>
 </xs:complexType>
 

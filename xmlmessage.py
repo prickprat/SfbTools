@@ -93,8 +93,7 @@ class XmlMessage(metaclass=abc.ABCMeta):
         Converts a ISO 8601 timestamp to a datetime object
         with a UTC timezone offset.
 
-        Raises TypeError or ValueError if conversion fails for
-        a particular reason.
+        Raises TypeError or ValueError if conversion fails.
 
         Arguments:
         timestamp_str -- ISO 8601 formatted datetime string with time-zone information.
@@ -137,8 +136,9 @@ class XmlMessage(metaclass=abc.ABCMeta):
         """
         Sets the timestamp in the xml message in ISO 8601 format.
 
-        timestamp   -   Must be a datetime object with a utcoffset/
+        timestamp   -   Must be a datetime object with a utcoffset.
         """
+
 
 class SdnMessage(XmlMessage):
 
@@ -179,7 +179,7 @@ class SdnMessage(XmlMessage):
             timestamp_str = timestamp_element.text
             return self.convert_timestamp(timestamp_str)
         else:
-            raise ValueError("TimeStamp Element does not exist in the XML element.")
+            raise NoElementException("TimeStamp Element does not exist in the message.")
 
     def set_timestamp(self, timestamp_dt):
         timestamp_element = self.root.find(
@@ -188,7 +188,7 @@ class SdnMessage(XmlMessage):
         if timestamp_element is not None:
             timestamp_element.text = self.convert_datetime(timestamp_dt)
         else:
-            raise ValueError("TimeStamp Element does not exist in the XML element.")
+            raise NoElementException("TimeStamp Element does not exist in the message.")
 
     def __str__(self):
         desc_template = "<SdnMessage object : Timestamp - {0} : Contains {1}>"
@@ -354,3 +354,20 @@ class MessageFactory:
     def find_all_subclasses(arg_cls):
         return arg_cls.__subclasses__() + [x for y in arg_cls.__subclasses__()
                                            for x in MessageFactory.find_all_subclasses(y)]
+
+
+class NoElementException(Exception):
+
+    """
+    Exception raised when element was expected in an lxml etree object.
+
+    Attributes:
+        message -- explanation of the error
+
+    """
+
+    def __init__(self, message):
+        self.message = message
+
+    def __str__(self):
+        return repr(self.message)

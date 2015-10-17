@@ -6,6 +6,7 @@
   <MockerConfiguration>
     <MaxDelay>10</MaxDelay>
     <RealTime>true</RealTime>
+    <CurrentTime>false</CurrentTime>
   </MockerConfiguration>
   <MockMessages>
     <LyncDiagnostics Version="C">

@@ -11,6 +11,7 @@ import logging
 import logging.config
 import logging_conf
 import time
+import datetime as DT
 import pyodbc
 import ast
 
@@ -213,6 +214,35 @@ def validate_mock_test(mock_file_path, mocker_xsd_path):
     return mocker_schema.validate(mock_test)
 
 
+def extract_mock_messages(mock_test, default_ns):
+    mock_messages = []
+    for msg in list(mock_test.find("./{{{0}}}MockMessages".format(default_ns))):
+        if (msg.tag == "{{{0}}}{1}".format(default_ns, SdnMessage.get_root_tag())):
+            msg = SdnMessage(msg)
+        elif (msg.tag == "{{{0}}}{1}".format(default_ns, SqlQueryMessage.get_root_tag())):
+            msg = SqlQueryMessage(msg)
+        else:
+            raise ValueError("Unrecognised Mock Message.")
+        mock_messages.append(msg)
+    return mock_messages
+
+
+def update_message_timestamp(mock_messages):
+    old_timestamp = None
+    for msg in mock_messages:
+        if old_timestamp is None:
+            # This is the first message
+            old_timestamp = msg.get_timestamp()
+            new_timestamp = DT.datetime.now(DT.timezone.utc)
+        else:
+            # Calculate the time differential
+            delta = msg.get_timestamp() - old_timestamp
+            old_timestamp = msg.get_timestamp()
+            new_timestamp = new_timestamp + delta
+        msg.set_timestamp(new_timestamp)
+    return mock_messages
+
+
 def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
     # Parse the Mocker Test
     try:
@@ -240,25 +270,27 @@ def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
             odbc_mocker = OdbcMocker.fromdict(odbc_config)
             odbc_mocker.open()
 
-        # Parse the messages and send them
+        # Parse the messages and convert timestamps
+        mock_messages = extract_mock_messages(mock_test, default_ns)
+        if test_config['currenttime']:
+            mock_messages = update_message_timestamp(mock_messages)
+
+        # Send the messages using appropriate mocker and intervals
         prev_timestamp = None
-        for msg in list(mock_test.find("./{{{0}}}MockMessages".format(default_ns))):
+        for msg in mock_messages:
             mocker = None
-            if (msg.tag == "{{{0}}}{1}".format(default_ns, SdnMessage.get_root_tag())):
-                msg = SdnMessage(msg)
+            if isinstance(msg, SdnMessage):
                 mocker = sdn_mocker
-            elif (msg.tag == "{{{0}}}{1}".format(default_ns, SqlQueryMessage.get_root_tag())):
-                msg = SqlQueryMessage(msg)
+            elif isinstance(msg, SqlQueryMessage):
                 mocker = odbc_mocker
             else:
-                continue
+                raise ValueError("Unrecognised Mock Message instance.")
 
             delay = calculate_delay(test_config['realtime'],
                                     test_config['max_delay'],
                                     msg.get_timestamp(),
                                     prev_timestamp)
-            if mocker is not None:
-                mocker.send_message(msg, delay)
+            mocker.send_message(msg, delay)
             prev_timestamp = msg.get_timestamp()
 
     finally:
@@ -293,6 +325,7 @@ def parse_sys_args():
         <MockerConfiguration>
             <MaxDelay>....</MaxDelay>
             <RealTime>....</RealTime>
+            <CurrentTime>...</CurrentTime>
         </MockerConfiguration>
         <MockMessages>
             <LyncDiagnostic>
@@ -321,6 +354,13 @@ def parse_sys_args():
         RealTime    -   Realtime uses the actual time interval between consecutive
                         mock messages. The Max Delay time is still respected.
                         If disabled then the time delay is always Max Delay.
+                        true or false.
+                        (e.g. true)
+        CurrentTime -   If CurrentTime is true, all timestamps for messages will be made relative
+                        to the current date-time. The timestamp of the final MockMessage
+                        will be replaced with the current UTC timestamp. Preceding message
+                        timestamps will also be replaced, depending on RealTime and MaxDelay
+                        settings.
                         true or false.
                         (e.g. true)
 
