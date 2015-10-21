@@ -83,7 +83,7 @@ class SdnMocker():
             print('Sdn Mocker Sleeping for {0}s.'.format(delay))
             time.sleep(delay)
             print("Sending Sdn Message : " + str(sdn_msg))
-            if self.send(sdn_msg.tostring(encoding="utf-8")):
+            if self.send(sdn_msg.tostring(encoding="us-ascii").encode("us-ascii")):
                 print("Response Received from Server.")
         except URLError as e:
             logging.error("URLError : " + str(e))
@@ -253,7 +253,7 @@ def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
 
     # Validate the Mocker Test
     if not validate_mock_test(mock_file_path, './schemas/Mocker.Schema.xsd'):
-        raise ValueError("Invalid Mocker Test Format.")
+        raise ValueError("Failed Mocker Test Validation.")
 
     default_ns = mock_test.getroot().nsmap.get(None, '')
     test_config_elem = mock_test.find('./{{{0}}}MockerConfiguration'.format(default_ns))

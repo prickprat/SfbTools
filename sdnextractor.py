@@ -30,7 +30,7 @@ def extract_sdn_messages(infile_path, outfile_path, call_ids, conf_ids):
                             continue
 
                     outfile.write('\n\n')
-                    outfile.write(sdn_msg.tostring(encoding="unicode"))
+                    outfile.write(sdn_msg.tostring(encoding="utf-8"))
                 logging.info("Sdn messages successfully extracted.")
 
 

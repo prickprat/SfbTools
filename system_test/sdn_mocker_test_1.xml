@@ -1,0 +1,1840 @@
+<?xml version="1.0"?>
+<Mocker xmlns="http://www.ir.com/Mocker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ir.com/Mocker ../schemas/Mocker.Schema.xsd">
+    <MockerConfiguration>
+        <MaxDelay>3</MaxDelay>
+        <RealTime>false</RealTime>
+        <CurrentTime>true</CurrentTime>
+    </MockerConfiguration>
+    <MockMessages>
+
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>e62b032e60f343a7a2ec7edd8cc627eb</CallId>
+    <CSEQ>1</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T14:38:16.6941234+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Invite>
+    <Caller>
+      <Id>e9958b02ba</Id>
+      <EPId>3b6b6c94f7</EPId>
+      <URI>sip:tomislavtest@lync2013.local</URI>
+      <Contact>sip:tomislavtest@lync2013.local;opaque=user:epid:FGY9SBY6bFiHm5IF69a-wwAA;gruu</Contact>
+      <UserAgent>UCCAPI/15.0.4745.1000 OC/15.0.4745.1000 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </Caller>
+    <Callee>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+    </Callee>
+  </Invite>
+  <RawSDP>------=_NextPart_000_004B_01D0DC1F.03F88560
+Content-Type: application/sdp
+Content-Transfer-Encoding: 7bit
+Content-ID: &lt;879a2fb8cb203bb131d00427308a00f6@lync2013.local&gt;
+Content-Disposition: session; handling=optional; ms-proxy-2007fallback
+v=0
+o=- 0 0 IN IP4 10.116.1.14
+s=session
+c=IN IP4 10.116.1.14
+b=CT:99980
+t=0 0
+m=audio 20042 RTP/SAVP 117 104 114 9 112 111 0 103 8 116 115 97 13 118 101
+a=candidate:JFx3e69rsyg2KidBFCpjfSsasS2DOBo2v4Nbq5RL7zg 1 9CaWhQH9U7JvhOaoOK1hgQ UDP 0.830 192.168.164.1 3680 
+a=candidate:JFx3e69rsyg2KidBFCpjfSsasS2DOBo2v4Nbq5RL7zg 2 9CaWhQH9U7JvhOaoOK1hgQ UDP 0.830 192.168.164.1 3681 
+a=candidate:89vcwxI+kUnq/DLhy94b+BeikxpJcHgWFOAjvfYFE0s 1 MYpBpUaKmX3SWSLdXEAneA UDP 0.840 192.168.74.1 15232 
+a=candidate:89vcwxI+kUnq/DLhy94b+BeikxpJcHgWFOAjvfYFE0s 2 MYpBpUaKmX3SWSLdXEAneA UDP 0.840 192.168.74.1 15233 
+a=candidate:KT4MWC9FytKbzajezG49f6+Etyu/zNjvxvhek7qeiCY 1 SS2Hcy2ddo1Z5heEWW9Udg UDP 0.850 10.116.1.14 20042 
+a=candidate:KT4MWC9FytKbzajezG49f6+Etyu/zNjvxvhek7qeiCY 2 SS2Hcy2ddo1Z5heEWW9Udg UDP 0.850 10.116.1.14 20043 
+a=candidate:PitZEXIR/2tS6bRD97nHixoIN1omX+/SwpojZFCCvZA 1 +Mr7r93x+UDAzCv+5z126w TCP 0.110 10.111.1.192 57764 
+a=candidate:PitZEXIR/2tS6bRD97nHixoIN1omX+/SwpojZFCCvZA 2 +Mr7r93x+UDAzCv+5z126w TCP 0.110 10.111.1.192 57764 
+a=candidate:iN6wHeeqGdZ+uo9lw2nD9JSDR/UPzV+SDJ/UeIvPFAQ 1 wpHQEvI9q+jTW84U/tFj3w UDP 0.410 10.111.1.192 54595 
+a=candidate:iN6wHeeqGdZ+uo9lw2nD9JSDR/UPzV+SDJ/UeIvPFAQ 2 wpHQEvI9q+jTW84U/tFj3w UDP 0.410 10.111.1.192 57850 
+a=candidate:XNekLCEi1AX2fTB7Z7oOjr459blDg/nW9/c09TfeEkA 1 cYARdPvU7f+TBdIe6A5lHA TCP 0.250 10.116.1.14 24289 
+a=candidate:XNekLCEi1AX2fTB7Z7oOjr459blDg/nW9/c09TfeEkA 2 cYARdPvU7f+TBdIe6A5lHA TCP 0.250 10.116.1.14 24289 
+a=maxptime:200
+a=rtpmap:117 G722/8000/2
+a=rtpmap:104 SILK/16000
+a=fmtp:104 useinbandfec=1; usedtx=0
+a=rtpmap:114 x-msrta/16000
+a=fmtp:114 bitrate=29000
+a=rtpmap:9 G722/8000
+a=rtpmap:112 G7221/16000
+a=fmtp:112 bitrate=24000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:103 SILK/8000
+a=fmtp:103 useinbandfec=1; usedtx=0
+a=rtpmap:8 PCMA/8000
+a=rtpmap:116 AAL2-G726-32/8000
+a=rtpmap:115 x-msrta/8000
+a=fmtp:115 bitrate=11800
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=x-bypassid:e4d34eec-4530-4507-8005-ffde13870b76
+a=ptime:20
+------=_NextPart_000_004B_01D0DC1F.03F88560
+Content-Type: application/sdp
+Content-Transfer-Encoding: 7bit
+Content-ID: &lt;cdd82aac59e764bbd764653ab29907a3@lync2013.local&gt;
+Content-Disposition: session; handling=optional
+v=0
+o=- 0 1 IN IP4 10.116.1.14
+s=session
+c=IN IP4 10.116.1.14
+b=CT:99980
+t=0 0
+a=x-devicecaps:audio:send,recv;video:send,recv
+m=audio 6270 RTP/SAVP 117 104 114 9 112 111 0 103 8 116 115 97 13 118 101
+a=x-ssrc-range:2462687750-2462687750
+a=rtcp-fb:* x-message app send:dsh recv:dsh
+a=rtcp-rsize
+a=label:main-audio
+a=x-source:main-audio
+a=ice-ufrag:/KFg
+a=candidate:1 1 UDP 2130706431 10.116.1.14 6270 typ host 
+a=candidate:1 2 UDP 2130705918 10.116.1.14 6271 typ host 
+a=candidate:2 1 UDP 2130705919 192.168.74.1 3620 typ host 
+a=candidate:2 2 UDP 2130705406 192.168.74.1 3621 typ host 
+a=candidate:3 1 UDP 2130705407 192.168.164.1 21560 typ host 
+a=candidate:3 2 UDP 2130704894 192.168.164.1 21561 typ host 
+a=candidate:4 1 TCP-PASS 174455295 10.111.1.192 51924 typ relay raddr 10.116.1.14 rport 5293 
+a=candidate:4 2 TCP-PASS 174454782 10.111.1.192 51924 typ relay raddr 10.116.1.14 rport 5293 
+a=candidate:5 1 UDP 184547327 10.111.1.192 57930 typ relay raddr 10.116.1.14 rport 13482 
+a=candidate:5 2 UDP 184546814 10.111.1.192 50014 typ relay raddr 10.116.1.14 rport 13483 
+a=candidate:6 1 TCP-ACT 174847487 10.111.1.192 51924 typ relay raddr 10.116.1.14 rport 5293 
+a=candidate:6 2 TCP-ACT 174846974 10.111.1.192 51924 typ relay raddr 10.116.1.14 rport 5293 
+a=candidate:7 1 TCP-ACT 1684796415 10.116.1.14 5293 typ srflx raddr 10.116.1.14 rport 5293 
+a=candidate:7 2 TCP-ACT 1684795902 10.116.1.14 5293 typ srflx raddr 10.116.1.14 rport 5293 
+a=maxptime:200
+a=rtcp:6271
+a=rtpmap:117 G722/8000/2
+a=rtpmap:104 SILK/16000
+a=fmtp:104 useinbandfec=1; usedtx=0
+a=rtpmap:114 x-msrta/16000
+a=fmtp:114 bitrate=29000
+a=rtpmap:9 G722/8000
+a=rtpmap:112 G7221/16000
+a=fmtp:112 bitrate=24000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:103 SILK/8000
+a=fmtp:103 useinbandfec=1; usedtx=0
+a=rtpmap:8 PCMA/8000
+a=rtpmap:116 AAL2-G726-32/8000
+a=rtpmap:115 x-msrta/8000
+a=fmtp:115 bitrate=11800
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=rtcp-mux
+a=x-bypassid:e4d34eec-4530-4507-8005-ffde13870b76
+a=ptime:20
+------=_NextPart_000_004B_01D0DC1F.03F88560--
+</RawSDP>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>e62b032e60f343a7a2ec7edd8cc627eb</CallId>
+    <CSEQ>2</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T14:38:17.3380323+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Invite>
+    <Caller>
+      <Id>e9958b02ba</Id>
+      <EPId>3b6b6c94f7</EPId>
+      <URI>sip:tomislavtest@lync2013.local</URI>
+      <Contact>sip:tomislavtest@lync2013.local;opaque=user:epid:FGY9SBY6bFiHm5IF69a-wwAA;gruu</Contact>
+      <UserAgent>UCCAPI/15.0.4745.1000 OC/15.0.4745.1000 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </Caller>
+    <Callee>
+      <Id>f1f25dbd11</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+    </Callee>
+  </Invite>
+  <RawSDP>v=0
+o=- 0 2 IN IP4 10.116.1.14
+s=session
+c=IN IP4 10.116.1.14
+b=CT:99980
+t=0 0
+a=x-devicecaps:audio:send,recv;video:send,recv
+m=audio 6270 RTP/SAVP 117 9 111 0 8 97 13 118 101
+a=x-ssrc-range:2462687750-2462687750
+a=rtcp-fb:* x-message app send:dsh recv:dsh
+a=rtcp-rsize
+a=label:main-audio
+a=x-source:main-audio
+a=ice-ufrag:/KFg
+a=candidate:1 1 UDP 2130706431 10.116.1.14 6270 typ host 
+a=candidate:1 2 UDP 2130705918 10.116.1.14 6271 typ host 
+a=remote-candidates:1 10.102.70.3 56312 2 10.102.70.3 56313
+a=maxptime:200
+a=rtpmap:117 G722/8000/2
+a=rtpmap:9 G722/8000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=x-bypassid:e4d34eec-4530-4507-8005-ffde13870b76
+a=ptime:20
+</RawSDP>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>e62b032e60f343a7a2ec7edd8cc627eb</CallId>
+    <CSEQ>2</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T14:38:17.3986125+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Start Type="audio">
+    <From>
+      <Id>e9958b02ba</Id>
+      <EPId>3b6b6c94f7</EPId>
+      <URI>sip:tomislavtest@lync2013.local</URI>
+      <Contact>sip:tomislavtest@lync2013.local;opaque=user:epid:FGY9SBY6bFiHm5IF69a-wwAA;gruu</Contact>
+      <IP>10.116.1.14</IP>
+      <Port>6270</Port>
+      <UserAgent>UCCAPI/15.0.4745.1000 OC/15.0.4745.1000 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </From>
+    <To>
+      <Id>f1f25dbd11</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>56312</Port>
+    </To>
+    <Properties>
+      <Protocol>UDP</Protocol>
+      <Bandwidth>
+        <Average>126150</Average>
+        <Maximum>228600</Maximum>
+      </Bandwidth>
+      <Codec Name="G722/8000/2">
+        <Bandwidth>164600</Bandwidth>
+        <MaxBandwidth>228600</MaxBandwidth>
+      </Codec>
+      <Codec Name="G722/8000">
+        <Bandwidth>100600</Bandwidth>
+        <MaxBandwidth>164600</MaxBandwidth>
+      </Codec>
+      <Codec Name="SIREN/16000">
+        <Bandwidth>52600</Bandwidth>
+        <MaxBandwidth>68600</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMU/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMA/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+    </Properties>
+  </Start>
+  <Start Type="audio">
+    <From>
+      <Id>f1f25dbd11</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>56312</Port>
+    </From>
+    <To>
+      <Id>e9958b02ba</Id>
+      <EPId>3b6b6c94f7</EPId>
+      <URI>sip:tomislavtest@lync2013.local</URI>
+      <Contact>sip:tomislavtest@lync2013.local;opaque=user:epid:FGY9SBY6bFiHm5IF69a-wwAA;gruu</Contact>
+      <IP>10.116.1.14</IP>
+      <Port>6270</Port>
+      <UserAgent>UCCAPI/15.0.4745.1000 OC/15.0.4745.1000 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </To>
+    <Properties>
+      <Protocol>UDP</Protocol>
+      <Bandwidth>
+        <Average>126150</Average>
+        <Maximum>228600</Maximum>
+      </Bandwidth>
+      <Codec Name="G722/8000/2">
+        <Bandwidth>164600</Bandwidth>
+        <MaxBandwidth>228600</MaxBandwidth>
+      </Codec>
+      <Codec Name="G722/8000">
+        <Bandwidth>100600</Bandwidth>
+        <MaxBandwidth>164600</MaxBandwidth>
+      </Codec>
+      <Codec Name="SIREN/16000">
+        <Bandwidth>52600</Bandwidth>
+        <MaxBandwidth>68600</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMU/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMA/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+    </Properties>
+  </Start>
+  <RawSDP>v=0
+o=- 46978 1 IN IP4 10.102.70.3
+s=session
+c=IN IP4 10.102.70.3
+b=CT:10000000
+t=0 0
+m=audio 56312 RTP/SAVP 117 9 111 0 8 97 13 118 101
+c=IN IP4 10.102.70.3
+a=rtcp-rsize
+a=rtcp-fb:* x-message app send:dsh recv:dsh
+a=x-ssrc-range:1000-1000
+a=x-source-streamid:2000000
+a=rtcp:56313
+a=ice-ufrag:9RQH
+a=candidate:1 1 UDP 2130706431 10.102.70.3 56312 typ host
+a=candidate:1 2 UDP 2130705918 10.102.70.3 56313 typ host
+a=remote-candidates:1 10.116.1.14 6270 2 10.116.1.14 6271
+a=label:main-audio
+a=rtpmap:117 g722/8000/2
+a=fmtp:117 bitrate=128000
+a=rtpmap:9 g722/8000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=ptime:20
+</RawSDP>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>15bed3115415497395eb3e9c8679fc8e</CallId>
+    <CSEQ>1</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T14:38:36.7031772+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Invite>
+    <Caller>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </Caller>
+    <Callee>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+    </Callee>
+  </Invite>
+  <RawSDP>------=_NextPart_000_3288_01D0DC1F.103ACBD0
+Content-Type: application/sdp
+Content-Transfer-Encoding: 7bit
+Content-ID: &lt;d463d5dd6b4588df0a86326e654e8dd0@lync2013.local&gt;
+Content-Disposition: session; handling=optional; ms-proxy-2007fallback
+v=0
+o=- 0 0 IN IP4 10.111.1.192
+s=session
+c=IN IP4 10.111.1.192
+b=CT:99980
+t=0 0
+m=audio 50365 RTP/SAVP 117 104 114 9 112 111 0 103 8 116 115 97 13 118 101
+a=candidate:Yrd+6/V3VwW+1V43wBs2361TPPGSlLCNQgK1r9w2i2c 1 blWMgUkfTjK05WbCigwWTA UDP 0.830 192.168.248.1 2232 
+a=candidate:Yrd+6/V3VwW+1V43wBs2361TPPGSlLCNQgK1r9w2i2c 2 blWMgUkfTjK05WbCigwWTA UDP 0.830 192.168.248.1 2233 
+a=candidate:b0o0FTVaPZGqlzPEJ8Qbp/gSWY44OQbeBSYvx5PBU+M 1 VzaxbJt7CIaIrZRUl2NBjg UDP 0.840 192.168.184.1 26412 
+a=candidate:b0o0FTVaPZGqlzPEJ8Qbp/gSWY44OQbeBSYvx5PBU+M 2 VzaxbJt7CIaIrZRUl2NBjg UDP 0.840 192.168.184.1 26413 
+a=candidate:OInUA9ufaVMYS+3ALfKp/g4sW1skz8XXLOkaBp9p228 1 1ck/fdVxeF38Bjb/I86Ymg UDP 0.850 10.110.1.23 25356 
+a=candidate:OInUA9ufaVMYS+3ALfKp/g4sW1skz8XXLOkaBp9p228 2 1ck/fdVxeF38Bjb/I86Ymg UDP 0.850 10.110.1.23 25357 
+a=candidate:Gmb9Noqc8ODdARrDWoi01J2jsQh6dJzJspMisiqi+Qc 1 UwU5qstmC+i9J7MaNjbFvQ TCP 0.110 10.111.1.192 57906 
+a=candidate:Gmb9Noqc8ODdARrDWoi01J2jsQh6dJzJspMisiqi+Qc 2 UwU5qstmC+i9J7MaNjbFvQ TCP 0.110 10.111.1.192 57906 
+a=candidate:ocnwNUSPNAk47Q+vAuOqbVpA/fHkokxVyDhEpuLt5lw 1 DCtCOMK6jWWGyrGpMerXwA UDP 0.410 10.111.1.192 50365 
+a=candidate:ocnwNUSPNAk47Q+vAuOqbVpA/fHkokxVyDhEpuLt5lw 2 DCtCOMK6jWWGyrGpMerXwA UDP 0.410 10.111.1.192 52682 
+a=candidate:op0LrYaJ4mmgz3pTh6wtwAj9swsXAtPQ4Yau4PcO6qg 1 xolxBJra4xgEZjZtNCH4eQ TCP 0.250 10.110.1.23 9649 
+a=candidate:op0LrYaJ4mmgz3pTh6wtwAj9swsXAtPQ4Yau4PcO6qg 2 xolxBJra4xgEZjZtNCH4eQ TCP 0.250 10.110.1.23 9649 
+a=maxptime:200
+a=rtcp:52682
+a=rtpmap:117 G722/8000/2
+a=rtpmap:104 SILK/16000
+a=fmtp:104 useinbandfec=1; usedtx=0
+a=rtpmap:114 x-msrta/16000
+a=fmtp:114 bitrate=29000
+a=rtpmap:9 G722/8000
+a=rtpmap:112 G7221/16000
+a=fmtp:112 bitrate=24000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:103 SILK/8000
+a=fmtp:103 useinbandfec=1; usedtx=0
+a=rtpmap:8 PCMA/8000
+a=rtpmap:116 AAL2-G726-32/8000
+a=rtpmap:115 x-msrta/8000
+a=fmtp:115 bitrate=11800
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+------=_NextPart_000_3288_01D0DC1F.103ACBD0
+Content-Type: application/sdp
+Content-Transfer-Encoding: 7bit
+Content-ID: &lt;bf0f1a6895a6e6fbaf9a6a1f33aca7cc@lync2013.local&gt;
+Content-Disposition: session; handling=optional
+v=0
+o=- 0 1 IN IP4 10.111.1.192
+s=session
+c=IN IP4 10.111.1.192
+b=CT:99980
+t=0 0
+a=x-devicecaps:audio:send,recv;video:recv
+m=audio 59260 RTP/SAVP 117 104 114 9 112 111 0 103 8 116 115 97 13 118 101
+a=x-ssrc-range:1329639948-1329639948
+a=rtcp-fb:* x-message app send:dsh recv:dsh
+a=rtcp-rsize
+a=label:main-audio
+a=x-source:main-audio
+a=ice-ufrag:tjE+
+a=candidate:1 1 UDP 2130706431 10.110.1.23 4458 typ host 
+a=candidate:1 2 UDP 2130705918 10.110.1.23 4459 typ host 
+a=candidate:2 1 UDP 2130705919 192.168.184.1 31508 typ host 
+a=candidate:2 2 UDP 2130705406 192.168.184.1 31509 typ host 
+a=candidate:3 1 UDP 2130705407 192.168.248.1 15372 typ host 
+a=candidate:3 2 UDP 2130704894 192.168.248.1 15373 typ host 
+a=candidate:4 1 TCP-PASS 174455295 10.111.1.192 55226 typ relay raddr 10.110.1.23 rport 8973 
+a=candidate:4 2 TCP-PASS 174454782 10.111.1.192 55226 typ relay raddr 10.110.1.23 rport 8973 
+a=candidate:5 1 UDP 184547327 10.111.1.192 59260 typ relay raddr 10.110.1.23 rport 26040 
+a=candidate:5 2 UDP 184546814 10.111.1.192 57636 typ relay raddr 10.110.1.23 rport 26041 
+a=candidate:6 1 TCP-ACT 174847487 10.111.1.192 55226 typ relay raddr 10.110.1.23 rport 8973 
+a=candidate:6 2 TCP-ACT 174846974 10.111.1.192 55226 typ relay raddr 10.110.1.23 rport 8973 
+a=candidate:7 1 TCP-ACT 1684796415 10.110.1.23 8973 typ srflx raddr 10.110.1.23 rport 8973 
+a=candidate:7 2 TCP-ACT 1684795902 10.110.1.23 8973 typ srflx raddr 10.110.1.23 rport 8973 
+a=maxptime:200
+a=rtcp:57636
+a=rtpmap:117 G722/8000/2
+a=rtpmap:104 SILK/16000
+a=fmtp:104 useinbandfec=1; usedtx=0
+a=rtpmap:114 x-msrta/16000
+a=fmtp:114 bitrate=29000
+a=rtpmap:9 G722/8000
+a=rtpmap:112 G7221/16000
+a=fmtp:112 bitrate=24000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:103 SILK/8000
+a=fmtp:103 useinbandfec=1; usedtx=0
+a=rtpmap:8 PCMA/8000
+a=rtpmap:116 AAL2-G726-32/8000
+a=rtpmap:115 x-msrta/8000
+a=fmtp:115 bitrate=11800
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=rtcp-mux
+a=ptime:20
+------=_NextPart_000_3288_01D0DC1F.103ACBD0--
+</RawSDP>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>15bed3115415497395eb3e9c8679fc8e</CallId>
+    <CSEQ>2</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T14:38:37.4907198+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Invite>
+    <Caller>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </Caller>
+    <Callee>
+      <Id>b4ae1ad713</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+    </Callee>
+  </Invite>
+  <RawSDP>v=0
+o=- 0 2 IN IP4 10.110.1.23
+s=session
+c=IN IP4 10.110.1.23
+b=CT:99980
+t=0 0
+a=x-devicecaps:audio:send,recv;video:recv
+m=audio 4458 RTP/SAVP 117 9 111 0 8 97 13 118 101
+a=x-ssrc-range:1329639948-1329639948
+a=rtcp-fb:* x-message app send:dsh recv:dsh
+a=rtcp-rsize
+a=label:main-audio
+a=x-source:main-audio
+a=ice-ufrag:tjE+
+a=candidate:1 1 UDP 2130706431 10.110.1.23 4458 typ host 
+a=candidate:1 2 UDP 2130705918 10.110.1.23 4459 typ host 
+a=remote-candidates:1 10.102.70.3 53526 2 10.102.70.3 53527
+a=maxptime:200
+a=rtpmap:117 G722/8000/2
+a=rtpmap:9 G722/8000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+</RawSDP>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>15bed3115415497395eb3e9c8679fc8e</CallId>
+    <CSEQ>2</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T14:38:37.5610710+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Start Type="audio">
+    <From>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <IP>10.110.1.23</IP>
+      <Port>4458</Port>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </From>
+    <To>
+      <Id>b4ae1ad713</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>53526</Port>
+    </To>
+    <Properties>
+      <Protocol>UDP</Protocol>
+      <Bandwidth>
+        <Average>126150</Average>
+        <Maximum>228600</Maximum>
+      </Bandwidth>
+      <Codec Name="G722/8000/2">
+        <Bandwidth>164600</Bandwidth>
+        <MaxBandwidth>228600</MaxBandwidth>
+      </Codec>
+      <Codec Name="G722/8000">
+        <Bandwidth>100600</Bandwidth>
+        <MaxBandwidth>164600</MaxBandwidth>
+      </Codec>
+      <Codec Name="SIREN/16000">
+        <Bandwidth>52600</Bandwidth>
+        <MaxBandwidth>68600</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMU/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMA/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+    </Properties>
+  </Start>
+  <Start Type="audio">
+    <From>
+      <Id>b4ae1ad713</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>53526</Port>
+    </From>
+    <To>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <IP>10.110.1.23</IP>
+      <Port>4458</Port>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </To>
+    <Properties>
+      <Protocol>UDP</Protocol>
+      <Bandwidth>
+        <Average>126150</Average>
+        <Maximum>228600</Maximum>
+      </Bandwidth>
+      <Codec Name="G722/8000/2">
+        <Bandwidth>164600</Bandwidth>
+        <MaxBandwidth>228600</MaxBandwidth>
+      </Codec>
+      <Codec Name="G722/8000">
+        <Bandwidth>100600</Bandwidth>
+        <MaxBandwidth>164600</MaxBandwidth>
+      </Codec>
+      <Codec Name="SIREN/16000">
+        <Bandwidth>52600</Bandwidth>
+        <MaxBandwidth>68600</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMU/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMA/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+    </Properties>
+  </Start>
+  <RawSDP>v=0
+o=- 46979 1 IN IP4 10.102.70.3
+s=session
+c=IN IP4 10.102.70.3
+b=CT:10000000
+t=0 0
+m=audio 53526 RTP/SAVP 117 9 111 0 8 97 13 118 101
+c=IN IP4 10.102.70.3
+a=rtcp-rsize
+a=rtcp-fb:* x-message app send:dsh recv:dsh
+a=x-ssrc-range:1001-1001
+a=x-source-streamid:2002048
+a=rtcp:53527
+a=ice-ufrag:HiGs
+a=candidate:1 1 UDP 2130706431 10.102.70.3 53526 typ host
+a=candidate:1 2 UDP 2130705918 10.102.70.3 53527 typ host
+a=remote-candidates:1 10.110.1.23 4458 2 10.110.1.23 4459
+a=label:main-audio
+a=rtpmap:117 g722/8000/2
+a=fmtp:117 bitrate=128000
+a=rtpmap:9 g722/8000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=ptime:20
+</RawSDP>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>0a9560b03d8241728af7f056440c3857</CallId>
+    <CSEQ>1</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T14:38:47.4737505+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Invite>
+    <Caller>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </Caller>
+    <Callee>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+    </Callee>
+  </Invite>
+  <RawSDP>------=_NextPart_000_002C_01D0DC1F.163C1E80
+Content-Type: application/sdp
+Content-Transfer-Encoding: 7bit
+Content-ID: &lt;88990479650a93dafbf41439aa4b02b0@lync2013.local&gt;
+Content-Disposition: session; handling=optional; ms-proxy-2007fallback
+v=0
+o=- 0 0 IN IP4 10.116.1.31
+s=session
+c=IN IP4 10.116.1.31
+b=CT:99980
+t=0 0
+m=audio 10724 RTP/SAVP 117 114 104 9 112 111 0 8 116 115 103 97 13 118 101
+a=candidate:sxNHbO4CHy5MgdLsRjlLnr22uscebq6G5neU2Plbr1c 1 T6na9SKi5AHAfUlt/iht5w UDP 0.830 10.116.1.31 10724 
+a=candidate:sxNHbO4CHy5MgdLsRjlLnr22uscebq6G5neU2Plbr1c 2 T6na9SKi5AHAfUlt/iht5w UDP 0.830 10.116.1.31 10725 
+a=candidate:4lAxmP9OmiXXfgZ29prgq66ZanscvnPnR3f5hGSmZFw 1 lzG05KfaxgRKHAIEeHFfqw TCP 0.110 10.111.1.192 50657 
+a=candidate:4lAxmP9OmiXXfgZ29prgq66ZanscvnPnR3f5hGSmZFw 2 lzG05KfaxgRKHAIEeHFfqw TCP 0.110 10.111.1.192 50657 
+a=candidate:JAwBfr45XYPINRPimHz9tfWCZ8qo7luJl6Z+j0Cx26c 1 8ze3V9i5P5O6UmHLtZjzDw UDP 0.410 10.111.1.192 54206 
+a=candidate:JAwBfr45XYPINRPimHz9tfWCZ8qo7luJl6Z+j0Cx26c 2 8ze3V9i5P5O6UmHLtZjzDw UDP 0.410 10.111.1.192 58938 
+a=candidate:oq2uVWyc5BaYkprtEZdPG13NwRApU/LfDDxYlQRu2yM 1 r/tDAh1ZyWKGTrzDD0ltQg TCP 0.250 10.116.1.31 27981 
+a=candidate:oq2uVWyc5BaYkprtEZdPG13NwRApU/LfDDxYlQRu2yM 2 r/tDAh1ZyWKGTrzDD0ltQg TCP 0.250 10.116.1.31 27981 
+a=maxptime:200
+a=rtpmap:117 G722/8000/2
+a=rtpmap:114 x-msrta/16000
+a=fmtp:114 bitrate=29000
+a=rtpmap:104 SILK/16000
+a=fmtp:104 useinbandfec=1; usedtx=0
+a=rtpmap:9 G722/8000
+a=rtpmap:112 G7221/16000
+a=fmtp:112 bitrate=24000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:116 AAL2-G726-32/8000
+a=rtpmap:115 x-msrta/8000
+a=fmtp:115 bitrate=11800
+a=rtpmap:103 SILK/8000
+a=fmtp:103 useinbandfec=1; usedtx=0
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=x-bypassid:e4d34eec-4530-4507-8005-ffde13870b76
+a=ptime:20
+------=_NextPart_000_002C_01D0DC1F.163C1E80
+Content-Type: application/sdp
+Content-Transfer-Encoding: 7bit
+Content-ID: &lt;4e69077cf8091908f8a1f5f382bbf173@lync2013.local&gt;
+Content-Disposition: session; handling=optional
+v=0
+o=- 0 1 IN IP4 10.116.1.31
+s=session
+c=IN IP4 10.116.1.31
+b=CT:99980
+t=0 0
+a=x-devicecaps:video:recv
+m=audio 31526 RTP/SAVP 117 114 104 9 112 111 0 8 116 115 103 97 13 118 101
+a=x-ssrc-range:829230338-829230338
+a=rtcp-fb:* x-message app send:dsh recv:dsh
+a=rtcp-rsize
+a=label:main-audio
+a=x-source:main-audio
+a=ice-ufrag:TC34
+a=candidate:1 1 UDP 2130706431 10.116.1.31 31526 typ host 
+a=candidate:1 2 UDP 2130705918 10.116.1.31 31527 typ host 
+a=candidate:2 1 TCP-PASS 174456319 10.111.1.192 56926 typ relay raddr 10.116.1.31 rport 12986 
+a=candidate:2 2 TCP-PASS 174455806 10.111.1.192 56926 typ relay raddr 10.116.1.31 rport 12986 
+a=candidate:3 1 UDP 184548351 10.111.1.192 58199 typ relay raddr 10.116.1.31 rport 3258 
+a=candidate:3 2 UDP 184547838 10.111.1.192 54011 typ relay raddr 10.116.1.31 rport 3259 
+a=candidate:4 1 TCP-ACT 174848511 10.111.1.192 56926 typ relay raddr 10.116.1.31 rport 12986 
+a=candidate:4 2 TCP-ACT 174847998 10.111.1.192 56926 typ relay raddr 10.116.1.31 rport 12986 
+a=candidate:5 1 TCP-ACT 1684797439 10.116.1.31 12986 typ srflx raddr 10.116.1.31 rport 12986 
+a=candidate:5 2 TCP-ACT 1684796926 10.116.1.31 12986 typ srflx raddr 10.116.1.31 rport 12986 
+a=maxptime:200
+a=rtpmap:117 G722/8000/2
+a=rtpmap:114 x-msrta/16000
+a=fmtp:114 bitrate=29000
+a=rtpmap:104 SILK/16000
+a=fmtp:104 useinbandfec=1; usedtx=0
+a=rtpmap:9 G722/8000
+a=rtpmap:112 G7221/16000
+a=fmtp:112 bitrate=24000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:116 AAL2-G726-32/8000
+a=rtpmap:115 x-msrta/8000
+a=fmtp:115 bitrate=11800
+a=rtpmap:103 SILK/8000
+a=fmtp:103 useinbandfec=1; usedtx=0
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=x-bypassid:e4d34eec-4530-4507-8005-ffde13870b76
+a=ptime:20
+------=_NextPart_000_002C_01D0DC1F.163C1E80--
+</RawSDP>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>0a9560b03d8241728af7f056440c3857</CallId>
+    <CSEQ>2</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T14:38:48.2016900+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Invite>
+    <Caller>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </Caller>
+    <Callee>
+      <Id>746396742</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+    </Callee>
+  </Invite>
+  <RawSDP>v=0
+o=- 0 2 IN IP4 10.116.1.31
+s=session
+c=IN IP4 10.116.1.31
+b=CT:99980
+t=0 0
+a=x-devicecaps:video:recv
+m=audio 31526 RTP/SAVP 117 9 111 0 8 97 13 118 101
+a=x-ssrc-range:829230338-829230338
+a=rtcp-fb:* x-message app send:dsh recv:dsh
+a=rtcp-rsize
+a=label:main-audio
+a=x-source:main-audio
+a=ice-ufrag:TC34
+a=candidate:1 1 UDP 2130706431 10.116.1.31 31526 typ host 
+a=candidate:1 2 UDP 2130705918 10.116.1.31 31527 typ host 
+a=remote-candidates:1 10.102.70.3 50518 2 10.102.70.3 50519
+a=maxptime:200
+a=rtpmap:117 G722/8000/2
+a=rtpmap:9 G722/8000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=x-bypassid:e4d34eec-4530-4507-8005-ffde13870b76
+a=ptime:20
+</RawSDP>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>0a9560b03d8241728af7f056440c3857</CallId>
+    <CSEQ>2</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T14:38:48.2700870+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Start Type="audio">
+    <From>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <IP>10.116.1.31</IP>
+      <Port>31526</Port>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </From>
+    <To>
+      <Id>746396742</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>50518</Port>
+    </To>
+    <Properties>
+      <Protocol>UDP</Protocol>
+      <Bandwidth>
+        <Average>126150</Average>
+        <Maximum>228600</Maximum>
+      </Bandwidth>
+      <Codec Name="G722/8000/2">
+        <Bandwidth>164600</Bandwidth>
+        <MaxBandwidth>228600</MaxBandwidth>
+      </Codec>
+      <Codec Name="G722/8000">
+        <Bandwidth>100600</Bandwidth>
+        <MaxBandwidth>164600</MaxBandwidth>
+      </Codec>
+      <Codec Name="SIREN/16000">
+        <Bandwidth>52600</Bandwidth>
+        <MaxBandwidth>68600</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMU/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMA/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+    </Properties>
+  </Start>
+  <Start Type="audio">
+    <From>
+      <Id>746396742</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>50518</Port>
+    </From>
+    <To>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <IP>10.116.1.31</IP>
+      <Port>31526</Port>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </To>
+    <Properties>
+      <Protocol>UDP</Protocol>
+      <Bandwidth>
+        <Average>126150</Average>
+        <Maximum>228600</Maximum>
+      </Bandwidth>
+      <Codec Name="G722/8000/2">
+        <Bandwidth>164600</Bandwidth>
+        <MaxBandwidth>228600</MaxBandwidth>
+      </Codec>
+      <Codec Name="G722/8000">
+        <Bandwidth>100600</Bandwidth>
+        <MaxBandwidth>164600</MaxBandwidth>
+      </Codec>
+      <Codec Name="SIREN/16000">
+        <Bandwidth>52600</Bandwidth>
+        <MaxBandwidth>68600</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMU/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+      <Codec Name="PCMA/8000">
+        <Bandwidth>97000</Bandwidth>
+        <MaxBandwidth>161000</MaxBandwidth>
+      </Codec>
+    </Properties>
+  </Start>
+  <RawSDP>v=0
+o=- 46980 1 IN IP4 10.102.70.3
+s=session
+c=IN IP4 10.102.70.3
+b=CT:10000000
+t=0 0
+m=audio 50518 RTP/SAVP 117 9 111 0 8 97 13 118 101
+c=IN IP4 10.102.70.3
+a=rtcp-rsize
+a=rtcp-fb:* x-message app send:dsh recv:dsh
+a=x-ssrc-range:1002-1002
+a=x-source-streamid:2004096
+a=rtcp:50519
+a=ice-ufrag:I9Uz
+a=candidate:1 1 UDP 2130706431 10.102.70.3 50518 typ host
+a=candidate:1 2 UDP 2130705918 10.102.70.3 50519 typ host
+a=remote-candidates:1 10.116.1.31 31526 2 10.116.1.31 31527
+a=label:main-audio
+a=rtpmap:117 g722/8000/2
+a=fmtp:117 bitrate=128000
+a=rtpmap:9 g722/8000
+a=rtpmap:111 SIREN/16000
+a=fmtp:111 bitrate=16000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:97 RED/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:118 CN/16000
+a=rtpmap:101 telephone-event/8000
+a=ptime:20
+</RawSDP>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>e62b032e60f343a7a2ec7edd8cc627eb</CallId>
+    <CSEQ>4</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T14:50:40.6263598+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Ended Type="audio">
+    <From>
+      <Id>e9958b02ba</Id>
+      <EPId>3b6b6c94f7</EPId>
+      <URI>sip:tomislavtest@lync2013.local</URI>
+      <Contact>sip:tomislavtest@lync2013.local;opaque=user:epid:FGY9SBY6bFiHm5IF69a-wwAA;gruu</Contact>
+      <IP>10.116.1.14</IP>
+      <Port>6270</Port>
+      <UserAgent>UCCAPI/15.0.4745.1000 OC/15.0.4745.1000 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </From>
+    <To>
+      <Id>f1f25dbd11</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>56312</Port>
+    </To>
+    <Properties>
+      <MSDiagnosticsClient>51004; reason="Action initiated by user";UserType="Callee";MediaType="audio";NetworkErr="no error";ErrTime="0";RTPSeq="0";SeqDelta="0";RTPTime="3649121439990";RTCPTime="3649121437610";TransptRecvErr="0x0";RecvErrTime="0";TransptSendErr="0x80004005";SendErrTime="3649120695970";InterfacesStall="0x0";InterfacesConnCheck="0x0";MrDnsE="av.lync2013.com";MrResE="0";MrDnsI="edgepool1.lync2013.local";MrResI="1";MrDnsCacheReadAttempt="0";ICEWarn="0x0";ICEWarnEx="0x0";LocalSite="10.116.1.14:6270";LocalMR="10.111.1.192:57930";RemoteSite="10.102.70.3:53187";RemoteMR="10.111.1.192:57052";PortRange="1025:65000";LocalMRTCPPort="51924";RemoteMRTCPPort="57052";LocalLocation="2";RemoteLocation="2";FederationType="0";NetworkName="ir.local";Interfaces="0x2";BaseInterface="0x2";BaseAddress="10.116.1.14:13482";Protocol="0";LocalInterface="0x2";LocalAddrType="0";LocalAddress="10.116.1.14:6270";RemoteAddress="10.102.70.3:56312";RemoteAddrType="0";IceRole="1";RtpRtcpMux="0";MediaDllVersion="5.0.8687.139";MrDnsE="av.lync2013.com";MrResE="0";MrDnsI="edgepool1.lync2013.local";MrResI="1";MrDnsCacheReadAttempt="0"</MSDiagnosticsClient>
+    </Properties>
+  </Ended>
+  <Ended Type="audio">
+    <From>
+      <Id>f1f25dbd11</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>56312</Port>
+    </From>
+    <To>
+      <Id>e9958b02ba</Id>
+      <EPId>3b6b6c94f7</EPId>
+      <URI>sip:tomislavtest@lync2013.local</URI>
+      <Contact>sip:tomislavtest@lync2013.local;opaque=user:epid:FGY9SBY6bFiHm5IF69a-wwAA;gruu</Contact>
+      <IP>10.116.1.14</IP>
+      <Port>6270</Port>
+      <UserAgent>UCCAPI/15.0.4745.1000 OC/15.0.4745.1000 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </To>
+    <Properties>
+      <MSDiagnosticsClient>51004; reason="Action initiated by user";UserType="Callee";MediaType="audio";NetworkErr="no error";ErrTime="0";RTPSeq="0";SeqDelta="0";RTPTime="3649121439990";RTCPTime="3649121437610";TransptRecvErr="0x0";RecvErrTime="0";TransptSendErr="0x80004005";SendErrTime="3649120695970";InterfacesStall="0x0";InterfacesConnCheck="0x0";MrDnsE="av.lync2013.com";MrResE="0";MrDnsI="edgepool1.lync2013.local";MrResI="1";MrDnsCacheReadAttempt="0";ICEWarn="0x0";ICEWarnEx="0x0";LocalSite="10.116.1.14:6270";LocalMR="10.111.1.192:57930";RemoteSite="10.102.70.3:53187";RemoteMR="10.111.1.192:57052";PortRange="1025:65000";LocalMRTCPPort="51924";RemoteMRTCPPort="57052";LocalLocation="2";RemoteLocation="2";FederationType="0";NetworkName="ir.local";Interfaces="0x2";BaseInterface="0x2";BaseAddress="10.116.1.14:13482";Protocol="0";LocalInterface="0x2";LocalAddrType="0";LocalAddress="10.116.1.14:6270";RemoteAddress="10.102.70.3:56312";RemoteAddrType="0";IceRole="1";RtpRtcpMux="0";MediaDllVersion="5.0.8687.139";MrDnsE="av.lync2013.com";MrResE="0";MrDnsI="edgepool1.lync2013.local";MrResI="1";MrDnsCacheReadAttempt="0"</MSDiagnosticsClient>
+    </Properties>
+  </Ended>
+  <Bye>
+    <EndPoint>
+      <Id>e9958b02ba</Id>
+      <EPId>3b6b6c94f7</EPId>
+      <URI>sip:tomislavtest@lync2013.local</URI>
+      <Contact>sip:tomislavtest@lync2013.local;opaque=user:epid:FGY9SBY6bFiHm5IF69a-wwAA;gruu</Contact>
+      <UserAgent>UCCAPI/15.0.4745.1000 OC/15.0.4745.1000 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </EndPoint>
+    <EndPoint>
+      <Id>f1f25dbd11</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+    </EndPoint>
+  </Bye>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>e62b032e60f343a7a2ec7edd8cc627eb</CallId>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T04:50:40.9598623Z</TimeStamp>
+    <Connectivity>DIRECT</Connectivity>
+    <StartTime>2015-08-21T04:38:16.0851Z</StartTime>
+    <EndTime>2015-08-21T04:50:40.0126Z</EndTime>
+    <ConferenceURI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</ConferenceURI>
+    <MediaBypass>false</MediaBypass>
+    <MediationServerLegPosition>BeforeMedServer</MediationServerLegPosition>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <QualityUpdate Type="audio">
+    <From>
+      <Id>e9958b02ba</Id>
+      <EPId>3b6b6c94f7</EPId>
+      <URI>sip:tomislavtest@lync2013.local</URI>
+      <Contact>sip:tomislavtest@lync2013.local;opaque=user:epid:FGY9SBY6bFiHm5IF69a-wwAA;gruu</Contact>
+      <IP>10.116.1.14</IP>
+      <Port>6270</Port>
+      <Inside>true</Inside>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>UCCAPI/15.0.4745.1000 OC/15.0.4745.1000 (Skype for Business)</UserAgent>
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 1(Workstation) Suite: 0000000000000100 Arch: x64 WOW64: False</OS>
+      <CPUName>Intel(R) Xeon(R) CPU           W3520  @ 2.67GHz</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>2666</CPUProcessorSpeed>
+      <MACAddr>64-31-50-2F-44-BE</MACAddr>
+      <LinkSpeed>1000000000</LinkSpeed>
+    </From>
+    <To>
+      <Id>f1f25dbd11</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>56312</Port>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU/5.0.8308.0</UserAgent>
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 3 (Server) Suite: 0000000000000190 Arch: x64 WOW64: False</OS>
+      <CPUName>CPU Brand GenuineIntel Family 0x6 Model 0x2d EM64T MaxFunc 0xd MaxFuncExt 0x80000008</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>1999</CPUProcessorSpeed>
+      <Virtualization>HyperV</Virtualization>
+      <MACAddr>00-15-5D-01-05-06</MACAddr>
+      <LinkSpeed>4.2949673E+09</LinkSpeed>
+    </To>
+    <Properties>
+      <StreamQuality>Good</StreamQuality>
+      <Protocol>UDP</Protocol>
+      <Codec Name="G722/16000">
+        <Bandwidth>128000</Bandwidth>
+        <MaxBandwidth>223600</MaxBandwidth>
+      </Codec>
+      <PacketUtilization>36364</PacketUtilization>
+      <JitterInterArrival>1</JitterInterArrival>
+      <JitterInterArrivalMax>3</JitterInterArrivalMax>
+      <RoundTripMax>3</RoundTripMax>
+      <HealerPacketDropRatio>0.00022041</HealerPacketDropRatio>
+      <DegradationAvg>0.02</DegradationAvg>
+      <RatioConcealedSamplesAvg>0.0001713001</RatioConcealedSamplesAvg>
+      <EchoPercentMicIn>0.8464546</EchoPercentMicIn>
+      <EchoPercentSend>0.8464546</EchoPercentSend>
+      <BurstGapDuration>32660</BurstGapDuration>
+      <DegradationMax>0.02</DegradationMax>
+      <SendListenMOSMin>1</SendListenMOSMin>
+      <SendListenMOS>1.99</SendListenMOS>
+      <OverallMinNetworkMOS>3.72</OverallMinNetworkMOS>
+      <OverallAvgNetworkMOS>3.72</OverallAvgNetworkMOS>
+      <RelativeOneWayAverage>0.003089344</RelativeOneWayAverage>
+      <AppliedBandwidthLimit>150800</AppliedBandwidthLimit>
+      <CaptureDevice>Desktop Microphone (HD-3000 - Microsoft LifeCam.)</CaptureDevice>
+      <CaptureDeviceDriver>Microsoft: 6.5.6004.0</CaptureDeviceDriver>
+      <AudioTimestampErrorMicMs>0.0533362</AudioTimestampErrorMicMs>
+    </Properties>
+    <Route>
+      <Hop>10.116.1.1</Hop>
+      <Hop>10.102.70.3</Hop>
+    </Route>
+  </QualityUpdate>
+  <QualityUpdate Type="audio">
+    <From>
+      <Id>f1f25dbd11</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>56312</Port>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU/5.0.8308.0</UserAgent>
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 3 (Server) Suite: 0000000000000190 Arch: x64 WOW64: False</OS>
+      <CPUName>CPU Brand GenuineIntel Family 0x6 Model 0x2d EM64T MaxFunc 0xd MaxFuncExt 0x80000008</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>1999</CPUProcessorSpeed>
+      <Virtualization>HyperV</Virtualization>
+      <MACAddr>00-15-5D-01-05-06</MACAddr>
+      <LinkSpeed>4.2949673E+09</LinkSpeed>
+    </From>
+    <To>
+      <Id>e9958b02ba</Id>
+      <EPId>3b6b6c94f7</EPId>
+      <URI>sip:tomislavtest@lync2013.local</URI>
+      <Contact>sip:tomislavtest@lync2013.local;opaque=user:epid:FGY9SBY6bFiHm5IF69a-wwAA;gruu</Contact>
+      <IP>10.116.1.14</IP>
+      <Port>6270</Port>
+      <Inside>true</Inside>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>UCCAPI/15.0.4745.1000 OC/15.0.4745.1000 (Skype for Business)</UserAgent>
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 1(Workstation) Suite: 0000000000000100 Arch: x64 WOW64: False</OS>
+      <CPUName>Intel(R) Xeon(R) CPU           W3520  @ 2.67GHz</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>2666</CPUProcessorSpeed>
+      <MACAddr>64-31-50-2F-44-BE</MACAddr>
+      <LinkSpeed>1000000000</LinkSpeed>
+    </To>
+    <Properties>
+      <StreamQuality>Good</StreamQuality>
+      <Protocol>UDP</Protocol>
+      <Codec Name="G722/16000">
+        <Bandwidth>128000</Bandwidth>
+        <MaxBandwidth>223600</MaxBandwidth>
+      </Codec>
+      <ConversationalMOS>2</ConversationalMOS>
+      <PacketUtilization>30152</PacketUtilization>
+      <JitterInterArrival>1</JitterInterArrival>
+      <JitterInterArrivalMax>2</JitterInterArrivalMax>
+      <RoundTrip>1</RoundTrip>
+      <RoundTripMax>3</RoundTripMax>
+      <DegradationAvg>0.006066799</DegradationAvg>
+      <RatioConcealedSamplesAvg>0.0002279475</RatioConcealedSamplesAvg>
+      <RecvNoiseLevel>-58</RecvNoiseLevel>
+      <RecvSignalLevel>-19</RecvSignalLevel>
+      <DegradationMax>0.01592016</DegradationMax>
+      <RecvListenMOSMin>1.11</RecvListenMOSMin>
+      <RecvListenMOS>2.58</RecvListenMOS>
+      <OverallMinNetworkMOS>4.28408</OverallMinNetworkMOS>
+      <OverallAvgNetworkMOS>4.293933</OverallAvgNetworkMOS>
+      <AppliedBandwidthLimit>150800</AppliedBandwidthLimit>
+      <RenderDevice>Speakers (Logitech USB Headset)</RenderDevice>
+      <RenderDeviceDriver>Microsoft: 6.1.7601.18208</RenderDeviceDriver>
+      <AudioTimestampErrorSpkMs>0.01933713</AudioTimestampErrorSpkMs>
+    </Properties>
+  </QualityUpdate>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>0a9560b03d8241728af7f056440c3857</CallId>
+    <CSEQ>1</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T15:05:12.8745170+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Ended Type="audio">
+    <From>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <IP>10.116.1.31</IP>
+      <Port>31526</Port>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </From>
+    <To>
+      <Id>746396742</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>50518</Port>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </To>
+    <Properties>
+      <MSDiagnostics>7035;source="frontend1.lync2013.local";reason="User removed due to conference ending";component="Audio Video Conferencing Server"</MSDiagnostics>
+      <MSDiagnosticsPublic>7035;reason="User removed due to conference ending";component="Audio Video Conferencing Server"</MSDiagnosticsPublic>
+    </Properties>
+  </Ended>
+  <Ended Type="audio">
+    <From>
+      <Id>746396742</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>50518</Port>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </From>
+    <To>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <IP>10.116.1.31</IP>
+      <Port>31526</Port>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </To>
+    <Properties>
+      <MSDiagnostics>7035;source="frontend1.lync2013.local";reason="User removed due to conference ending";component="Audio Video Conferencing Server"</MSDiagnostics>
+      <MSDiagnosticsPublic>7035;reason="User removed due to conference ending";component="Audio Video Conferencing Server"</MSDiagnosticsPublic>
+    </Properties>
+  </Ended>
+  <Bye>
+    <EndPoint>
+      <Id>746396742</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </EndPoint>
+    <EndPoint>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </EndPoint>
+  </Bye>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>15bed3115415497395eb3e9c8679fc8e</CallId>
+    <CSEQ>1</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T15:05:12.8686550+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Ended Type="audio">
+    <From>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <IP>10.110.1.23</IP>
+      <Port>4458</Port>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </From>
+    <To>
+      <Id>b4ae1ad713</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>53526</Port>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </To>
+    <Properties>
+      <MSDiagnostics>7035;source="frontend1.lync2013.local";reason="User removed due to conference ending";component="Audio Video Conferencing Server"</MSDiagnostics>
+      <MSDiagnosticsPublic>7035;reason="User removed due to conference ending";component="Audio Video Conferencing Server"</MSDiagnosticsPublic>
+    </Properties>
+  </Ended>
+  <Ended Type="audio">
+    <From>
+      <Id>b4ae1ad713</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>53526</Port>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </From>
+    <To>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <IP>10.110.1.23</IP>
+      <Port>4458</Port>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </To>
+    <Properties>
+      <MSDiagnostics>7035;source="frontend1.lync2013.local";reason="User removed due to conference ending";component="Audio Video Conferencing Server"</MSDiagnostics>
+      <MSDiagnosticsPublic>7035;reason="User removed due to conference ending";component="Audio Video Conferencing Server"</MSDiagnosticsPublic>
+    </Properties>
+  </Ended>
+  <Bye>
+    <EndPoint>
+      <Id>b4ae1ad713</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </EndPoint>
+    <EndPoint>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </EndPoint>
+  </Bye>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>0a9560b03d8241728af7f056440c3857</CallId>
+    <CSEQ>5</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T15:05:13.0112970+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Ended Type="audio">
+    <From>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <IP>10.116.1.31</IP>
+      <Port>31526</Port>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </From>
+    <To>
+      <Id>746396742</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>50518</Port>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </To>
+    <Properties>
+      <MSDiagnosticsClient>51004; reason="Action initiated by user";UserType="Callee";MediaType="audio";ICEWarn="0x0";LocalSite="10.116.1.31:31526";LocalMR="10.111.1.192:58199";RemoteSite="10.102.70.3:54057";RemoteMR="10.111.1.192:52559";PortRange="1025:65000";LocalMRTCPPort="56926";RemoteMRTCPPort="52559";LocalLocation="2";RemoteLocation="2";FederationType="0";NetworkName="ir.local";Interfaces="0x2";BaseInterface="0x2";BaseAddress="10.116.1.31:3258";Protocol="0";LocalInterface="0x2";LocalAddrType="0";LocalAddress="10.116.1.31:31526";RemoteAddress="10.102.70.3:50518";RemoteAddrType="0";MrDnsE="av.lync2013.com";MrResE="0";MrDnsI="edgepool1.lync2013.local";MrResI="1"</MSDiagnosticsClient>
+    </Properties>
+  </Ended>
+  <Ended Type="audio">
+    <From>
+      <Id>746396742</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>50518</Port>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </From>
+    <To>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <IP>10.116.1.31</IP>
+      <Port>31526</Port>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </To>
+    <Properties>
+      <MSDiagnosticsClient>51004; reason="Action initiated by user";UserType="Callee";MediaType="audio";ICEWarn="0x0";LocalSite="10.116.1.31:31526";LocalMR="10.111.1.192:58199";RemoteSite="10.102.70.3:54057";RemoteMR="10.111.1.192:52559";PortRange="1025:65000";LocalMRTCPPort="56926";RemoteMRTCPPort="52559";LocalLocation="2";RemoteLocation="2";FederationType="0";NetworkName="ir.local";Interfaces="0x2";BaseInterface="0x2";BaseAddress="10.116.1.31:3258";Protocol="0";LocalInterface="0x2";LocalAddrType="0";LocalAddress="10.116.1.31:31526";RemoteAddress="10.102.70.3:50518";RemoteAddrType="0";MrDnsE="av.lync2013.com";MrResE="0";MrDnsI="edgepool1.lync2013.local";MrResI="1"</MSDiagnosticsClient>
+    </Properties>
+  </Ended>
+  <Bye>
+    <EndPoint>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </EndPoint>
+    <EndPoint>
+      <Id>746396742</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </EndPoint>
+  </Bye>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>15bed3115415497395eb3e9c8679fc8e</CallId>
+    <CSEQ>5</CSEQ>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T15:05:13.0562390+10:00</TimeStamp>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <Ended Type="audio">
+    <From>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <IP>10.110.1.23</IP>
+      <Port>4458</Port>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </From>
+    <To>
+      <Id>b4ae1ad713</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>53526</Port>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </To>
+    <Properties>
+      <MSDiagnosticsClient>51004; reason="Action initiated by user";UserType="Callee";MediaType="audio";ICEWarn="0x0";ICEWarnEx="0x0";LocalSite="10.110.1.23:4458";LocalMR="10.111.1.192:59260";RemoteSite="10.102.70.3:56388";RemoteMR="10.111.1.192:55209";PortRange="1025:65000";LocalMRTCPPort="55226";RemoteMRTCPPort="55209";LocalLocation="1";RemoteLocation="2";FederationType="0";NetworkName="ir.local";Interfaces="0x2";BaseInterface="0x2";BaseAddress="10.110.1.23:26040";Protocol="0";LocalInterface="0x2";LocalAddrType="0";LocalAddress="10.110.1.23:4458";RemoteAddress="10.102.70.3:53526";RemoteAddrType="0";IceRole="1";RtpRtcpMux="0";MediaDllVersion="5.0.8687.135";MrDnsE="av.lync2013.com";MrResE="0";MrDnsI="edgepool1.lync2013.local";MrResI="1";MrDnsCacheReadAttempt="0"</MSDiagnosticsClient>
+    </Properties>
+  </Ended>
+  <Ended Type="audio">
+    <From>
+      <Id>b4ae1ad713</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>53526</Port>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </From>
+    <To>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <IP>10.110.1.23</IP>
+      <Port>4458</Port>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </To>
+    <Properties>
+      <MSDiagnosticsClient>51004; reason="Action initiated by user";UserType="Callee";MediaType="audio";ICEWarn="0x0";ICEWarnEx="0x0";LocalSite="10.110.1.23:4458";LocalMR="10.111.1.192:59260";RemoteSite="10.102.70.3:56388";RemoteMR="10.111.1.192:55209";PortRange="1025:65000";LocalMRTCPPort="55226";RemoteMRTCPPort="55209";LocalLocation="1";RemoteLocation="2";FederationType="0";NetworkName="ir.local";Interfaces="0x2";BaseInterface="0x2";BaseAddress="10.110.1.23:26040";Protocol="0";LocalInterface="0x2";LocalAddrType="0";LocalAddress="10.110.1.23:4458";RemoteAddress="10.102.70.3:53526";RemoteAddrType="0";IceRole="1";RtpRtcpMux="0";MediaDllVersion="5.0.8687.135";MrDnsE="av.lync2013.com";MrResE="0";MrDnsI="edgepool1.lync2013.local";MrResI="1";MrDnsCacheReadAttempt="0"</MSDiagnosticsClient>
+    </Properties>
+  </Ended>
+  <Bye>
+    <EndPoint>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <IncallEnabled>true</IncallEnabled>
+    </EndPoint>
+    <EndPoint>
+      <Id>b4ae1ad713</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU</UserAgent>
+      <IncallEnabled>false</IncallEnabled>
+    </EndPoint>
+  </Bye>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>0a9560b03d8241728af7f056440c3857</CallId>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T05:05:13.1079832Z</TimeStamp>
+    <Connectivity>DIRECT</Connectivity>
+    <StartTime>2015-08-21T04:38:47.0370Z</StartTime>
+    <EndTime>2015-08-21T05:05:12.0180Z</EndTime>
+    <ConferenceURI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</ConferenceURI>
+    <MediaBypass>false</MediaBypass>
+    <MediationServerLegPosition>BeforeMedServer</MediationServerLegPosition>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <QualityUpdate Type="audio">
+    <From>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <IP>10.116.1.31</IP>
+      <Port>31526</Port>
+      <Inside>true</Inside>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <OS>Windows 6.2.9200 SP: 0.0 Type: 3 (Server) Suite: 0000000000000110 Arch: x64 WOW64: False</OS>
+      <CPUName>Intel(R) Xeon(R) CPU           W3520  @ 2.67GHz</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>2667</CPUProcessorSpeed>
+      <Virtualization>HyperV</Virtualization>
+      <MACAddr>00-0C-29-67-E2-59</MACAddr>
+      <LinkSpeed>1000000000</LinkSpeed>
+    </From>
+    <To>
+      <Id>746396742</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>50518</Port>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU/5.0.8308.0</UserAgent>
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 3 (Server) Suite: 0000000000000190 Arch: x64 WOW64: False</OS>
+      <CPUName>CPU Brand GenuineIntel Family 0x6 Model 0x2d EM64T MaxFunc 0xd MaxFuncExt 0x80000008</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>1999</CPUProcessorSpeed>
+      <Virtualization>HyperV</Virtualization>
+      <MACAddr>00-15-5D-01-05-06</MACAddr>
+      <LinkSpeed>4.2949673E+09</LinkSpeed>
+    </To>
+    <Properties>
+      <StreamQuality>Good</StreamQuality>
+      <Protocol>UDP</Protocol>
+      <Codec Name="G722/16000">
+        <Bandwidth>128000</Bandwidth>
+        <MaxBandwidth>223600</MaxBandwidth>
+      </Codec>
+      <PacketUtilization>12688</PacketUtilization>
+      <JitterInterArrival>2</JitterInterArrival>
+      <JitterInterArrivalMax>6</JitterInterArrivalMax>
+      <RoundTripMax>5</RoundTripMax>
+      <HealerPacketDropRatio>0.001025075</HealerPacketDropRatio>
+      <RatioConcealedSamplesAvg>0.001599334</RatioConcealedSamplesAvg>
+      <EchoPercentMicIn>84.19724</EchoPercentMicIn>
+      <EchoPercentSend>13.391</EchoPercentSend>
+      <BurstGapDuration>8120</BurstGapDuration>
+      <SendListenMOSMin>1</SendListenMOSMin>
+      <SendListenMOS>1.64</SendListenMOS>
+      <OverallMinNetworkMOS>3.75</OverallMinNetworkMOS>
+      <OverallAvgNetworkMOS>3.75</OverallAvgNetworkMOS>
+      <RelativeOneWayAverage>0.008044978</RelativeOneWayAverage>
+      <AppliedBandwidthLimit>150800</AppliedBandwidthLimit>
+      <CaptureDevice>Microphone (High Definition Audio Device)</CaptureDevice>
+      <CaptureDeviceDriver>Microsoft: 6.3.9600.16384</CaptureDeviceDriver>
+      <MicGlitchRate>2</MicGlitchRate>
+      <AudioTimestampErrorMicMs>0.2661549</AudioTimestampErrorMicMs>
+    </Properties>
+    <Route>
+      <Hop>10.116.1.1</Hop>
+      <Hop>10.102.70.3</Hop>
+    </Route>
+  </QualityUpdate>
+  <QualityUpdate Type="audio">
+    <From>
+      <Id>746396742</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>50518</Port>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU/5.0.8308.0</UserAgent>
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 3 (Server) Suite: 0000000000000190 Arch: x64 WOW64: False</OS>
+      <CPUName>CPU Brand GenuineIntel Family 0x6 Model 0x2d EM64T MaxFunc 0xd MaxFuncExt 0x80000008</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>1999</CPUProcessorSpeed>
+      <Virtualization>HyperV</Virtualization>
+      <MACAddr>00-15-5D-01-05-06</MACAddr>
+      <LinkSpeed>4.2949673E+09</LinkSpeed>
+    </From>
+    <To>
+      <Id>536c3b054d</Id>
+      <EPId>53203e0469</EPId>
+      <URI>sip:tomislavp@lync2013.local</URI>
+      <Contact>sip:tomislavp@lync2013.local;opaque=user:epid:7mmBqZRm3l69Gz8QIr83qwAA;gruu</Contact>
+      <IP>10.116.1.31</IP>
+      <Port>31526</Port>
+      <Inside>true</Inside>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>UCCAPI/15.0.4701.1000 OC/15.0.4701.1000 (Microsoft Lync)</UserAgent>
+      <OS>Windows 6.2.9200 SP: 0.0 Type: 3 (Server) Suite: 0000000000000110 Arch: x64 WOW64: False</OS>
+      <CPUName>Intel(R) Xeon(R) CPU           W3520  @ 2.67GHz</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>2667</CPUProcessorSpeed>
+      <Virtualization>HyperV</Virtualization>
+      <MACAddr>00-0C-29-67-E2-59</MACAddr>
+      <LinkSpeed>1000000000</LinkSpeed>
+    </To>
+    <Properties>
+      <StreamQuality>Good</StreamQuality>
+      <Protocol>UDP</Protocol>
+      <Codec Name="G722/16000">
+        <Bandwidth>128000</Bandwidth>
+        <MaxBandwidth>223600</MaxBandwidth>
+      </Codec>
+      <ConversationalMOS>2</ConversationalMOS>
+      <PacketUtilization>77197</PacketUtilization>
+      <PacketLossRate>5.182891E-005</PacketLossRate>
+      <PacketLossRateMax>0.01904762</PacketLossRateMax>
+      <JitterInterArrival>1</JitterInterArrival>
+      <JitterInterArrivalMax>5</JitterInterArrivalMax>
+      <RoundTrip>1</RoundTrip>
+      <RoundTripMax>17</RoundTripMax>
+      <HealerPacketDropRatio>0.002</HealerPacketDropRatio>
+      <RatioConcealedSamplesAvg>0.0002768785</RatioConcealedSamplesAvg>
+      <RecvNoiseLevel>-49</RecvNoiseLevel>
+      <RecvSignalLevel>-21</RecvSignalLevel>
+      <BurstDuration>80</BurstDuration>
+      <BurstDensity>10000</BurstDensity>
+      <BurstGapDuration>771120</BurstGapDuration>
+      <DegradationMax>0.41</DegradationMax>
+      <RecvListenMOSMin>1</RecvListenMOSMin>
+      <RecvListenMOS>2.91</RecvListenMOS>
+      <OverallMinNetworkMOS>3.88</OverallMinNetworkMOS>
+      <OverallAvgNetworkMOS>4.29</OverallAvgNetworkMOS>
+      <RelativeOneWayAverage>0.004548717</RelativeOneWayAverage>
+      <AppliedBandwidthLimit>150800</AppliedBandwidthLimit>
+      <SpeakerGlitchRate>4</SpeakerGlitchRate>
+      <RenderDevice>Speakers (High Definition Audio Device)</RenderDevice>
+      <RenderDeviceDriver>Microsoft: 6.3.9600.16384</RenderDeviceDriver>
+      <AudioTimestampErrorSpkMs>0.2782821</AudioTimestampErrorSpkMs>
+    </Properties>
+  </QualityUpdate>
+</LyncDiagnostics>
+
+<LyncDiagnostics Version="C">
+  <ConnectionInfo>
+    <CallId>15bed3115415497395eb3e9c8679fc8e</CallId>
+    <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
+    <ConferenceId>YSS9F2TL</ConferenceId>
+    <TimeStamp>2015-08-21T05:05:13.1235841Z</TimeStamp>
+    <Connectivity>DIRECT</Connectivity>
+    <StartTime>2015-08-21T04:38:37.0414Z</StartTime>
+    <EndTime>2015-08-21T05:05:13.0136Z</EndTime>
+    <ConferenceURI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</ConferenceURI>
+    <MediaBypass>false</MediaBypass>
+    <MediationServerLegPosition>BeforeMedServer</MediationServerLegPosition>
+    <SourcePool>pool1.lync2013.local</SourcePool>
+  </ConnectionInfo>
+  <QualityUpdate Type="audio">
+    <From>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <IP>10.110.1.23</IP>
+      <Port>4458</Port>
+      <Inside>false</Inside>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 1(Workstation) Suite: 0000000000000100 Arch: x64 WOW64: False</OS>
+      <CPUName>Intel(R) Xeon(R) CPU           W3520  @ 2.67GHz</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>2666</CPUProcessorSpeed>
+      <MACAddr>18-A9-05-16-0C-90</MACAddr>
+      <LinkSpeed>1000000000</LinkSpeed>
+    </From>
+    <To>
+      <Id>b4ae1ad713</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>53526</Port>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU/5.0.8308.0</UserAgent>
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 3 (Server) Suite: 0000000000000190 Arch: x64 WOW64: False</OS>
+      <CPUName>CPU Brand GenuineIntel Family 0x6 Model 0x2d EM64T MaxFunc 0xd MaxFuncExt 0x80000008</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>1999</CPUProcessorSpeed>
+      <Virtualization>HyperV</Virtualization>
+      <MACAddr>00-15-5D-01-05-06</MACAddr>
+      <LinkSpeed>4.2949673E+09</LinkSpeed>
+    </To>
+    <Properties>
+      <StreamQuality>Good</StreamQuality>
+      <Protocol>UDP</Protocol>
+      <Codec Name="G722/16000">
+        <Bandwidth>128000</Bandwidth>
+        <MaxBandwidth>223600</MaxBandwidth>
+      </Codec>
+      <PacketUtilization>72099</PacketUtilization>
+      <JitterInterArrival>1</JitterInterArrival>
+      <JitterInterArrivalMax>2</JitterInterArrivalMax>
+      <RoundTripMax>4</RoundTripMax>
+      <HealerPacketDropRatio>0.0004733333</HealerPacketDropRatio>
+      <RatioConcealedSamplesAvg>0.0001520943</RatioConcealedSamplesAvg>
+      <EchoPercentMicIn>2.37464</EchoPercentMicIn>
+      <EchoPercentSend>0.1882805</EchoPercentSend>
+      <BurstGapDuration>1439800</BurstGapDuration>
+      <DegradationMax>0.25</DegradationMax>
+      <SendListenMOSMin>1.48</SendListenMOSMin>
+      <SendListenMOS>3.11</SendListenMOS>
+      <OverallMinNetworkMOS>4.04</OverallMinNetworkMOS>
+      <OverallAvgNetworkMOS>4.28</OverallAvgNetworkMOS>
+      <RelativeOneWayAverage>0.009859244</RelativeOneWayAverage>
+      <AppliedBandwidthLimit>150800</AppliedBandwidthLimit>
+      <CaptureDevice>Microphone (2- Logitech USB Headset)</CaptureDevice>
+      <CaptureDeviceDriver>Microsoft: 6.1.7601.18208</CaptureDeviceDriver>
+      <AudioTimestampErrorMicMs>0.01776684</AudioTimestampErrorMicMs>
+    </Properties>
+    <Route>
+      <Hop>10.110.1.1</Hop>
+      <Hop>10.102.70.3</Hop>
+    </Route>
+  </QualityUpdate>
+  <QualityUpdate Type="audio">
+    <From>
+      <Id>b4ae1ad713</Id>
+      <EPId>2BCB998537</EPId>
+      <URI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</URI>
+      <Contact>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</Contact>
+      <IP>10.102.70.3</IP>
+      <Port>53526</Port>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>RTCC/5.0.0.0 AV-MCU/5.0.8308.0</UserAgent>
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 3 (Server) Suite: 0000000000000190 Arch: x64 WOW64: False</OS>
+      <CPUName>CPU Brand GenuineIntel Family 0x6 Model 0x2d EM64T MaxFunc 0xd MaxFuncExt 0x80000008</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>1999</CPUProcessorSpeed>
+      <Virtualization>HyperV</Virtualization>
+      <MACAddr>00-15-5D-01-05-06</MACAddr>
+      <LinkSpeed>4.2949673E+09</LinkSpeed>
+    </From>
+    <To>
+      <Id>e04f67534f</Id>
+      <EPId>8c4886b792</EPId>
+      <URI>sip:rickytest1@lync2013.local</URI>
+      <Contact>sip:rickytest1@lync2013.local;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+      <IP>10.110.1.23</IP>
+      <Port>4458</Port>
+      <Inside>false</Inside>
+      <VPN>false</VPN>
+      <Connection>Ethernet</Connection>
+      <UserAgent>UCCAPI/15.0.4727.1001 OC/15.0.4727.1001 (Skype for Business)</UserAgent>
+      <OS>Windows 6.1.7601 SP: 1.0 Type: 1(Workstation) Suite: 0000000000000100 Arch: x64 WOW64: False</OS>
+      <CPUName>Intel(R) Xeon(R) CPU           W3520  @ 2.67GHz</CPUName>
+      <CPUNumberOfCores>4</CPUNumberOfCores>
+      <CPUProcessorSpeed>2666</CPUProcessorSpeed>
+      <MACAddr>18-A9-05-16-0C-90</MACAddr>
+      <LinkSpeed>1000000000</LinkSpeed>
+    </To>
+    <Properties>
+      <StreamQuality>Good</StreamQuality>
+      <Protocol>UDP</Protocol>
+      <Codec Name="G722/16000">
+        <Bandwidth>128000</Bandwidth>
+        <MaxBandwidth>223600</MaxBandwidth>
+      </Codec>
+      <ConversationalMOS>2</ConversationalMOS>
+      <PacketUtilization>44693</PacketUtilization>
+      <JitterInterArrival>1</JitterInterArrival>
+      <JitterInterArrivalMax>2</JitterInterArrivalMax>
+      <RoundTrip>1</RoundTrip>
+      <RoundTripMax>5</RoundTripMax>
+      <DegradationAvg>0.006177902</DegradationAvg>
+      <RatioConcealedSamplesAvg>0.0001950245</RatioConcealedSamplesAvg>
+      <RecvNoiseLevel>-46</RecvNoiseLevel>
+      <RecvSignalLevel>-23</RecvSignalLevel>
+      <DegradationMax>0.006326675</DegradationMax>
+      <RecvListenMOSMin>1</RecvListenMOSMin>
+      <RecvListenMOS>1.88</RecvListenMOS>
+      <OverallMinNetworkMOS>4.293674</OverallMinNetworkMOS>
+      <OverallAvgNetworkMOS>4.293822</OverallAvgNetworkMOS>
+      <RelativeOneWayAverage>0.001</RelativeOneWayAverage>
+      <AppliedBandwidthLimit>150800</AppliedBandwidthLimit>
+      <RenderDevice>Speakers (2- Logitech USB Headset)</RenderDevice>
+      <RenderDeviceDriver>Microsoft: 6.1.7601.18208</RenderDeviceDriver>
+      <AudioTimestampErrorSpkMs>0.01836878</AudioTimestampErrorSpkMs>
+    </Properties>
+  </QualityUpdate>
+</LyncDiagnostics>
+    </MockMessages>
+</Mocker>

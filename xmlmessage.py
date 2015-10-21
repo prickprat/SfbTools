@@ -78,11 +78,12 @@ class XmlMessage(metaclass=abc.ABCMeta):
 
         Parameters:
         encoding    -   'us-ascii' returns a byte string. [default]
-                        'unicode' returns a unicode string.
+                        'utf-8' returns a unicode string.
         """
         try:
-            out_str = ET.tostring(self.root, encoding=encoding)
-            return re.sub(rb'( xmlns="[^"]+"| xmlns:xsi="[^"]+")', rb'', out_str)
+            out_bytes = ET.tostring(self.root, encoding="us-ascii")
+            out_bytes = re.sub(rb'( xmlns="[^"]+"| xmlns:xsi="[^"]+")', rb'', out_bytes)
+            return out_bytes.decode(encoding)
         except LookupError as e:
             logging.error("LookupError: " + str(e))
             raise ValueError("Encoding parameter must be either 'us-ascii' or 'unicode'.")
