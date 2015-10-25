@@ -42,6 +42,9 @@ def parse_sys_args():
     Extracts SDN messages from clean log files to a single output file.
     Users can filter SDN messages based on specific Call Ids or Conference Ids, or both.
 
+    When both conference ids and call ids are specified, then any sdn messages with either ids
+    will be included in the extraction.
+
     **NB: Raw IRLYNC log files should be cleaned with the SDN Log Cleaner Tool first.**
 
     """)

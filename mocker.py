@@ -171,9 +171,21 @@ def main():
     odbc_config = None
     if args.sdn_config is not None:
         sdn_config = process_dict_arg(args.sdn_config)
+        sdn_version = sdn_config.get('version', '2.1.1')
     if args.odbc_config is not None:
         odbc_config = process_dict_arg(args.odbc_config)
 
+    # Use correct schema for SDN version
+    mocker_xsd_path = './schemas/Mocker.Schema.C.xsd'
+    if sdn_version == '2.2':
+        mocker_xsd_path = './schemas/Mocker.Schema.D.xsd'
+
+    print('SDN VERSION:', sdn_version)
+
+    # Valide Mock Test against the XML Schema
+    validate_mock_test(args.infile, mocker_xsd_path)
+
+    # Run the Mocker
     run_mocker(args.infile, sdn_config, odbc_config)
 
 
@@ -208,10 +220,20 @@ def process_dict_arg(arg_str):
 
 
 def validate_mock_test(mock_file_path, mocker_xsd_path):
-    mock_test = ET.parse(mock_file_path)
+    # Parse the Mocker Test
+    try:
+        mock_test = ET.parse(mock_file_path)
+    except ET.ParseError as e:
+        logging.error("ParseError whilst parsing mock file : " + str(e))
+        raise ValueError("Invalid Mocker Test XML Format.")
+
     mocker_schema_doc = ET.parse(mocker_xsd_path)
     mocker_schema = ET.XMLSchema(mocker_schema_doc)
-    return mocker_schema.validate(mock_test)
+    try:
+        mocker_schema.assertValid(mock_test)
+    except ET.DocumentInvalid as e:
+        logging.error("Document Invalid Error: " + str(e))
+        raise ValueError("Failed Mocker Test Validation. Check the SDN Version or error log.")
 
 
 def extract_mock_messages(mock_test, default_ns):
@@ -244,16 +266,7 @@ def update_message_timestamp(mock_messages):
 
 
 def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
-    # Parse the Mocker Test
-    try:
-        mock_test = ET.parse(mock_file_path)
-    except ET.ParseError as e:
-        logging.error("ParseError whilst parsing mock file : " + str(e))
-        raise ValueError("Invalid Mocker Test Format.")
-
-    # Validate the Mocker Test
-    if not validate_mock_test(mock_file_path, './schemas/Mocker.Schema.xsd'):
-        raise ValueError("Failed Mocker Test Validation.")
+    mock_test = ET.parse(mock_file_path)
 
     default_ns = mock_test.getroot().nsmap.get(None, '')
     test_config_elem = mock_test.find('./{{{0}}}MockerConfiguration'.format(default_ns))
@@ -305,13 +318,16 @@ def parse_sys_args():
                                          description="""
     Skype for Business Mocker Tool.
 
-    This tool replicates the Skype SDN 2.1 API and SQL Agent using user defined Mock Messages.
-    Each 'Mocker Test' is an XML document representing a test scenario. It contains configurations
-    and Mock Messages sent to either the SDN receiver or SQL database.
+    This tool is designed to replay a Conference or Call by sending pre-defined
+    SDN messages directly to a receiver, and replaying predefined insert/delete
+    statements against the SQL database.
 
-    These Mock Messages are replayed using parametrised SDN and ODBC configurations.
+    The tool requires a pre-defined 'Mocker Test' as an input file and configurations
+    for the SDN receiver and ODBC connection as parameters.
 
-    Details below.
+    Each 'Mocker Test' is an XML document representing a test scenario.
+    It contains test configurations and Mock Messages sent to either
+    the SDN receiver or the database. Details below.
 
     --------------------------Mock Test File--------------------------
 
@@ -370,8 +386,11 @@ def parse_sys_args():
 
     The following SDN parameters are supported :
         receiver    -   Target URL for the http/https listener
+        version     -   The SDN API version of the mock messages.
+                        Optional. Default version is 2.1.1
 
-        e.g. --sdn-config "{ 'receiver': 'https://127.0.0.1:3000/SdnApiReceiver/site' }"
+        e.g. --sdn-config "{ 'receiver': 'https://127.0.0.1:3000/SdnApiReceiver/site',
+                             'version' : '2.2' }"
 
     -------------------ODBC Configuration -----------------------------
 

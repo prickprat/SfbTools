@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema xmlns="http://www.ir.com/Mocker"
+targetNamespace="http://www.ir.com/Mocker"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+elementFormDefault="qualified">
+
+<xs:include schemaLocation="SDNInterface.Schema.D.xsd"/>
+
+<!-- Definition of Types -->
+
+<xs:complexType name="MockerConfigurationType">
+    <xs:all>
+        <xs:element name="MaxDelay" type="xs:nonNegativeInteger"/>
+        <xs:element name="RealTime" type="xs:boolean"/>
+        <xs:element name="CurrentTime" type="xs:boolean"/>
+    </xs:all>
+</xs:complexType>
+
+<xs:complexType name="SqlQueryMessageType">
+    <xs:sequence>
+        <xs:element name="TimeStamp" type="xs:dateTime"/>
+        <xs:element name="Query" type="xs:string"/>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="MockMessagesType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SqlQueryMessage" type="SqlQueryMessageType"/>
+        <xs:element name="LyncDiagnostics" type="MessageType"/>
+    </xs:choice>
+</xs:complexType>
+
+<xs:complexType name="MockerType">
+    <xs:sequence>
+        <xs:element minOccurs="0" name="Description" type="xs:string"/>
+        <xs:element name="MockerConfiguration" type="MockerConfigurationType"/>
+        <xs:element name="MockMessages" type="MockMessagesType"/>
+    </xs:sequence>
+</xs:complexType>
+
+<!-- Definition of Elements -->
+
+<xs:element name="Mocker" type="MockerType"/>
+
+</xs:schema>

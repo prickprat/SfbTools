@@ -3,12 +3,12 @@
 <!-- Copyright (c) Microsoft. All rights reserved. -->
 
 <xs:schema xmlns="http://www.ir.com/Mocker"
-targetNamespace="http://www.ir.com/Mocker"
-attributeFormDefault="unqualified"
-elementFormDefault="qualified"
-xmlns:xs="http://www.w3.org/2001/XMLSchema"
-version="C">
-<!-- Website containing more docu about the QoE metrics used here http://technet.microsoft.com/en-us/library/gg425961.aspx -->
+  targetNamespace="http://www.ir.com/Mocker"
+  attributeFormDefault="unqualified"
+  elementFormDefault="qualified"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  version="C">
+  <!-- Website containing more docu about the QoE metrics used here http://technet.microsoft.com/en-us/library/gg425961.aspx -->
 
   <xs:complexType name="CodecType">
     <xs:sequence>

@@ -1,0 +1,653 @@
+<?xml version="1.0"?>
+<Mocker xmlns="http://www.ir.com/Mocker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ir.com/Mocker ../schemas/Mocker.Schema.xsd">
+  <MockerConfiguration>
+    <MaxDelay>3</MaxDelay>
+    <RealTime>false</RealTime>
+    <CurrentTime>true</CurrentTime>
+  </MockerConfiguration>
+  <MockMessages>
+    <LyncDiagnostics Version="D">
+      <ConnectionInfo>
+        <CallId>5b52a6e6c1f34298beb567e7acfb6cd0</CallId>
+        <CSEQ>1</CSEQ>
+        <ConversationId>AdEN9QfcWHOpg/roSCqIvC9u+haphQ==</ConversationId>
+        <TimeStamp>2015-10-24T11:43:49.8538147+11:00</TimeStamp>
+        <SourcePool>qlyfe01.lynca.dev</SourcePool>
+        <FrontEnds>qlyfe01.lynca.dev</FrontEnds>
+        <Pools>qlyfe01.lynca.dev</Pools>
+      </ConnectionInfo>
+      <Invite>
+        <Caller>
+          <Id>60679f50b0</Id>
+          <EPId>f07bc83406</EPId>
+          <URI>sip:q2site1@lynca.dev</URI>
+          <Contact>sip:q2site1@lynca.dev;opaque=user:epid:uC4vgtI1lFyTEt4qWNfJdgAA;gruu</Contact>
+          <UserAgent Type="4">UCCAPI/15.0.4763.1001 OC/15.0.4763.1001 (Skype for Business)</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+          <Wireless>false</Wireless>
+          <PAI>sip:q2site1@lynca.dev,tel:+11919991402;ext=1402</PAI>
+        </Caller>
+        <Callee>
+          <URI>sip:q1site1@lynca.dev</URI>
+        </Callee>
+      </Invite>
+      <RawSDP>------=_NextPart_000_14C5_01D10E51.3FB23B00
+    Content-Type: application/sdp
+    Content-Transfer-Encoding: 7bit
+    Content-ID: &lt;abd6e72514cc21c7940edd92f97cb68c@lynca.dev&gt;
+    Content-Disposition: session; handling=optional; ms-proxy-2007fallback
+    v=0
+    o=- 0 0 IN IP4 10.116.1.64
+    s=session
+    c=IN IP4 10.116.1.64
+    b=CT:99980
+    t=0 0
+    m=audio 16174 RTP/AVP 117 104 114 9 112 111 0 103 8 116 115 97 13 118 101
+    a=candidate:yJtUW4L9Sj/mxym59TLSIrkGwmZW3HjFe3B06ezQUiw 1 ucK0bQWracLD7BfP2qtrvA UDP 0.830 192.168.163.1 17500 
+    a=candidate:yJtUW4L9Sj/mxym59TLSIrkGwmZW3HjFe3B06ezQUiw 2 ucK0bQWracLD7BfP2qtrvA UDP 0.830 192.168.163.1 17501 
+    a=candidate:GRGf1d0ceUTCSa2ao9NvVaWyVxpQEmvRR2yypVH5/Po 1 rJoxXVDkWqpCSdltQmyRMA UDP 0.840 192.168.80.1 27008 
+    a=candidate:GRGf1d0ceUTCSa2ao9NvVaWyVxpQEmvRR2yypVH5/Po 2 rJoxXVDkWqpCSdltQmyRMA UDP 0.840 192.168.80.1 27009 
+    a=candidate:ftCL5ep6k+usgOcTMWm14hCKIWUh9kJ3W4P0XImuxzQ 1 +ekO54S0+BT9/U0h5skxgA UDP 0.850 10.116.1.64 16174 
+    a=candidate:ftCL5ep6k+usgOcTMWm14hCKIWUh9kJ3W4P0XImuxzQ 2 +ekO54S0+BT9/U0h5skxgA UDP 0.850 10.116.1.64 16175 
+    a=maxptime:200
+    a=rtpmap:117 G722/8000/2
+    a=rtpmap:104 SILK/16000
+    a=fmtp:104 useinbandfec=1; usedtx=0
+    a=rtpmap:114 x-msrta/16000
+    a=fmtp:114 bitrate=29000
+    a=rtpmap:9 G722/8000
+    a=rtpmap:112 G7221/16000
+    a=fmtp:112 bitrate=24000
+    a=rtpmap:111 SIREN/16000
+    a=fmtp:111 bitrate=16000
+    a=rtpmap:0 PCMU/8000
+    a=rtpmap:103 SILK/8000
+    a=fmtp:103 useinbandfec=1; usedtx=0
+    a=rtpmap:8 PCMA/8000
+    a=rtpmap:116 AAL2-G726-32/8000
+    a=rtpmap:115 x-msrta/8000
+    a=fmtp:115 bitrate=11800
+    a=rtpmap:97 RED/8000
+    a=rtpmap:13 CN/8000
+    a=rtpmap:118 CN/16000
+    a=rtpmap:101 telephone-event/8000
+    a=fmtp:101 0-16
+    a=ptime:20
+    ------=_NextPart_000_14C5_01D10E51.3FB23B00
+    Content-Type: application/sdp
+    Content-Transfer-Encoding: 7bit
+    Content-ID: &lt;bc3d4ca1b6cccaae07ac562d4c52b94a@lynca.dev&gt;
+    Content-Disposition: session; handling=optional
+    v=0
+    o=- 0 1 IN IP4 10.116.1.64
+    s=session
+    c=IN IP4 10.116.1.64
+    b=CT:99980
+    t=0 0
+    a=x-devicecaps:audio:send,recv;video:send,recv
+    m=audio 6728 RTP/AVP 117 104 114 9 112 111 0 103 8 116 115 97 13 118 101
+    a=x-ssrc-range:2029456229-2029456229
+    a=rtcp-fb:* x-message app send:dsh recv:dsh
+    a=rtcp-rsize
+    a=label:main-audio
+    a=x-source:main-audio
+    a=ice-ufrag:huOb
+    a=candidate:1 1 UDP 2130706431 10.116.1.64 6728 typ host 
+    a=candidate:1 2 UDP 2130705918 10.116.1.64 6729 typ host 
+    a=candidate:2 1 UDP 2130705919 192.168.80.1 30486 typ host 
+    a=candidate:2 2 UDP 2130705406 192.168.80.1 30487 typ host 
+    a=candidate:3 1 UDP 2130705407 192.168.163.1 12778 typ host 
+    a=candidate:3 2 UDP 2130704894 192.168.163.1 12779 typ host 
+    a=candidate:4 1 TCP-ACT 1684797951 10.116.1.64 6728 typ srflx raddr 10.116.1.64 rport 6728 
+    a=candidate:4 2 TCP-ACT 1684797438 10.116.1.64 6728 typ srflx raddr 10.116.1.64 rport 6728 
+    a=maxptime:200
+    a=rtcp:6729
+    a=rtpmap:117 G722/8000/2
+    a=rtpmap:104 SILK/16000
+    a=fmtp:104 useinbandfec=1; usedtx=0
+    a=rtpmap:114 x-msrta/16000
+    a=fmtp:114 bitrate=29000
+    a=rtpmap:9 G722/8000
+    a=rtpmap:112 G7221/16000
+    a=fmtp:112 bitrate=24000
+    a=rtpmap:111 SIREN/16000
+    a=fmtp:111 bitrate=16000
+    a=rtpmap:0 PCMU/8000
+    a=rtpmap:103 SILK/8000
+    a=fmtp:103 useinbandfec=1; usedtx=0
+    a=rtpmap:8 PCMA/8000
+    a=rtpmap:116 AAL2-G726-32/8000
+    a=rtpmap:115 x-msrta/8000
+    a=fmtp:115 bitrate=11800
+    a=rtpmap:97 RED/8000
+    a=rtpmap:13 CN/8000
+    a=rtpmap:118 CN/16000
+    a=rtpmap:101 telephone-event/8000
+    a=fmtp:101 0-16
+    a=rtcp-mux
+    a=ptime:20
+    ------=_NextPart_000_14C5_01D10E51.3FB23B00--
+    </RawSDP>
+    </LyncDiagnostics>
+    <LyncDiagnostics Version="D">
+      <ConnectionInfo>
+        <CallId>5b52a6e6c1f34298beb567e7acfb6cd0</CallId>
+        <CSEQ>3</CSEQ>
+        <ConversationId>AdEN9QfcWHOpg/roSCqIvC9u+haphQ==</ConversationId>
+        <TimeStamp>2015-10-24T11:44:02.1616574+11:00</TimeStamp>
+        <SourcePool>qlyfe01.lynca.dev</SourcePool>
+        <FrontEnds>qlyfe01.lynca.dev</FrontEnds>
+        <Pools>qlyfe01.lynca.dev</Pools>
+      </ConnectionInfo>
+      <Invite>
+        <Caller>
+          <Id>60679f50b0</Id>
+          <EPId>f07bc83406</EPId>
+          <URI>sip:q2site1@lynca.dev</URI>
+          <Contact>sip:q2site1@lynca.dev;opaque=user:epid:uC4vgtI1lFyTEt4qWNfJdgAA;gruu</Contact>
+          <UserAgent Type="4">UCCAPI/15.0.4763.1001 OC/15.0.4763.1001 (Skype for Business)</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+          <Wireless>false</Wireless>
+          <PAI>sip:q2site1@lynca.dev,tel:+11919991402;ext=1402</PAI>
+        </Caller>
+        <Callee>
+          <Id>019dba0e68</Id>
+          <EPId>8c4886b792</EPId>
+          <URI>sip:q1site1@lynca.dev</URI>
+        </Callee>
+      </Invite>
+      <RawSDP>v=0
+    o=- 0 2 IN IP4 10.116.1.64
+    s=session
+    c=IN IP4 10.116.1.64
+    b=CT:99980
+    t=0 0
+    a=x-devicecaps:audio:send,recv;video:send,recv
+    m=audio 6728 RTP/SAVP 117 104 114 9 112 111 0 103 8 116 115 97 13 118 101
+    a=x-ssrc-range:2029456229-2029456229
+    a=rtcp-fb:* x-message app send:dsh recv:dsh
+    a=rtcp-rsize
+    a=label:main-audio
+    a=x-source:main-audio
+    a=ice-ufrag:huOb
+    a=candidate:1 1 UDP 2130706431 10.116.1.64 6728 typ host 
+    a=remote-candidates:1 10.110.1.23 10731 2 10.110.1.23 10731
+    a=maxptime:200
+    a=rtpmap:117 G722/8000/2
+    a=rtpmap:104 SILK/16000
+    a=fmtp:104 useinbandfec=1; usedtx=0
+    a=rtpmap:114 x-msrta/16000
+    a=fmtp:114 bitrate=29000
+    a=rtpmap:9 G722/8000
+    a=rtpmap:112 G7221/16000
+    a=fmtp:112 bitrate=24000
+    a=rtpmap:111 SIREN/16000
+    a=fmtp:111 bitrate=16000
+    a=rtpmap:0 PCMU/8000
+    a=rtpmap:103 SILK/8000
+    a=fmtp:103 useinbandfec=1; usedtx=0
+    a=rtpmap:8 PCMA/8000
+    a=rtpmap:116 AAL2-G726-32/8000
+    a=rtpmap:115 x-msrta/8000
+    a=fmtp:115 bitrate=11800
+    a=rtpmap:97 RED/8000
+    a=rtpmap:13 CN/8000
+    a=rtpmap:118 CN/16000
+    a=rtpmap:101 telephone-event/8000
+    a=fmtp:101 0-16
+    a=rtcp-mux
+    a=ptime:20
+    </RawSDP>
+    </LyncDiagnostics>
+    <LyncDiagnostics Version="D">
+      <ConnectionInfo>
+        <CallId>5b52a6e6c1f34298beb567e7acfb6cd0</CallId>
+        <CSEQ>3</CSEQ>
+        <ConversationId>AdEN9QfcWHOpg/roSCqIvC9u+haphQ==</ConversationId>
+        <TimeStamp>2015-10-24T11:44:02.2816772+11:00</TimeStamp>
+        <SourcePool>qlyfe01.lynca.dev</SourcePool>
+        <FrontEnds>qlyfe01.lynca.dev</FrontEnds>
+        <Pools>qlyfe01.lynca.dev</Pools>
+      </ConnectionInfo>
+      <Start Type="audio">
+        <From>
+          <Id>60679f50b0</Id>
+          <EPId>f07bc83406</EPId>
+          <URI>sip:q2site1@lynca.dev</URI>
+          <Contact>sip:q2site1@lynca.dev;opaque=user:epid:uC4vgtI1lFyTEt4qWNfJdgAA;gruu</Contact>
+          <IP>10.116.1.64</IP>
+          <Port>6728</Port>
+          <UserAgent Type="4">UCCAPI/15.0.4763.1001 OC/15.0.4763.1001 (Skype for Business)</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+          <HostIP>10.116.1.64</HostIP>
+          <HostPort>6728</HostPort>
+          <Wireless>false</Wireless>
+          <PAI>sip:q2site1@lynca.dev,tel:+11919991402;ext=1402</PAI>
+        </From>
+        <To>
+          <Id>019dba0e68</Id>
+          <EPId>8c4886b792</EPId>
+          <URI>sip:q1site1@lynca.dev</URI>
+          <Contact>sip:q1site1@lynca.dev;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+          <IP>10.110.1.23</IP>
+          <Port>10731</Port>
+          <UserAgent Type="4">UCCAPI/15.0.4753.1000 OC/15.0.4753.1000 (Skype for Business)</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+          <HostIP>10.110.1.23</HostIP>
+          <HostPort>10731</HostPort>
+          <Wireless>false</Wireless>
+        </To>
+        <Properties>
+          <Protocol>UDP</Protocol>
+          <Bandwidth>
+            <Average>78514</Average>
+            <Maximum>228600</Maximum>
+          </Bandwidth>
+          <Codec Name="G722/8000/2" PayLoadType="117">
+            <Bandwidth>108400</Bandwidth>
+            <MaxBandwidth>228600</MaxBandwidth>
+          </Codec>
+          <Codec Name="SILK/16000" PayLoadType="104">
+            <Bandwidth>47700</Bandwidth>
+            <MaxBandwidth>105000</MaxBandwidth>
+          </Codec>
+          <Codec Name="X-MSRTA/16000" PayLoadType="114">
+            <Bandwidth>42700</Bandwidth>
+            <MaxBandwidth>91000</MaxBandwidth>
+          </Codec>
+          <Codec Name="G722/8000" PayLoadType="9">
+            <Bandwidth>70400</Bandwidth>
+            <MaxBandwidth>164600</MaxBandwidth>
+          </Codec>
+          <Codec Name="G7221/16000" PayLoadType="112">
+            <Bandwidth>39800</Bandwidth>
+            <MaxBandwidth>81000</MaxBandwidth>
+          </Codec>
+          <Codec Name="SIREN/16000" PayLoadType="111">
+            <Bandwidth>35500</Bandwidth>
+            <MaxBandwidth>68600</MaxBandwidth>
+          </Codec>
+          <Codec Name="PCMU/8000" PayLoadType="0">
+            <Bandwidth>67900</Bandwidth>
+            <MaxBandwidth>161000</MaxBandwidth>
+          </Codec>
+          <Codec Name="SILK/8000" PayLoadType="103">
+            <Bandwidth>31600</Bandwidth>
+            <MaxBandwidth>59000</MaxBandwidth>
+          </Codec>
+          <Codec Name="PCMA/8000" PayLoadType="8">
+            <Bandwidth>67900</Bandwidth>
+            <MaxBandwidth>161000</MaxBandwidth>
+          </Codec>
+          <Codec Name="AAL2-G726-32/8000" PayLoadType="116">
+            <Bandwidth>38600</Bandwidth>
+            <MaxBandwidth>62000</MaxBandwidth>
+          </Codec>
+          <Codec Name="X-MSRTA/8000" PayLoadType="115">
+            <Bandwidth>30300</Bandwidth>
+            <MaxBandwidth>56600</MaxBandwidth>
+          </Codec>
+          <Via>SIP/2.0/TLS 10.116.1.64:58262;ms-received-port=58262;ms-received-cid=A69000</Via>
+        </Properties>
+      </Start>
+      <Start Type="audio">
+        <From>
+          <Id>019dba0e68</Id>
+          <EPId>8c4886b792</EPId>
+          <URI>sip:q1site1@lynca.dev</URI>
+          <IP>10.110.1.23</IP>
+          <Port>10731</Port>
+          <HostIP>10.110.1.23</HostIP>
+          <HostPort>10731</HostPort>
+        </From>
+        <To>
+          <Id>60679f50b0</Id>
+          <EPId>f07bc83406</EPId>
+          <URI>sip:q2site1@lynca.dev</URI>
+          <IP>10.116.1.64</IP>
+          <Port>6728</Port>
+          <HostIP>10.116.1.64</HostIP>
+          <HostPort>6728</HostPort>
+        </To>
+        <Properties>
+          <Protocol>UDP</Protocol>
+          <Bandwidth>
+            <Average>78514</Average>
+            <Maximum>228600</Maximum>
+          </Bandwidth>
+          <Codec Name="G722/8000/2" PayLoadType="117">
+            <Bandwidth>108400</Bandwidth>
+            <MaxBandwidth>228600</MaxBandwidth>
+          </Codec>
+          <Codec Name="SILK/16000" PayLoadType="104">
+            <Bandwidth>47700</Bandwidth>
+            <MaxBandwidth>105000</MaxBandwidth>
+          </Codec>
+          <Codec Name="X-MSRTA/16000" PayLoadType="114">
+            <Bandwidth>42700</Bandwidth>
+            <MaxBandwidth>91000</MaxBandwidth>
+          </Codec>
+          <Codec Name="G722/8000" PayLoadType="9">
+            <Bandwidth>70400</Bandwidth>
+            <MaxBandwidth>164600</MaxBandwidth>
+          </Codec>
+          <Codec Name="G7221/16000" PayLoadType="112">
+            <Bandwidth>39800</Bandwidth>
+            <MaxBandwidth>81000</MaxBandwidth>
+          </Codec>
+          <Codec Name="SIREN/16000" PayLoadType="111">
+            <Bandwidth>35500</Bandwidth>
+            <MaxBandwidth>68600</MaxBandwidth>
+          </Codec>
+          <Codec Name="PCMU/8000" PayLoadType="0">
+            <Bandwidth>67900</Bandwidth>
+            <MaxBandwidth>161000</MaxBandwidth>
+          </Codec>
+          <Codec Name="SILK/8000" PayLoadType="103">
+            <Bandwidth>31600</Bandwidth>
+            <MaxBandwidth>59000</MaxBandwidth>
+          </Codec>
+          <Codec Name="PCMA/8000" PayLoadType="8">
+            <Bandwidth>67900</Bandwidth>
+            <MaxBandwidth>161000</MaxBandwidth>
+          </Codec>
+          <Codec Name="AAL2-G726-32/8000" PayLoadType="116">
+            <Bandwidth>38600</Bandwidth>
+            <MaxBandwidth>62000</MaxBandwidth>
+          </Codec>
+          <Codec Name="X-MSRTA/8000" PayLoadType="115">
+            <Bandwidth>30300</Bandwidth>
+            <MaxBandwidth>56600</MaxBandwidth>
+          </Codec>
+          <Via>SIP/2.0/TLS 10.116.1.64:58262;ms-received-port=58262;ms-received-cid=A69000</Via>
+        </Properties>
+      </Start>
+      <RawSDP>v=0
+    o=- 0 2 IN IP4 10.110.1.23
+    s=session
+    c=IN IP4 10.110.1.23
+    b=CT:99980
+    t=0 0
+    a=x-devicecaps:audio:send,recv;video:recv
+    m=audio 10731 RTP/SAVP 117 104 114 9 112 111 0 103 8 116 115 97 13 118 101
+    a=x-ssrc-range:241237227-241237227
+    a=rtcp-fb:* x-message app send:dsh recv:dsh
+    a=rtcp-rsize
+    a=label:main-audio
+    a=x-source:main-audio
+    a=ice-ufrag:wACA
+    a=candidate:1 1 UDP 2130706431 10.110.1.23 10731 typ host 
+    a=remote-candidates:1 10.116.1.64 6728 2 10.116.1.64 6728
+    a=maxptime:200
+    a=rtpmap:117 G722/8000/2
+    a=rtpmap:104 SILK/16000
+    a=fmtp:104 useinbandfec=1; usedtx=0
+    a=rtpmap:114 x-msrta/16000
+    a=fmtp:114 bitrate=29000
+    a=rtpmap:9 G722/8000
+    a=rtpmap:112 G7221/16000
+    a=fmtp:112 bitrate=24000
+    a=rtpmap:111 SIREN/16000
+    a=fmtp:111 bitrate=16000
+    a=rtpmap:0 PCMU/8000
+    a=rtpmap:103 SILK/8000
+    a=fmtp:103 useinbandfec=1; usedtx=0
+    a=rtpmap:8 PCMA/8000
+    a=rtpmap:116 AAL2-G726-32/8000
+    a=rtpmap:115 x-msrta/8000
+    a=fmtp:115 bitrate=11800
+    a=rtpmap:97 RED/8000
+    a=rtpmap:13 CN/8000
+    a=rtpmap:118 CN/16000
+    a=rtpmap:101 telephone-event/8000
+    a=fmtp:101 0-16
+    a=rtcp-mux
+    a=ptime:20
+    </RawSDP>
+    </LyncDiagnostics>
+    <LyncDiagnostics Version="D">
+      <ConnectionInfo>
+        <CallId>5b52a6e6c1f34298beb567e7acfb6cd0</CallId>
+        <CSEQ>4</CSEQ>
+        <ConversationId>AdEN9QfcWHOpg/roSCqIvC9u+haphQ==</ConversationId>
+        <TimeStamp>2015-10-24T11:48:03.1005589+11:00</TimeStamp>
+        <SourcePool>qlyfe01.lynca.dev</SourcePool>
+        <FrontEnds>qlyfe01.lynca.dev</FrontEnds>
+        <Pools>qlyfe01.lynca.dev</Pools>
+      </ConnectionInfo>
+      <Ended Type="audio">
+        <From>
+          <Id>60679f50b0</Id>
+          <EPId>f07bc83406</EPId>
+          <URI>sip:q2site1@lynca.dev</URI>
+          <Contact>sip:q2site1@lynca.dev;opaque=user:epid:uC4vgtI1lFyTEt4qWNfJdgAA;gruu</Contact>
+          <IP>10.116.1.64</IP>
+          <Port>6728</Port>
+          <UserAgent Type="4">UCCAPI/15.0.4763.1001 OC/15.0.4763.1001 (Skype for Business)</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+          <HostIP>10.116.1.64</HostIP>
+          <HostPort>6728</HostPort>
+          <Wireless>false</Wireless>
+          <PAI>sip:q2site1@lynca.dev,tel:+11919991402;ext=1402</PAI>
+        </From>
+        <To>
+          <Id>019dba0e68</Id>
+          <EPId>8c4886b792</EPId>
+          <URI>sip:q1site1@lynca.dev</URI>
+          <Contact>sip:q1site1@lynca.dev;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+          <IP>10.110.1.23</IP>
+          <Port>10731</Port>
+          <UserAgent Type="4">UCCAPI/15.0.4753.1000 OC/15.0.4753.1000 (Skype for Business)</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+          <HostIP>10.110.1.23</HostIP>
+          <HostPort>10731</HostPort>
+          <Wireless>false</Wireless>
+        </To>
+        <Properties>
+          <MSDiagnosticsClient>51004; reason=&quot;Action initiated by user&quot;;UserType=&quot;Callee&quot;;MediaType=&quot;audio&quot;;NetworkErr=&quot;no error&quot;;ErrTime=&quot;0&quot;;RTPSeq=&quot;0&quot;;SeqDelta=&quot;0&quot;;RTPTime=&quot;3654636479149&quot;;RTCPTime=&quot;3654636477729&quot;;TransptRecvErr=&quot;0x0&quot;;RecvErrTime=&quot;0&quot;;TransptSendErr=&quot;0x80004005&quot;;SendErrTime=&quot;3654636235189&quot;;InterfacesStall=&quot;0x0&quot;;InterfacesConnCheck=&quot;0x0&quot;;MrDnsE=&quot;qlyav.lynca.dev&quot;;MrResE=&quot;0&quot;;MrDnsI=&quot;qlyedge101.lynca.dev&quot;;MrResI=&quot;1&quot;;MrDnsCacheReadAttempt=&quot;0&quot;;ICEWarn=&quot;0xb&quot;;ICEWarnEx=&quot;0x1&quot;;LocalSite=&quot;10.116.1.64:6728&quot;;LocalMR=&quot;10.102.19.7:3478&quot;;RemoteSite=&quot;10.110.1.23:10731&quot;;PortRange=&quot;1025:65000&quot;;LocalLocation=&quot;2&quot;;RemoteLocation=&quot;2&quot;;FederationType=&quot;0&quot;;NetworkName=&quot;ir.local&quot;;Interfaces=&quot;0x2&quot;;BaseInterface=&quot;0x2&quot;;BaseAddress=&quot;10.116.1.64:29154&quot;;Protocol=&quot;0&quot;;LocalInterface=&quot;0x2&quot;;LocalAddrType=&quot;0&quot;;LocalAddress=&quot;10.116.1.64:6728&quot;;RemoteAddress=&quot;10.110.1.23:10731&quot;;RemoteAddrType=&quot;0&quot;;IceRole=&quot;1&quot;;RtpRtcpMux=&quot;1&quot;;MediaDllVersion=&quot;5.0.8687.139&quot;;MrDnsE=&quot;qlyav.lynca.dev&quot;;MrResE=&quot;0&quot;;MrDnsI=&quot;qlyedge101.lynca.dev&quot;;MrResI=&quot;1&quot;;MrDnsCacheReadAttempt=&quot;0&quot;</MSDiagnosticsClient>
+        </Properties>
+      </Ended>
+      <Ended Type="audio">
+        <From>
+          <Id>019dba0e68</Id>
+          <EPId>8c4886b792</EPId>
+          <URI>sip:q1site1@lynca.dev</URI>
+          <IP>10.110.1.23</IP>
+          <Port>10731</Port>
+          <HostIP>10.110.1.23</HostIP>
+          <HostPort>10731</HostPort>
+        </From>
+        <To>
+          <Id>60679f50b0</Id>
+          <EPId>f07bc83406</EPId>
+          <URI>sip:q2site1@lynca.dev</URI>
+          <IP>10.116.1.64</IP>
+          <Port>6728</Port>
+          <HostIP>10.116.1.64</HostIP>
+          <HostPort>6728</HostPort>
+        </To>
+        <Properties>
+          <MSDiagnosticsClient>51004; reason=&quot;Action initiated by user&quot;;UserType=&quot;Callee&quot;;MediaType=&quot;audio&quot;;NetworkErr=&quot;no error&quot;;ErrTime=&quot;0&quot;;RTPSeq=&quot;0&quot;;SeqDelta=&quot;0&quot;;RTPTime=&quot;3654636479149&quot;;RTCPTime=&quot;3654636477729&quot;;TransptRecvErr=&quot;0x0&quot;;RecvErrTime=&quot;0&quot;;TransptSendErr=&quot;0x80004005&quot;;SendErrTime=&quot;3654636235189&quot;;InterfacesStall=&quot;0x0&quot;;InterfacesConnCheck=&quot;0x0&quot;;MrDnsE=&quot;qlyav.lynca.dev&quot;;MrResE=&quot;0&quot;;MrDnsI=&quot;qlyedge101.lynca.dev&quot;;MrResI=&quot;1&quot;;MrDnsCacheReadAttempt=&quot;0&quot;;ICEWarn=&quot;0xb&quot;;ICEWarnEx=&quot;0x1&quot;;LocalSite=&quot;10.116.1.64:6728&quot;;LocalMR=&quot;10.102.19.7:3478&quot;;RemoteSite=&quot;10.110.1.23:10731&quot;;PortRange=&quot;1025:65000&quot;;LocalLocation=&quot;2&quot;;RemoteLocation=&quot;2&quot;;FederationType=&quot;0&quot;;NetworkName=&quot;ir.local&quot;;Interfaces=&quot;0x2&quot;;BaseInterface=&quot;0x2&quot;;BaseAddress=&quot;10.116.1.64:29154&quot;;Protocol=&quot;0&quot;;LocalInterface=&quot;0x2&quot;;LocalAddrType=&quot;0&quot;;LocalAddress=&quot;10.116.1.64:6728&quot;;RemoteAddress=&quot;10.110.1.23:10731&quot;;RemoteAddrType=&quot;0&quot;;IceRole=&quot;1&quot;;RtpRtcpMux=&quot;1&quot;;MediaDllVersion=&quot;5.0.8687.139&quot;;MrDnsE=&quot;qlyav.lynca.dev&quot;;MrResE=&quot;0&quot;;MrDnsI=&quot;qlyedge101.lynca.dev&quot;;MrResI=&quot;1&quot;;MrDnsCacheReadAttempt=&quot;0&quot;</MSDiagnosticsClient>
+        </Properties>
+      </Ended>
+      <Bye>
+        <EndPoint>
+          <Id>60679f50b0</Id>
+          <EPId>f07bc83406</EPId>
+          <URI>sip:q2site1@lynca.dev</URI>
+          <Contact>sip:q2site1@lynca.dev;opaque=user:epid:uC4vgtI1lFyTEt4qWNfJdgAA;gruu</Contact>
+          <UserAgent Type="4">UCCAPI/15.0.4763.1001 OC/15.0.4763.1001 (Skype for Business)</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+          <Wireless>false</Wireless>
+          <PAI>sip:q2site1@lynca.dev,tel:+11919991402;ext=1402</PAI>
+        </EndPoint>
+        <EndPoint>
+          <Id>019dba0e68</Id>
+          <EPId>8c4886b792</EPId>
+          <URI>sip:q1site1@lynca.dev</URI>
+          <Contact>sip:q1site1@lynca.dev;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+          <UserAgent Type="4">UCCAPI/15.0.4753.1000 OC/15.0.4753.1000 (Skype for Business)</UserAgent>
+          <IncallEnabled>false</IncallEnabled>
+          <Wireless>false</Wireless>
+        </EndPoint>
+      </Bye>
+    </LyncDiagnostics>
+    <LyncDiagnostics Version="D">
+      <ConnectionInfo>
+        <CallId>5b52a6e6c1f34298beb567e7acfb6cd0</CallId>
+        <ConversationId>AdEN9QfcWHOpg/roSCqIvC9u+haphQ==</ConversationId>
+        <TimeStamp>2015-10-24T00:48:03.0956498Z</TimeStamp>
+        <Connectivity>DIRECT</Connectivity>
+        <StartTime>2015-10-24T00:44:01.0597Z</StartTime>
+        <EndTime>2015-10-24T00:48:02.0687Z</EndTime>
+        <MediaBypass>false</MediaBypass>
+        <MediationServerLegPosition>BeforeMedServer</MediationServerLegPosition>
+        <SourcePool>qlyfe01.lynca.dev</SourcePool>
+        <FrontEnds>qlyfe01.lynca.dev</FrontEnds>
+        <Pools>qlyfe01.lynca.dev</Pools>
+      </ConnectionInfo>
+      <QualityUpdate Type="audio">
+        <From>
+          <Id>60679f50b0</Id>
+          <EPId>f07bc83406</EPId>
+          <URI>sip:q2site1@lynca.dev</URI>
+          <Contact>sip:q2site1@lynca.dev;opaque=user:epid:uC4vgtI1lFyTEt4qWNfJdgAA;gruu</Contact>
+          <IP>10.116.1.64</IP>
+          <Port>6728</Port>
+          <Inside>true</Inside>
+          <VPN>false</VPN>
+          <Connection>Ethernet</Connection>
+          <UserAgent Type="4">UCCAPI/15.0.4763.1001 OC/15.0.4763.1001 (Skype for Business)</UserAgent>
+          <OS>Windows 6.1.7601 SP: 1.0 Type: 1(Workstation) Suite: 0000000000000100 Arch: x64 WOW64: False</OS>
+          <CPUName>Intel(R) Xeon(R) CPU           W3550  @ 3.07GHz</CPUName>
+          <CPUNumberOfCores>4</CPUNumberOfCores>
+          <CPUProcessorSpeed>3066</CPUProcessorSpeed>
+          <MACAddr>2C-41-38-A1-E3-BC</MACAddr>
+          <LinkSpeed>1000000000</LinkSpeed>
+          <HostIP>10.116.1.64</HostIP>
+          <HostPort>6728</HostPort>
+        </From>
+        <To>
+          <Id>019dba0e68</Id>
+          <EPId>8c4886b792</EPId>
+          <URI>sip:q1site1@lynca.dev</URI>
+          <Contact>sip:q1site1@lynca.dev;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+          <IP>10.110.1.23</IP>
+          <Port>10731</Port>
+          <Inside>true</Inside>
+          <VPN>false</VPN>
+          <Connection>Ethernet</Connection>
+          <UserAgent Type="4">UCCAPI/15.0.4753.1000 OC/15.0.4753.1000 (Skype for Business)</UserAgent>
+          <OS>Windows 6.1.7601 SP: 1.0 Type: 1(Workstation) Suite: 0000000000000100 Arch: x64 WOW64: False</OS>
+          <CPUName>Intel(R) Xeon(R) CPU           W3520  @ 2.67GHz</CPUName>
+          <CPUNumberOfCores>4</CPUNumberOfCores>
+          <CPUProcessorSpeed>2666</CPUProcessorSpeed>
+          <MACAddr>18-A9-05-16-0C-90</MACAddr>
+          <LinkSpeed>1000000000</LinkSpeed>
+          <HostIP>10.110.1.23</HostIP>
+          <HostPort>10731</HostPort>
+        </To>
+        <Properties>
+          <StreamQuality>Good</StreamQuality>
+          <Protocol>UDP</Protocol>
+          <Codec Name="SILKWIDE/16000">
+            <Bandwidth>47700</Bandwidth>
+            <MaxBandwidth>105000</MaxBandwidth>
+          </Codec>
+          <PacketUtilization>5202</PacketUtilization>
+          <JitterInterArrival>1</JitterInterArrival>
+          <JitterInterArrivalMax>2</JitterInterArrivalMax>
+          <RoundTrip>1</RoundTrip>
+          <RoundTripMax>3</RoundTripMax>
+          <DegradationAvg>0.05340052</DegradationAvg>
+          <RatioConcealedSamplesAvg>0.002997003</RatioConcealedSamplesAvg>
+          <EchoPercentMicIn>32.88044</EchoPercentMicIn>
+          <EchoPercentSend>8.967391</EchoPercentSend>
+          <RecvNoiseLevel>-58</RecvNoiseLevel>
+          <RecvSignalLevel>-29</RecvSignalLevel>
+          <DegradationMax>0.213603</DegradationMax>
+          <OverallMinNetworkMOS>4.076397</OverallMinNetworkMOS>
+          <OverallAvgNetworkMOS>4.236599</OverallAvgNetworkMOS>
+          <RelativeOneWayAverage>0.001</RelativeOneWayAverage>
+          <AppliedBandwidthLimit>94800</AppliedBandwidthLimit>
+          <CaptureDevice>Microphone (2- Logitech USB Headset)</CaptureDevice>
+          <CaptureDeviceDriver>Microsoft: 6.1.7601.18208</CaptureDeviceDriver>
+          <RenderDevice>Speakers (2- Logitech USB Headset)</RenderDevice>
+          <RenderDeviceDriver>Microsoft: 6.1.7601.18208</RenderDeviceDriver>
+          <AudioTimestampErrorMicMs>0.01856057</AudioTimestampErrorMicMs>
+          <AudioTimestampErrorSpkMs>0.01709254</AudioTimestampErrorSpkMs>
+        </Properties>
+      </QualityUpdate>
+      <QualityUpdate Type="audio">
+        <From>
+          <Id>019dba0e68</Id>
+          <EPId>8c4886b792</EPId>
+          <URI>sip:q1site1@lynca.dev</URI>
+          <Contact>sip:q1site1@lynca.dev;opaque=user:epid:10NqDVfDzFivRbVIHrZa6QAA;gruu</Contact>
+          <IP>10.110.1.23</IP>
+          <Port>10731</Port>
+          <Inside>true</Inside>
+          <VPN>false</VPN>
+          <Connection>Ethernet</Connection>
+          <UserAgent Type="4">UCCAPI/15.0.4753.1000 OC/15.0.4753.1000 (Skype for Business)</UserAgent>
+          <OS>Windows 6.1.7601 SP: 1.0 Type: 1(Workstation) Suite: 0000000000000100 Arch: x64 WOW64: False</OS>
+          <CPUName>Intel(R) Xeon(R) CPU           W3520  @ 2.67GHz</CPUName>
+          <CPUNumberOfCores>4</CPUNumberOfCores>
+          <CPUProcessorSpeed>2666</CPUProcessorSpeed>
+          <MACAddr>18-A9-05-16-0C-90</MACAddr>
+          <LinkSpeed>1000000000</LinkSpeed>
+          <HostIP>10.110.1.23</HostIP>
+          <HostPort>10731</HostPort>
+        </From>
+        <To>
+          <Id>60679f50b0</Id>
+          <EPId>f07bc83406</EPId>
+          <URI>sip:q2site1@lynca.dev</URI>
+          <Contact>sip:q2site1@lynca.dev;opaque=user:epid:uC4vgtI1lFyTEt4qWNfJdgAA;gruu</Contact>
+          <IP>10.116.1.64</IP>
+          <Port>6728</Port>
+          <Inside>true</Inside>
+          <VPN>false</VPN>
+          <Connection>Ethernet</Connection>
+          <UserAgent Type="4">UCCAPI/15.0.4763.1001 OC/15.0.4763.1001 (Skype for Business)</UserAgent>
+          <OS>Windows 6.1.7601 SP: 1.0 Type: 1(Workstation) Suite: 0000000000000100 Arch: x64 WOW64: False</OS>
+          <CPUName>Intel(R) Xeon(R) CPU           W3550  @ 3.07GHz</CPUName>
+          <CPUNumberOfCores>4</CPUNumberOfCores>
+          <CPUProcessorSpeed>3066</CPUProcessorSpeed>
+          <MACAddr>2C-41-38-A1-E3-BC</MACAddr>
+          <LinkSpeed>1000000000</LinkSpeed>
+          <HostIP>10.116.1.64</HostIP>
+          <HostPort>6728</HostPort>
+        </To>
+        <Properties>
+          <StreamQuality>Good</StreamQuality>
+          <Protocol>UDP</Protocol>
+          <Codec Name="SILKWIDE/16000">
+            <Bandwidth>47700</Bandwidth>
+            <MaxBandwidth>105000</MaxBandwidth>
+          </Codec>
+          <PacketUtilization>11465</PacketUtilization>
+          <JitterInterArrivalMax>1</JitterInterArrivalMax>
+          <RoundTrip>1</RoundTrip>
+          <RoundTripMax>3</RoundTripMax>
+          <DegradationAvg>0</DegradationAvg>
+          <RecvNoiseLevel>-54</RecvNoiseLevel>
+          <RecvSignalLevel>-23</RecvSignalLevel>
+          <RecvListenMOSMin>2.97</RecvListenMOSMin>
+          <SendListenMOSMin>2.88</SendListenMOSMin>
+          <SendListenMOS>3.94</SendListenMOS>
+          <RecvListenMOS>3.53</RecvListenMOS>
+          <OverallMinNetworkMOS>4.29</OverallMinNetworkMOS>
+          <OverallAvgNetworkMOS>4.29</OverallAvgNetworkMOS>
+          <AppliedBandwidthLimit>94800</AppliedBandwidthLimit>
+          <CaptureDevice>Microphone (2- Logitech USB Headset)</CaptureDevice>
+          <CaptureDeviceDriver>Microsoft: 6.1.7601.18208</CaptureDeviceDriver>
+          <RenderDevice>Speakers (2- Logitech USB Headset)</RenderDevice>
+          <RenderDeviceDriver>Microsoft: 6.1.7601.18208</RenderDeviceDriver>
+          <AudioTimestampErrorMicMs>0.01845761</AudioTimestampErrorMicMs>
+          <AudioTimestampErrorSpkMs>0.0188247</AudioTimestampErrorSpkMs>
+        </Properties>
+      </QualityUpdate>
+    </LyncDiagnostics>
+  </MockMessages>
+</Mocker>
