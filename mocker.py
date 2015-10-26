@@ -14,6 +14,7 @@ import time
 import datetime as DT
 import pyodbc
 import ast
+import os
 
 
 class SdnMocker():
@@ -176,9 +177,11 @@ def main():
         odbc_config = process_dict_arg(args.odbc_config)
 
     # Use correct schema for SDN version
-    mocker_xsd_path = './schemas/Mocker.Schema.C.xsd'
+    mocker_xsd_path = os.path.join(os.path.dirname(__file__),
+                                   'schemas/Mocker.Schema.C.xsd')
     if sdn_version == '2.2':
-        mocker_xsd_path = './schemas/Mocker.Schema.D.xsd'
+        mocker_xsd_path = os.path.join(os.path.dirname(__file__),
+                                       'schemas/Mocker.Schema.D.xsd')
 
     print('SDN VERSION:', sdn_version)
 
