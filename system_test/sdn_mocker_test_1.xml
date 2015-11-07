@@ -1,20 +1,18 @@
 <?xml version="1.0"?>
 <Mocker xmlns="http://www.ir.com/Mocker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ir.com/Mocker ../schemas/Mocker.Schema.xsd">
     <MockerConfiguration>
-        <MaxDelay>3</MaxDelay>
-        <RealTime>false</RealTime>
+        <MaxDelay>45</MaxDelay>
+        <RealTime>true</RealTime>
         <CurrentTime>true</CurrentTime>
     </MockerConfiguration>
     <MockMessages>
-
-
 <LyncDiagnostics Version="C">
   <ConnectionInfo>
     <CallId>e62b032e60f343a7a2ec7edd8cc627eb</CallId>
     <CSEQ>1</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T14:38:16.6941234+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:00.0000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Invite>
@@ -149,7 +147,7 @@ a=ptime:20
     <CSEQ>2</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T14:38:17.3380323+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:01.0000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Invite>
@@ -207,7 +205,7 @@ a=ptime:20
     <CSEQ>2</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T14:38:17.3986125+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:02.0000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Start Type="audio">
@@ -343,7 +341,7 @@ a=ptime:20
     <CSEQ>1</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T14:38:36.7031772+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:02.5000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Invite>
@@ -477,7 +475,7 @@ a=ptime:20
     <CSEQ>2</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T14:38:37.4907198+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:03.0000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Invite>
@@ -534,7 +532,7 @@ a=ptime:20
     <CSEQ>2</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T14:38:37.5610710+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:03.5000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Start Type="audio">
@@ -670,7 +668,7 @@ a=ptime:20
     <CSEQ>1</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T14:38:47.4737505+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:04.0000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Invite>
@@ -795,7 +793,7 @@ a=ptime:20
     <CSEQ>2</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T14:38:48.2016900+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:04.0000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Invite>
@@ -853,7 +851,7 @@ a=ptime:20
     <CSEQ>2</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T14:38:48.2700870+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:04.1000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Start Type="audio">
@@ -989,7 +987,7 @@ a=ptime:20
     <CSEQ>4</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T14:50:40.6263598+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:45.0000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Ended Type="audio">
@@ -1061,7 +1059,7 @@ a=ptime:20
     <CallId>e62b032e60f343a7a2ec7edd8cc627eb</CallId>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T04:50:40.9598623Z</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:50.0000000Z</TimeStamp>
     <Connectivity>DIRECT</Connectivity>
     <StartTime>2015-08-21T04:38:16.0851Z</StartTime>
     <EndTime>2015-08-21T04:50:40.0126Z</EndTime>
@@ -1213,7 +1211,7 @@ a=ptime:20
     <CSEQ>1</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T15:05:12.8745170+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:55.5000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Ended Type="audio">
@@ -1294,7 +1292,7 @@ a=ptime:20
     <CSEQ>1</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T15:05:12.8686550+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:56.0000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Ended Type="audio">
@@ -1375,7 +1373,7 @@ a=ptime:20
     <CSEQ>5</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T15:05:13.0112970+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:56.1000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Ended Type="audio">
@@ -1454,7 +1452,7 @@ a=ptime:20
     <CSEQ>5</CSEQ>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T15:05:13.0562390+10:00</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:56.2000000Z</TimeStamp>
     <SourcePool>pool1.lync2013.local</SourcePool>
   </ConnectionInfo>
   <Ended Type="audio">
@@ -1532,7 +1530,7 @@ a=ptime:20
     <CallId>0a9560b03d8241728af7f056440c3857</CallId>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T05:05:13.1079832Z</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:57.3000000Z</TimeStamp>
     <Connectivity>DIRECT</Connectivity>
     <StartTime>2015-08-21T04:38:47.0370Z</StartTime>
     <EndTime>2015-08-21T05:05:12.0180Z</EndTime>
@@ -1691,10 +1689,10 @@ a=ptime:20
     <CallId>15bed3115415497395eb3e9c8679fc8e</CallId>
     <ConversationId>AdDbyzDtDq4T8szoRUOJL6Bn/jAG/g==</ConversationId>
     <ConferenceId>YSS9F2TL</ConferenceId>
-    <TimeStamp>2015-08-21T05:05:13.1235841Z</TimeStamp>
+    <TimeStamp>2015-08-21T14:00:59.0000000Z</TimeStamp>
     <Connectivity>DIRECT</Connectivity>
     <StartTime>2015-08-21T04:38:37.0414Z</StartTime>
-    <EndTime>2015-08-21T05:05:13.0136Z</EndTime>
+    <EndTime>2015-08-21T14:00:48.5000000Z</EndTime>
     <ConferenceURI>sip:tomislavtest@lync2013.local;gruu;opaque=app:conf:audio-video:id:YSS9F2TL</ConferenceURI>
     <MediaBypass>false</MediaBypass>
     <MediationServerLegPosition>BeforeMedServer</MediationServerLegPosition>
