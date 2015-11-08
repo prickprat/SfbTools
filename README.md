@@ -10,6 +10,8 @@ Better Logging:
     Error Logging
     Debug logging
     Print statements
+        sdn message printing
+        configuration printing 
 
     If no timestamp found default to 0 interval , log warning.
 
@@ -38,7 +40,5 @@ Dot issues in validation
 Unit Testing
     * UTC timestamp conversion
     * lxml conversion
-TIMESTAMP GENERATION from CURRENT TIME :: ?
-    * mockerConfiguration
-        - UseCurrentTime > True / False
-        - 
+
+sdn version in SdnMocker

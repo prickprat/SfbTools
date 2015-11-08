@@ -9,8 +9,8 @@ from datetime import timedelta
 
 class XmlMessage(metaclass=abc.ABCMeta):
 
-    """class
-    Abstract XML message
+    """
+    Abstract class for an XML message.
     """
     _namespace = {}
 
