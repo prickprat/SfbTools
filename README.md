@@ -42,3 +42,4 @@ Unit Testing
     * lxml conversion
 
 sdn version in SdnMocker
+remove default namespaces in sdn message printing

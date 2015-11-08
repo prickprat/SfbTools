@@ -19,7 +19,6 @@ class XmlMessage(metaclass=abc.ABCMeta):
         Returns and instance of an XML message.
 
         root        -   root XML element for the XML Message.
-        default_ns  -   Default Namespace for the root element.
         """
         self._etree = ET.ElementTree(element=root_element)
         self.root = self._etree.getroot()
