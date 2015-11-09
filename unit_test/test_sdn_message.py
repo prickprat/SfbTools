@@ -220,7 +220,7 @@ class TestConvertDatetime(unittest.TestCase):
         output = SdnMessage.convert_datetime(dt_in)
         self.assertEqual(expected, output, "Should parse the maximum datetime allowed.")
         # Minimum date allowed
-        expected = "0100-01-01T00:00:00.0000000Z"
+        expected = "100-01-01T00:00:00.0000000Z"
         dt_in = DT.datetime(100, 1, 1, 0, 0, 0, 0,  DT.timezone.utc)
         output = SdnMessage.convert_datetime(dt_in)
         self.assertEqual(expected, output, "Should parse the minimum datetime allowed.")

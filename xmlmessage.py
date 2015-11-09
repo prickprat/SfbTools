@@ -196,53 +196,6 @@ class SdnMessage(XmlMessage):
                                     tuple(x.tag for x in list(self.root)))
 
 
-class MockerConfiguration(XmlMessage):
-
-    @classmethod
-    def get_root_tag(cls):
-        return "MockerConfiguration"
-
-    def __str__(self):
-        return "<MockerConfiguration object : " + str(self.todict()) + ">"
-
-    def todict(self):
-        """
-        Return a dictionary with keys as configuration options and values
-        as the string present in the respective Element. If the element was not present,
-        then the value will be None.
-
-        """
-        def str_to_bool(s):
-            try:
-                return (s.lower() == "true") if s is not None else None
-            except ValueError:
-                logging.error(
-                    "ValueError: String to boolean conversion failed.")
-                raise
-
-        def str_to_int(s):
-            try:
-                return int(s) if s is not None else None
-            except ValueError:
-                logging.error(
-                    "ValueError: String to int conversion failed.")
-                raise
-
-        max_delay = self.root.findtext(self.qualify_xpath('./MaxDelay'))
-        real_time = self.root.findtext(self.qualify_xpath('./RealTime'))
-        current_time = self.root.findtext(self.qualify_xpath('./CurrentTime'))
-
-        return {'max_delay': str_to_int(max_delay),
-                'realtime': str_to_bool(real_time),
-                'currenttime': str_to_bool(current_time)}
-
-    def get_timestamp(self):
-        raise NotImplementedError
-
-    def set_timestamp(self):
-        raise NotImplementedError
-
-
 class SqlQueryMessage(XmlMessage):
 
     @classmethod
@@ -339,21 +292,6 @@ class XMLMessageFactory:
     def __exit__(self, exec_type, exec_value, exec_tb):
         self.close()
         return False
-
-
-class MessageFactory:
-
-    @staticmethod
-    def createMessage(root_element):
-        for cls in MessageFactory.find_all_subclasses(XmlMessage):
-            if cls.get_root_tag() == root_element.tag:
-                return cls(root_element)
-        return None
-
-    @staticmethod
-    def find_all_subclasses(arg_cls):
-        return arg_cls.__subclasses__() + [x for y in arg_cls.__subclasses__()
-                                           for x in MessageFactory.find_all_subclasses(y)]
 
 
 class NoElementException(Exception):

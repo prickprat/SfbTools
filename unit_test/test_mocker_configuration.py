@@ -1,8 +1,6 @@
 import logging
 import unittest
-from xmlmessage import MockerConfiguration
 from sfbreplay import SfbReplay
-from lxml import etree as ET
 
 # Disable non-critical logging for Testing
 logging.disable(logging.CRITICAL)

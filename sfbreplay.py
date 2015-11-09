@@ -2,7 +2,6 @@ from mocker import SdnMocker
 from mocker import OdbcMocker
 from xmlmessage import SdnMessage
 from xmlmessage import SqlQueryMessage
-from xmlmessage import MockerConfiguration
 from lxml import etree as ET
 import argparse
 import logging
@@ -170,7 +169,11 @@ class SfbReplay():
         sql_query_tag = "{0}{1}".format(self.default_ns, SqlQueryMessage.get_root_tag())
         mock_messages = []
 
-        for msg in list(self.mock_test.find(mock_messages_tag)):
+        mock_messages_elem = self.mock_test.find(mock_messages_tag)
+        if mock_messages_elem is None:
+            return mock_messages
+
+        for msg in list(mock_messages_elem):
             if (msg.tag == sdn_message_tag):
                 msg = SdnMessage(msg)
             elif (msg.tag == sql_query_tag):
@@ -224,24 +227,6 @@ def main():
                                   odbc_config=odbc_config)
     replayer.run()
 
-    # Run the Mocker
-    # run_mocker(args.infile, sdn_config, odbc_config)
-
-
-# def calculate_delay(is_realtime, max_delay, curr_timestamp, prev_timestamp):
-#     # Find the wait delay
-#     delay = 0
-#     if is_realtime:
-#         if prev_timestamp is not None:
-#             time_diff = curr_timestamp - prev_timestamp
-#             delay = int(time_diff.total_seconds())
-#     else:
-#         delay = max_delay
-#     # Delay must be non-negative and less than max_delay.
-#     delay = min(max_delay, delay)
-#     delay = max(delay, 0)
-#     return delay
-
 
 def process_dict_arg(arg_str):
     """
@@ -256,87 +241,6 @@ def process_dict_arg(arg_str):
     except (SyntaxError, TypeError, ValueError) as e:
         logging.error(str(e))
         raise ValueError("Invalid configuration argument.")
-
-
-# def extract_mock_messages(mock_test, default_ns):
-#     mock_messages = []
-#     for msg in list(mock_test.find("./{{{0}}}MockMessages".format(default_ns))):
-#         if (msg.tag == "{{{0}}}{1}".format(default_ns, SdnMessage.get_root_tag())):
-#             msg = SdnMessage(msg)
-#         elif (msg.tag == "{{{0}}}{1}".format(default_ns, SqlQueryMessage.get_root_tag())):
-#             msg = SqlQueryMessage(msg)
-#         else:
-#             raise ValueError("Unrecognised Mock Message.")
-#         mock_messages.append(msg)
-#     return mock_messages
-
-
-# def update_message_timestamp(mock_messages):
-#     old_timestamp = None
-#     for msg in mock_messages:
-#         if old_timestamp is None:
-#             # This is the first message
-#             old_timestamp = msg.get_timestamp()
-#             new_timestamp = DT.datetime.now(DT.timezone.utc)
-#         else:
-#             # Calculate the time differential
-#             delta = msg.get_timestamp() - old_timestamp
-#             old_timestamp = msg.get_timestamp()
-#             new_timestamp = new_timestamp + delta
-#         msg.set_timestamp(new_timestamp)
-#     return mock_messages
-
-
-# def run_mocker(mock_file_path, sdn_config=None, odbc_config=None):
-#     mock_test = ET.parse(mock_file_path)
-
-#     default_ns = mock_test.getroot().nsmap.get(None, '')
-#     test_config_elem = mock_test.find(
-#         './{{{0}}}MockerConfiguration'.format(default_ns))
-#     test_config = MockerConfiguration(test_config_elem).todict()
-#     print(test_config)
-#     # Initialise the mockers
-#     sdn_mocker = None
-#     odbc_mocker = None
-#     try:
-#         print("Configuring Mockers ... ")
-#         if sdn_config is not None:
-#             sdn_mocker = SdnMocker.fromdict(sdn_config)
-#             print(sdn_mocker)
-#             sdn_mocker.open()
-#         if odbc_config is not None:
-#             odbc_mocker = OdbcMocker.fromdict(odbc_config)
-#             print(odbc_mocker)
-#             odbc_mocker.open()
-
-#         # Parse the messages and convert timestamps
-#         mock_messages = extract_mock_messages(mock_test, default_ns)
-#         if test_config['currenttime']:
-#             mock_messages = update_message_timestamp(mock_messages)
-
-#         # Send the messages using appropriate mocker and intervals
-#         prev_timestamp = None
-#         for msg in mock_messages:
-#             mocker = None
-#             if isinstance(msg, SdnMessage):
-#                 mocker = sdn_mocker
-#             elif isinstance(msg, SqlQueryMessage):
-#                 mocker = odbc_mocker
-#             else:
-#                 raise ValueError("Unrecognised Mock Message instance.")
-
-#             delay = calculate_delay(test_config['realtime'],
-#                                     test_config['max_delay'],
-#                                     msg.get_timestamp(),
-#                                     prev_timestamp)
-#             mocker.send_message(msg, delay)
-#             prev_timestamp = msg.get_timestamp()
-
-#     finally:
-#         if sdn_mocker is not None:
-#             sdn_mocker.close()
-#         if odbc_mocker is not None:
-#             odbc_mocker.close()
 
 
 def parse_sys_args():
