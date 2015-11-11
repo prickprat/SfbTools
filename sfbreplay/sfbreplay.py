@@ -1,12 +1,12 @@
-from mocker import SdnMocker
-from mocker import OdbcMocker
-from xmlmessage import SdnMessage
-from xmlmessage import SqlQueryMessage
+from sfbtools.sfbreplay.mocker import SdnMocker
+from sfbtools.sfbreplay.mocker import OdbcMocker
+from sfbtools.sfbreplay.xmlmessage import SdnMessage
+from sfbtools.sfbreplay.xmlmessage import SqlQueryMessage
 from lxml import etree as ET
 import argparse
 import logging
 import logging.config
-import logging_conf
+import sfbtools.sfbreplay.logging_conf as log_conf
 import datetime as DT
 import ast
 import os
@@ -365,5 +365,5 @@ def parse_sys_args():
 
 if __name__ == "__main__":
     # Load logging configurations
-    logging.config.dictConfig(logging_conf.LOGGING_CONFIG)
+    logging.config.dictConfig(log_conf.LOGGING_CONFIG)
     main()

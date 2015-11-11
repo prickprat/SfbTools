@@ -1,9 +1,9 @@
 import logging
 import logging.config
-import logging_conf
+import sfbtools.sdnextractor.logging_conf as log_conf
 import argparse
-from xmlmessage import SdnMessage
-from xmlmessage import XMLMessageFactory
+from sfbtools.sdnextractor.xmlmessage import SdnMessage
+from sfbtools.sdnextractor.xmlmessage import XMLMessageFactory
 
 
 def main():
@@ -72,5 +72,5 @@ def parse_sys_args():
 
 if __name__ == '__main__':
     # Load logging configurations
-    logging.config.dictConfig(logging_conf.LOGGING_CONFIG)
+    logging.config.dictConfig(log_conf.LOGGING_CONFIG)
     main()
