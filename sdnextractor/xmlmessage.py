@@ -195,47 +195,6 @@ class SdnMessage(XmlMessage):
         return desc_template.format(str(self.get_timestamp()),
                                     tuple(x.tag for x in list(self.root)))
 
-
-class SqlQueryMessage(XmlMessage):
-
-    @classmethod
-    def get_root_tag(cls):
-        return "SqlQueryMessage"
-
-    def get_timestamp(self):
-        timestamp_element = self.root.find(
-            self.qualify_xpath("./TimeStamp"))
-
-        if (timestamp_element is not None):
-            timestamp_str = timestamp_element.text
-            return self.convert_timestamp(timestamp_str)
-        else:
-            raise ValueError("TimeStamp Element does not exist in the XML element.")
-
-    def set_timestamp(self, timestamp_dt):
-        timestamp_element = self.root.find(
-            self.qualify_xpath("./TimeStamp"))
-
-        if timestamp_element is not None:
-            timestamp_element.text = self.convert_datetime(timestamp_dt)
-        else:
-            raise ValueError("TimeStamp Element does not exist in the XML element.")
-
-    def get_query(self):
-        """
-        Returns the SQL query as a string.
-        """
-        query_element = self.root.find(
-            self.qualify_xpath("./Query"))
-        if query_element is not None:
-            return query_element.text
-        return None
-
-    def __str__(self):
-        desc_template = "<SqlQueryMessage object : Timestamp - {0} : Query {1}>"
-        return desc_template.format(str(self.get_timestamp()), str(self.get_query()))
-
-
 class XMLMessageFactory:
 
     def __init__(self, file_obj, xml_wrapper):
