@@ -20,7 +20,7 @@ class MockerInterface(metaclass=abc.ABCMeta):
     @classmethod
     def fromdict(cls, config_dict):
         """
-        Initialize SdnMocker from dictionary.
+        Initialize the Mocker from dictionary.
         """
         return cls(**config_dict)
 
@@ -69,10 +69,11 @@ class SdnMocker(MockerInterface):
     def __init__(self, **kwargs):
         try:
             self.receiver = kwargs['receiver']
+            self.version = kwargs['version']
             super().__init__(**kwargs)
         except KeyError as e:
             logging.error("KeyError : " + str(e))
-            raise ValueError("receiver must be given as a keyword parameter.")
+            raise ValueError("receiver and version must be given as a keyword parameter.")
 
     def open(self):
         """
@@ -119,7 +120,7 @@ class SdnMocker(MockerInterface):
         return True if response is not None else False
 
     def __str__(self):
-        return "Sdn Mocker :: receiver - {0}".format(self.receiver)
+        return "SdnMocker ::: receiver - {0} : version - {1}".format(self.receiver, self.version)
 
 
 class OdbcMocker(MockerInterface):
@@ -188,5 +189,6 @@ class OdbcMocker(MockerInterface):
         self.send(sql_msg.get_query())
 
     def __str__(self):
-        template = "ODBC Mocker :: driver - {0}, server - {1}, database - {2}, uid - {3}, pwd- {4}"
+        template = "ODBC Mocker ::: driver - {0} : server - {1} : " + \
+            " database - {2} : uid - {3} : pwd- {4}"
         return template.format(self.driver, self.server, self.database, self.uid, self.pwd)

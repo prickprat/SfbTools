@@ -31,21 +31,21 @@ class SfbReplay():
         # default to SDN version 2.1.1 if not defined
         if self.sdn_config is not None:
             self.sdn_config['version'] = self.sdn_config.get('version', '2.1.1')
-            print("SDN VERSION : " + str(self.sdn_config['version']))
+
+        # Configure the Mockers
+        self.sdn_mocker = SdnMocker(**self.sdn_config) if self.sdn_config else None
+        self.odbc_mocker = OdbcMocker(**self.odbc_config) if self.odbc_config else None
 
         # Validate Mock Test against the XML Schema
         if kwargs.get('validate', True):
             self.validate()
 
         self.replay_config = self.extract_replay_config()
-        print("REPLAY CONFIG: " + str(self.replay_config))
 
         self.replay_messages = self.extract_replay_messages()
-        print("REPLAY MESSAGES: {0} found.".format(len(self.replay_messages)))
 
         if self.replay_config['currenttime']:
             self.update_timestamps()
-            print("TIMESTAMPS UPDATED")
 
     @classmethod
     def fromstring(cls, mock_test_str, **kwargs):
@@ -73,28 +73,20 @@ class SfbReplay():
             raise ValueError("Invalid Sfb Replay Test XML Format.")
 
     def run(self):
-        # Initialise the mockers
-        sdn_mocker = None
-        odbc_mocker = None
         try:
-            print("Configuring Mockers ... ")
-            if self.sdn_config is not None:
-                sdn_mocker = SdnMocker(**self.sdn_config)
-                print(sdn_mocker)
-                sdn_mocker.open()
+            if self.sdn_mocker is not None:
+                self.sdn_mocker.open()
             if self.odbc_config is not None:
-                odbc_mocker = OdbcMocker(**self.odbc_config)
-                print(odbc_mocker)
-                odbc_mocker.open()
+                self.odbc_mocker.open()
 
             # Send the messages using appropriate mocker and intervals
             prev_timestamp = None
             for msg in self.replay_messages:
                 mocker = None
                 if isinstance(msg, SdnMessage):
-                    mocker = sdn_mocker
+                    mocker = self.sdn_mocker
                 elif isinstance(msg, SqlQueryMessage):
-                    mocker = odbc_mocker
+                    mocker = self.odbc_mocker
                 else:
                     raise ValueError("Unrecognised Mock Message instance.")
 
@@ -104,10 +96,10 @@ class SfbReplay():
                 prev_timestamp = msg.get_timestamp()
 
         finally:
-            if sdn_mocker is not None:
-                sdn_mocker.close()
-            if odbc_mocker is not None:
-                odbc_mocker.close()
+            if self.sdn_mocker is not None:
+                self.sdn_mocker.close()
+            if self.odbc_mocker is not None:
+                self.odbc_mocker.close()
 
     def validate(self):
         # Use correct schema for SDN version
@@ -211,6 +203,15 @@ class SfbReplay():
                 new_timestamp = new_timestamp + delta
             msg.set_timestamp(new_timestamp)
 
+    def __str__(self):
+        """
+        Readable representation of the SfbReplay instance, shows the mocker configurations within
+        """
+        template = "SfbReplay Configurations :\n"
+        template += str(self.sdn_mocker) + '\n' if self.sdn_mocker else ''
+        template += str(self.odbc_mocker) + '\n' if self.odbc_mocker else ''
+        return template
+
 
 def main():
     args = parse_sys_args()
@@ -225,6 +226,7 @@ def main():
     replayer = SfbReplay.fromfile(args.infile,
                                   sdn_config=sdn_config,
                                   odbc_config=odbc_config)
+    print(replayer)
     replayer.run()
 
 

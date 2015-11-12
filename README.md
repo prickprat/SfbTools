@@ -29,6 +29,7 @@ Better handling of removing default namespaces:
 PRIORITY:
 
 sdn version in SdnMocker
+mocker printing
 remove default namespaces in sdn message printing
 If no timestamp found default to 0 interval , log warning.
-duplicate xmlmessage in sdnextractor
+remove fromdict in mockers
