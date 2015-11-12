@@ -193,7 +193,7 @@ class SdnMessage(XmlMessage):
     def __str__(self):
         desc_template = "<SdnMessage object : Timestamp - {0} : Contains {1}>"
         return desc_template.format(str(self.get_timestamp()),
-                                    tuple(x.tag for x in list(self.root)))
+                                    tuple(x.tag.split('}')[-1] for x in list(self.root)))
 
 
 class SqlQueryMessage(XmlMessage):
