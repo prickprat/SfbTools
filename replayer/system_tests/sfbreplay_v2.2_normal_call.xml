@@ -1,11 +1,19 @@
-<?xml version="1.0"?>
-<Mocker xmlns="http://www.ir.com/Mocker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ir.com/Mocker ../schemas/Mocker.Schema.xsd">
-  <MockerConfiguration>
-    <MaxDelay>3</MaxDelay>
-    <RealTime>false</RealTime>
-    <CurrentTime>true</CurrentTime>
-  </MockerConfiguration>
-  <MockMessages>
+<SfbReplay xmlns="http://www.ir.com/SfbReplay"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <Description>
+      Normal Peer-to-Peer Call, between 2 users.
+      Single Site : Site01 Labs
+      SDN Version : 2.2
+    </Description>
+
+    <ReplayConfiguration>
+        <MaxDelay>2</MaxDelay>
+        <RealTime>false</RealTime>
+        <CurrentTime>false</CurrentTime>
+    </ReplayConfiguration>
+
+    <ReplayMessages>
     <LyncDiagnostics Version="D">
       <ConnectionInfo>
         <CallId>5b52a6e6c1f34298beb567e7acfb6cd0</CallId>
@@ -649,5 +657,5 @@
         </Properties>
       </QualityUpdate>
     </LyncDiagnostics>
-  </MockMessages>
-</Mocker>
+  </ReplayMessages>
+</SfbReplay>

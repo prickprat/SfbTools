@@ -2,7 +2,7 @@ from .replayer.replayer import SfbReplayer
 import argparse
 import logging
 import logging.config
-import logging_conf
+from . import logging_conf
 import ast
 
 

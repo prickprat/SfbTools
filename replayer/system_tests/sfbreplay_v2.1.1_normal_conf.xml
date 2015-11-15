@@ -2,6 +2,11 @@
 <SfbReplay xmlns="http://www.ir.com/SfbReplay"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
 
+    <Description>
+      Normal Conference Call between 3 participants.
+      Single Site : Lync2013 Lab Environment.
+      SDN Version : 2.1.1
+    </Description>
     <ReplayConfiguration>
         <MaxDelay>45</MaxDelay>
         <RealTime>true</RealTime>
