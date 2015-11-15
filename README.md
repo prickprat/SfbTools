@@ -11,25 +11,19 @@ EDGE Case testing
 Better Logging:
     Error Logging
     Debug logging
-    Print statements
-        sdn message printing
-        configuration printing
-
-
 
 System Testing
     * full test on sqlite & node server
-    * 
-
-Better handling of removing default namespaces:
-    * REMOVE target ns from schema?
-    * DONT use re replace
-    * 
 
 PRIORITY:
-
-sdn version in SdnMocker
-mocker printing
-remove default namespaces in sdn message printing
 If no timestamp found default to 0 interval , log warning.
+
 remove fromdict in mockers
+
+Change sdn_test format to SfbReplay
+
+Generate SfbReplay Template from SdnExtractor
+
+move exceptions to separate module
+
+better exception handling and error printing

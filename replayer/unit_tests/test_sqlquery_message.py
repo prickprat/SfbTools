@@ -1,6 +1,6 @@
 import logging
 import unittest
-from xmlmessage import SqlQueryMessage
+from sfbtools.replayer.xmlmessage import SqlQueryMessage
 from lxml import etree as ET
 
 # Disable non-critical logging for Testing

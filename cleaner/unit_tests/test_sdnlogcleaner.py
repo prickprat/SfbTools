@@ -1,6 +1,6 @@
 import logging
 import unittest
-import sdnlogcleaner as LC
+import sfbtools.cleaner.cleaner as LC
 
 # Disable non-critical logging for Testing
 logging.disable(logging.CRITICAL)

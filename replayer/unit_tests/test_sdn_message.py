@@ -2,8 +2,8 @@ import logging
 import unittest
 import datetime as DT
 import dateutil.parser as DUP
-from xmlmessage import SdnMessage
-from xmlmessage import NoElementException
+from sfbtools.replayer.xmlmessage import SdnMessage
+from sfbtools.replayer.xmlmessage import NoElementException
 from lxml import etree as ET
 
 # Disable non-critical logging for Testing

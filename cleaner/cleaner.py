@@ -1,8 +1,5 @@
-import re
 import logging
-import logging.config
-import sfbtools.sdnlogcleaner.logging_conf as log_conf
-import argparse
+import re
 
 
 START_RX = re.compile(r'Start_Prognosis_datadump >>>>>>>>>>>>>>>>>>: (.*)',
@@ -11,11 +8,6 @@ END_RX = re.compile(r'<<<<<<<<<<<<<<<<<< Stop_Prognosis_datadump',
                     re.DOTALL | re.IGNORECASE)
 SPLIT_RX = re.compile(r'IRLYNC\s+httpserv\s+\d+\s+T\d+\s+(.*)',
                       re.DOTALL | re.IGNORECASE)
-
-
-def main():
-    args = parse_sys_args()
-    clean(args.infile, args.outfile)
 
 
 def clean(in_path, out_path):
@@ -71,28 +63,3 @@ def clean_line(line, inside_message, line_no=None):
             return (True, '\n' + match.group(1))
         # Ignore non-starting line outside of message
         return (False, '')
-
-
-def parse_sys_args():
-    arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
-                                         description="""
-    Skype for Business SDN Log Cleaner Tool.
-
-    Designed to clean up IRLYNC logs of artifacts left from logging.
-    Fixes split-log issues and removes trailing '.' characters.
-    Outputs only the SDN Message blocks.
-
-    """)
-    arg_parser.add_argument("infile",
-                            type=str,
-                            help="Path to the input IRLYNC log file.")
-    arg_parser.add_argument("outfile",
-                            type=str,
-                            help="""Path to the output file.
-                            This will contain all SDN messages from the input log.""")
-    return arg_parser.parse_args()
-
-if __name__ == '__main__':
-    # Load logging configurations
-    logging.config.dictConfig(log_conf.LOGGING_CONFIG)
-    main()
