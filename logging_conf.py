@@ -8,9 +8,9 @@ LOGGING_CONFIG = {
     'disable_existing_loggers': False,
     'formatters': {
         'standard': {
-            'format': "%(asctime)s [%(name)s :: %(levelname)s] " +
+            'format': "%(asctime)s [%(levelname)s] " +
                         "[%(module)s :: %(funcName)s] " +
-                        ">>> %(message)s"
+                        ">> %(message)s"
         },
     },
     'handlers': {
