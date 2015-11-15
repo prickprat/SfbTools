@@ -12,19 +12,58 @@ import os
 class SfbReplayer():
 
     """
-    Used for replaying a mock test file, given mocker configurations
+    Used for replaying a SfbReplay Scenario file, given mocker configurations
     """
 
+    REPLAY_CONFIG_TAG = "ReplayConfiguration"
+    REPLAY_MSGS_TAG = "ReplayMessages"
+
     def __init__(self, **kwargs):
-        self.mock_test = kwargs['etree']
-        # Set the default namespace for the mock test xml
-        self.default_ns = self.mock_test.getroot().nsmap.get(None, '')
+        self.replay_scenario = kwargs['etree']
+        # Set the default namespace for the replay scenario xml
+        self.default_ns = self.replay_scenario.getroot().nsmap.get(None, '')
         if self.default_ns != '':
             self.default_ns = "{{{0}}}".format(self.default_ns)
-        # Set the configuration for the mockers
+        # CSet the configuration for the mockers and create them
         self.sdn_config = kwargs.get('sdn_config', None)
         self.odbc_config = kwargs.get('odbc_config', None)
+        self.configure_mockers()
+        # Validate Mock Test against the XML Schema
+        if kwargs.get('validate', True):
+            self.validate()
 
+        self.replay_config = self.extract_replay_config()
+        self.replay_messages = self.extract_replay_messages()
+
+        if self.replay_config['currenttime']:
+            self.update_timestamps()
+
+    @classmethod
+    def fromstring(cls, replay_scenario_str, **kwargs):
+        """
+        Parses the replay scenario as a string.
+        Raises ParseError if invalid XML is encountered.
+        """
+        try:
+            replay_scenario_etree = ET.ElementTree(element=ET.fromstring(replay_scenario_str))
+            return cls(etree=replay_scenario_etree, **kwargs)
+        except ET.XMLSyntaxError as e:
+            logging.error("XMLSyntaxError: " + str(e))
+            raise
+
+    @classmethod
+    def fromfile(cls, replay_scenario_path, **kwargs):
+        """
+        Parses the replay scenario as a string.
+        Raises ParseError if invalid XML is encountered.
+        """
+        try:
+            return cls(etree=ET.parse(replay_scenario_path), **kwargs)
+        except ET.ParseError as e:
+            logging.error("ParseError whilst parsing SfbReplay Scenario file : " + str(e))
+            raise ValueError("Invalid Sfb Replay Test XML Format.")
+
+    def configure_mockers(self):
         # default to SDN version 2.1.1 if not defined
         if self.sdn_config is not None:
             self.sdn_config['version'] = self.sdn_config.get('version', '2.1.1')
@@ -32,42 +71,6 @@ class SfbReplayer():
         # Configure the Mockers
         self.sdn_mocker = SdnMocker(**self.sdn_config) if self.sdn_config else None
         self.odbc_mocker = OdbcMocker(**self.odbc_config) if self.odbc_config else None
-
-        # Validate Mock Test against the XML Schema
-        if kwargs.get('validate', True):
-            self.validate()
-
-        self.replay_config = self.extract_replay_config()
-
-        self.replay_messages = self.extract_replay_messages()
-
-        if self.replay_config['currenttime']:
-            self.update_timestamps()
-
-    @classmethod
-    def fromstring(cls, mock_test_str, **kwargs):
-        """
-        Parses the mock test as a string.
-        Raises ParseError if invalid XML is encountered.
-        """
-        try:
-            mock_test_etree = ET.ElementTree(element=ET.fromstring(mock_test_str))
-            return cls(etree=mock_test_etree, **kwargs)
-        except ET.XMLSyntaxError as e:
-            logging.error("XMLSyntaxError: " + str(e))
-            raise
-
-    @classmethod
-    def fromfile(cls, mock_test_path, **kwargs):
-        """
-        Parses the mock test as a string.
-        Raises ParseError if invalid XML is encountered.
-        """
-        try:
-            return cls(etree=ET.parse(mock_test_path), **kwargs)
-        except ET.ParseError as e:
-            logging.error("ParseError whilst parsing mock file : " + str(e))
-            raise ValueError("Invalid Sfb Replay Test XML Format.")
 
     def run(self):
         try:
@@ -85,7 +88,7 @@ class SfbReplayer():
                 elif isinstance(msg, SqlQueryMessage):
                     mocker = self.odbc_mocker
                 else:
-                    raise ValueError("Unrecognised Mock Message instance.")
+                    raise ValueError("Unrecognised Replay Message instance.")
 
                 delay = self.calculate_delay(msg.get_timestamp(),
                                              prev_timestamp)
@@ -101,15 +104,15 @@ class SfbReplayer():
     def validate(self):
         # Use correct schema for SDN version
         # no SDN or SDN version 2.1.1 use schema C
-        schema_file = "Mocker.Schema.C.xsd"
+        schema_file = "SfbReplay.Schema.C.xsd"
         if (self.sdn_config is not None
                 and self.sdn_config['version'] == '2.2'):
-            schema_file = "Mocker.Schema.D.xsd"
+            schema_file = "SfbReplay.Schema.D.xsd"
         schema_path = os.path.join(os.path.dirname(__file__), 'schemas/' + schema_file)
         schema_doc = ET.parse(schema_path)
         schema = ET.XMLSchema(schema_doc)
         try:
-            schema.assertValid(self.mock_test)
+            schema.assertValid(self.replay_scenario)
         except ET.DocumentInvalid as e:
             logging.error("Document Invalid Error: " + str(e))
             raise ValueError(
@@ -141,36 +144,38 @@ class SfbReplayer():
                 logging.error(
                     "ValueError: String to int conversion failed.")
                 raise
-        max_delay_xpath = "./{0}MockerConfiguration/{0}MaxDelay".format(self.default_ns)
-        realtime_xpath = "./{0}MockerConfiguration/{0}RealTime".format(self.default_ns)
-        currenttime_xpath = "./{0}MockerConfiguration/{0}CurrentTime".format(self.default_ns)
-        max_delay = self.mock_test.findtext(max_delay_xpath)
-        realtime = self.mock_test.findtext(realtime_xpath)
-        currenttime = self.mock_test.findtext(currenttime_xpath)
+        replay_config_elem = self.replay_scenario.find(
+            "./{0}{1}".format(self.default_ns, SfbReplayer.REPLAY_CONFIG_TAG))
+
+        (max_delay, realtime, currenttime) = (None, None, None)
+        if replay_config_elem is not None:
+            max_delay = replay_config_elem.findtext("./{0}MaxDelay".format(self.default_ns))
+            realtime = replay_config_elem.findtext("./{0}RealTime".format(self.default_ns))
+            currenttime = replay_config_elem.findtext("./{0}CurrentTime".format(self.default_ns))
 
         return {'max_delay': str_to_int(max_delay),
                 'realtime': str_to_bool(realtime),
                 'currenttime': str_to_bool(currenttime)}
 
     def extract_replay_messages(self):
-        mock_messages_tag = "./{0}MockMessages".format(self.default_ns)
+        replay_messages_tag = "./{0}{1}".format(self.default_ns, SfbReplayer.REPLAY_MSGS_TAG)
         sdn_message_tag = "{0}{1}".format(self.default_ns, SdnMessage.get_root_tag())
         sql_query_tag = "{0}{1}".format(self.default_ns, SqlQueryMessage.get_root_tag())
-        mock_messages = []
+        replay_messages = []
 
-        mock_messages_elem = self.mock_test.find(mock_messages_tag)
-        if mock_messages_elem is None:
-            return mock_messages
+        replay_messages_elem = self.replay_scenario.find(replay_messages_tag)
+        if replay_messages_elem is None:
+            return replay_messages
 
-        for msg in list(mock_messages_elem):
+        for msg in list(replay_messages_elem):
             if (msg.tag == sdn_message_tag):
                 msg = SdnMessage(msg)
             elif (msg.tag == sql_query_tag):
                 msg = SqlQueryMessage(msg)
             else:
-                raise ValueError("Unrecognised Mock Message : " + str(msg.tag))
-            mock_messages.append(msg)
-        return mock_messages
+                raise ValueError("Unrecognised Replay Message : " + str(msg.tag))
+            replay_messages.append(msg)
+        return replay_messages
 
     def calculate_delay(self, curr_timestamp, prev_timestamp):
         # Find the wait delay

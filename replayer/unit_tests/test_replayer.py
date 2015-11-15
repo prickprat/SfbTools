@@ -7,28 +7,28 @@ from sfbtools.replayer.replayer import SfbReplayer
 logging.disable(logging.CRITICAL)
 
 XML_1 = """
-<Mocker>
-  <MockerConfiguration>
+<SfbReplay>
+  <ReplayConfiguration>
     <MaxDelay>100</MaxDelay>
     <RealTime>True</RealTime>
     <CurrentTime>False</CurrentTime>
-  </MockerConfiguration>
-</Mocker>
+  </ReplayConfiguration>
+</SfbReplay>
 """
 XML_2 = """
-<Mocker>
-  <MockerConfiguration>
-  </MockerConfiguration>
-</Mocker>
+<SfbReplay>
+  <ReplayConfiguration>
+  </ReplayConfiguration>
+</SfbReplay>
 """
 XML_3 = """
-<Mocker>
-  <MockerConfiguration>
+<SfbReplay>
+  <ReplayConfiguration>
       <MaxDelay>random##$</MaxDelay>
       <RealTime>random!@888**</RealTime>
       <CurrentTime>skljdalsie</CurrentTime>
-  </MockerConfiguration>
-</Mocker>
+  </ReplayConfiguration>
+</SfbReplay>
 """
 
 

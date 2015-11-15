@@ -41,35 +41,40 @@ def process_dict_arg(arg_str):
 def parse_sys_args():
     arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
                                          description="""
-    Skype for Business Mocker Tool.
+    Skype for Business Replay Tool.
 
     This tool is designed to replay a Conference or Call by sending pre-defined
     SDN messages directly to a receiver, and replaying predefined insert/delete
     statements against the SQL database.
 
-    The tool requires a pre-defined 'Mocker Test' as an input file and configurations
+    The tool requires a 'SfbReplay Scenario' as an input file and configurations
     for the SDN receiver and ODBC connection as parameters.
 
-    Each 'Mocker Test' is an XML document representing a test scenario.
-    It contains test configurations and Mock Messages sent to either
+    Each 'SfbReplay Scenario' is an XML document representing a test scenario.
+    It contains test configurations and Replay Messages sent to either
     the SDN receiver or the database. Details below.
 
-    --------------------------Mock Test File--------------------------
+    --------------------------SfbReplay Scenario File--------------------------
 
     *********** Format Example ****************
 
-    <Mocker xmlns="http://www.ir.com/Mocker"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://www.ir.com/Mocker ../schemas/Mocker.Schema.xsd">
+    <SfbReplay xmlns="http://www.ir.com/SfbReplay"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
         <Description>...</Description>
-        <MockerConfiguration>
+
+        <ReplayConfiguration>
             <MaxDelay>....</MaxDelay>
             <RealTime>....</RealTime>
             <CurrentTime>...</CurrentTime>
-        </MockerConfiguration>
-        <MockMessages>
-            <LyncDiagnostic>
+        </ReplayConfiguration>
+
+        <ReplayMessages>
+            <LyncDiagnostic ...>
+                <ConnectionInfo>
+                    <TimeStamp>...</TimeStamp>
+                    ...
+                </ConnectionInfo>
                 ...
             </LyncDiagnostic>
             ...
@@ -78,34 +83,40 @@ def parse_sys_args():
                 <Query><![CDATA[...]]></Query>
             </SqlQueryMessage>
             ...
-        </MockMessages>
-    </Mocker>
+        </ReplayMessages>
+
+    </SfbReplay>
 
     *******************************************
 
     Elements explained :
 
-        Mocker      -   The root element for the xml.
-                        Namespace must be 'http://www.ir.com/Mocker' since this test is validated
-                        against a schema before it is executed.
-        Description -   Short description of the mock test scenario. [Optional]
-        MaxDelay    -   The maximum delay time for each consecutive message.
-                        Number of seconds.
-                        (e.g. 120)
-        RealTime    -   Realtime uses the actual time interval between consecutive
-                        mock messages. The Max Delay time is still respected.
-                        If disabled then the time delay is always Max Delay.
-                        true or false.
-                        (e.g. true)
-        CurrentTime -   If CurrentTime is true, all timestamps for messages will be made relative
-                        to the current date-time. The timestamp of the final MockMessage
-                        will be replaced with the current UTC timestamp. Preceding message
-                        timestamps will also be replaced, depending on RealTime and MaxDelay
-                        settings.
-                        true or false.
-                        (e.g. true)
+    SfbReplay           -   The root element for the xml.
+                            Namespace must be 'http://www.ir.com/SfbReplay' since this scenario
+                            is validated against a schema before it is executed.
+    ReplayConfiguration -   Contains configurations for the test scenario.
+    Description         -   Short description of the test scenario. [Optional]
+    MaxDelay            -   The maximum delay time for each consecutive message.
+                            Number of seconds.
+                            (e.g. 120)
+    RealTime            -   Realtime uses the actual time interval between consecutive
+                            mock messages. The Max Delay time is still respected.
+                            If disabled then the time delay is always Max Delay.
+                            true or false.
+                            (e.g. true)
+    CurrentTime         -   If CurrentTime is true, all timestamps for messages will
+                            be made relative to the current date-time.
+                            The timestamp of the final MockMessage will be replaced with
+                            the current UTC timestamp. Preceding message timestamps will also
+                            be replaced, depending on RealTime and MaxDelay settings.
+                            true or false.
+                            (e.g. true)
+    ReplayMessages      -   Contains the Messages to replay in chronological order.
+                            Messages are either SdnMessages which have 'LyncDiagnostic'
+                            as the root, or SqlQueryMessages. All Messages are checked against
+                            their relevant schema for validity before execution.
 
-    -------------------SDN Configuration -----------------------------
+    ----------------------------SDN Configuration -----------------------------
 
     The SDN configuration must be in python dictionary format.
 
@@ -117,7 +128,7 @@ def parse_sys_args():
         e.g. --sdn-config "{ 'receiver': 'https://127.0.0.1:3000/SdnApiReceiver/site',
                              'version' : '2.2' }"
 
-    -------------------ODBC Configuration -----------------------------
+    ----------------------------ODBC Configuration ----------------------------
 
     The ODBC connection parameters must be in python dictionary format.
     NB: Backslashes must be triple escaped (e.g. \\\\\\\\ for \\)
@@ -138,21 +149,21 @@ def parse_sys_args():
     arg_parser.add_argument("infile",
                             type=str,
                             help="""
-                            Path to the Mock Test XML file.
+                            Path to the SfbReplay Scenario XML file.
                             See the detailed description above for formatting.""")
 
     arg_parser.add_argument("--sdn-config",
                             metavar="SDN_PARAMS",
                             type=str,
                             help="""
-                            SDN Mocker configuration parameters in python dictionary format.
+                            SDN Configuration parameters in python dictionary format.
                             See the detailed description above.""")
 
     arg_parser.add_argument("--odbc-config",
                             metavar="ODBC_PARAMS",
                             type=str,
                             help="""
-                            ODBC connection string parameters in python dictionary format.
+                            ODBC Configuration parameters in python dictionary format.
                             See the detailed description above.""")
 
     return arg_parser.parse_args()

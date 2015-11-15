@@ -22,3 +22,5 @@ Change sdn_test format to SfbReplay
 Generate SfbReplay Template from SdnExtractor
 
 move exceptions to separate module
+
+test spacing in xml

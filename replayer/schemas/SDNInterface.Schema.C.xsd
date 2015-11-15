@@ -2,8 +2,8 @@
 
 <!-- Copyright (c) Microsoft. All rights reserved. -->
 
-<xs:schema xmlns="http://www.ir.com/Mocker"
-  targetNamespace="http://www.ir.com/Mocker"
+<xs:schema xmlns="http://www.ir.com/SfbReplay"
+  targetNamespace="http://www.ir.com/SfbReplay"
   attributeFormDefault="unqualified"
   elementFormDefault="qualified"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"

@@ -1,11 +1,14 @@
 <?xml version="1.0"?>
-<Mocker xmlns="http://www.ir.com/Mocker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ir.com/Mocker ../schemas/Mocker.Schema.xsd">
-    <MockerConfiguration>
+<SfbReplay xmlns="http://www.ir.com/SfbReplay"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+    <ReplayConfiguration>
         <MaxDelay>45</MaxDelay>
         <RealTime>true</RealTime>
         <CurrentTime>true</CurrentTime>
-    </MockerConfiguration>
-    <MockMessages>
+    </ReplayConfiguration>
+
+    <ReplayMessages>
 <LyncDiagnostics Version="C">
   <ConnectionInfo>
     <CallId>e62b032e60f343a7a2ec7edd8cc627eb</CallId>
@@ -1834,5 +1837,6 @@ a=ptime:20
     </Properties>
   </QualityUpdate>
 </LyncDiagnostics>
-    </MockMessages>
-</Mocker>
+    </ReplayMessages>
+
+</SfbReplay>
