@@ -94,23 +94,29 @@ def parse_sys_args():
     SfbReplay           -   The root element for the xml.
                             Namespace must be 'http://www.ir.com/SfbReplay' since this scenario
                             is validated against a schema before it is executed.
+
     ReplayConfiguration -   Contains configurations for the test scenario.
+
     Description         -   Short description of the test scenario. [Optional]
+
     MaxDelay            -   The maximum delay time for each consecutive message.
                             Number of seconds.
                             (e.g. 120)
+
     RealTime            -   Realtime uses the actual time interval between consecutive
-                            mock messages. The Max Delay time is still respected.
+                            replay messages. The Max Delay time is still respected.
                             If disabled then the time delay is always Max Delay.
                             true or false.
                             (e.g. true)
+
     CurrentTime         -   If CurrentTime is true, all timestamps for messages will
                             be made relative to the current date-time.
-                            The timestamp of the final MockMessage will be replaced with
+                            The timestamp of the final MockMessage will be updated with
                             the current UTC timestamp. Preceding message timestamps will also
-                            be replaced, depending on RealTime and MaxDelay settings.
+                            be updated, depending on RealTime and MaxDelay settings.
                             true or false.
                             (e.g. true)
+
     ReplayMessages      -   Contains the Messages to replay in chronological order.
                             Messages are either SdnMessages which have 'LyncDiagnostic'
                             as the root, or SqlQueryMessages. All Messages are checked against
