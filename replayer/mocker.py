@@ -17,13 +17,6 @@ class MockerInterface(metaclass=abc.ABCMeta):
     def __init__(self, **config_dict):
         self._closed = True
 
-    @classmethod
-    def fromdict(cls, config_dict):
-        """
-        Initialize the Mocker from dictionary.
-        """
-        return cls(**config_dict)
-
     @abc.abstractmethod
     def __str__(self):
         """Prints a readable representation of the Mocker and Configurations"""
